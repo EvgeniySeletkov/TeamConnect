@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<prism:PrismApplication xmlns:prism="clr-namespace:Prism.Unity;assembly=Prism.Unity.Forms" 
+                        xmlns="http://xamarin.com/schemas/2014/forms"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+                        xmlns:styles="clr-namespace:TeamConnect.Resources.Styles"
+                        x:Class="TeamConnect.App">
+
+    <prism:PrismApplication.Resources>
+
+        <styles:DefaultResources>
+
+            <styles:DefaultResources.MergedDictionaries>
+
+                <styles:LightModeResources/>
+
+            </styles:DefaultResources.MergedDictionaries>
+            
+        </styles:DefaultResources>
+        
+    </prism:PrismApplication.Resources>
+    
+</prism:PrismApplication>
