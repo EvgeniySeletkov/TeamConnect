@@ -1,4 +1,5 @@
 ﻿using Prism.Navigation;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -46,7 +47,7 @@ namespace TeamConnect.ViewModels
 
         private async Task LoadTeamAvailableTimes()
         {
-            var getUsersResult = await _userService.GetAllUsersAsync();
+            var getUsersResult = await _userService.GetMissingUsersAsync(DateTime.Now.AddDays(30).Date);
 
             if (getUsersResult.IsSuccess)
             {

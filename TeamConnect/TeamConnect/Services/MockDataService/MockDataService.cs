@@ -162,32 +162,32 @@ namespace TeamConnect.Services.MockDataService
                 {
                     Id = 1,
                     Type = "Holiday",
-                    StartDate = DateTime.Now,
-                    EndDate = DateTime.Now.AddDays(10),
+                    StartDate = DateTime.Now.Date,
+                    EndDate = DateTime.Now.AddDays(10).Date,
                     UserId = 1,
                 },
                 new RequestModel
                 {
                     Id = 2,
                     Type = "Holiday",
-                    StartDate = DateTime.Now.AddDays(1),
-                    EndDate = DateTime.Now.AddDays(3),
+                    StartDate = DateTime.Now.AddDays(1).Date,
+                    EndDate = DateTime.Now.AddDays(3).Date,
                     UserId = 2,
                 },
                 new RequestModel
                 {
                     Id = 3,
                     Type = "Holiday",
-                    StartDate = DateTime.Now,
-                    EndDate = DateTime.Now.AddDays(2),
+                    StartDate = DateTime.Now.Date,
+                    EndDate = DateTime.Now.AddDays(2).Date,
                     UserId = 3,
                 },
                 new RequestModel
                 {
                     Id = 4,
                     Type = "Holiday",
-                    StartDate = DateTime.Now.AddDays(5),
-                    EndDate = DateTime.Now.AddDays(5),
+                    StartDate = DateTime.Now.AddDays(5).Date,
+                    EndDate = DateTime.Now.AddDays(5).Date,
                     UserId = 3,
                 },
             };

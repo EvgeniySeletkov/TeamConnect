@@ -24,11 +24,11 @@ namespace TeamConnect.Services.RequestService
 
             try
             {
-                var requests = await _mockDataService.GetRequestsAsync();
+                var requestsResult = await _mockDataService.GetRequestsAsync();
 
-                if (requests.IsSuccess)
+                if (requestsResult.IsSuccess)
                 {
-                    result.SetSuccess(requests.Result);
+                    result.SetSuccess(requestsResult.Result);
                 }
                 else
                 {

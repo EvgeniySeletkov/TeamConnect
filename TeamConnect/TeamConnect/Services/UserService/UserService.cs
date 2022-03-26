@@ -12,7 +12,8 @@ namespace TeamConnect.Services.UserService
     {
         private readonly IMockDataService _mockDataService;
 
-        public UserService(IMockDataService mockDataService)
+        public UserService(
+            IMockDataService mockDataService)
         {
             _mockDataService = mockDataService;
         }
@@ -25,11 +26,11 @@ namespace TeamConnect.Services.UserService
 
             try
             {
-                var requests = await _mockDataService.GetUsersAsync(u => u.Id == userId);
+                var usersResult = await _mockDataService.GetUsersAsync(u => u.Id == userId);
 
-                if (requests.IsSuccess)
+                if (usersResult.IsSuccess)
                 {
-                    result.SetSuccess(requests.Result.FirstOrDefault());
+                    result.SetSuccess(usersResult.Result.FirstOrDefault());
                 }
                 else
                 {
@@ -50,11 +51,11 @@ namespace TeamConnect.Services.UserService
 
             try
             {
-                var requests = await _mockDataService.GetUsersAsync();
+                var usersResult = await _mockDataService.GetUsersAsync();
 
-                if (requests.IsSuccess)
+                if (usersResult.IsSuccess)
                 {
-                    result.SetSuccess(requests.Result);
+                    result.SetSuccess(usersResult.Result);
                 }
                 else
                 {
@@ -64,6 +65,51 @@ namespace TeamConnect.Services.UserService
             catch (Exception ex)
             {
                 result.SetError($"{nameof(GetAllUsersAsync)} : exception", "Something went wrong", ex);
+            }
+
+            return result;
+        }
+
+        public async Task<OperationResult<IEnumerable<UserModel>>> GetMissingUsersAsync(DateTime date)
+        {
+            var result = new OperationResult<IEnumerable<UserModel>>();
+
+            try
+            {
+                var users = await _mockDataService.GetUsersAsync();
+
+                if (users.IsSuccess)
+                {
+                    var missingUsers = new List<UserModel>();
+
+                    foreach (var item in users.Result)
+                    {
+                        var userLeaveResult = await _mockDataService.GetRequestsAsync(
+                            r => r.StartDate <= date
+                            && r.EndDate >= date
+                            && r.UserId == item.Id);
+
+                        if (userLeaveResult.IsSuccess)
+                        {
+                            var userLeave = userLeaveResult.Result.FirstOrDefault();
+
+                            if (userLeave is null)
+                            {
+                                missingUsers.Add(item);
+                            }
+                        }
+                    }
+
+                    result.SetSuccess(missingUsers);
+                }
+                else
+                {
+                    result.SetFailure();
+                }
+            }
+            catch (Exception ex)
+            {
+                result.SetError($"{nameof(GetMissingUsersAsync)} : exception", "Something went wrong", ex);
             }
 
             return result;
