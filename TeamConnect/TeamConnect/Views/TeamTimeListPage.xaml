@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:BaseContentPage xmlns:pages="clr-namespace:TeamConnect.Views"
+                       xmlns="http://xamarin.com/schemas/2014/forms"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                       xmlns:viewmodels="clr-namespace:TeamConnect.ViewModels"
+                       xmlns:models="clr-namespace:TeamConnect.Models.User"
+                       x:Class="TeamConnect.Views.TeamTimeListPage"
+                       x:DataType="viewmodels:TeamTimeListPageViewModel"
+                       Title="Team Time">
+
+    <CollectionView ItemsSource="{Binding TeamAvailableTimes}"
+                    IsGrouped="True">
+
+        <CollectionView.ItemsLayout>
+
+            <LinearItemsLayout Orientation="Vertical"
+                               ItemSpacing="10"/>
+
+        </CollectionView.ItemsLayout>
+
+        <CollectionView.GroupHeaderTemplate>
+
+            <DataTemplate x:DataType="models:UserGroupViewModel">
+
+                <StackLayout Padding="20, 0">
+
+                    <Label>
+
+                        <Label.FormattedText>
+
+                            <FormattedString>
+
+                                <Span Text="{Binding StartWorkTime, StringFormat='{0:HH:mm}'}"/>
+
+                                <Span Text=" - "/>
+
+                                <Span Text="{Binding EndWorkTime, StringFormat='{0:HH:mm}'}"/>
+
+                            </FormattedString>
+                            
+                        </Label.FormattedText>
+                        
+                    </Label>
+
+                </StackLayout>
+
+            </DataTemplate>
+
+        </CollectionView.GroupHeaderTemplate>
+
+        <CollectionView.ItemTemplate>
+
+            <DataTemplate x:DataType="models:UserViewModel">
+
+                <StackLayout Padding="20, 0">
+
+                    <Frame HasShadow="False"
+                           CornerRadius="16"
+                           BorderColor="LightGray">
+
+                        <StackLayout>
+
+                            <Label Text="{Binding Name}"/>
+
+                            <Label Text="{Binding Surname}"/>
+
+                        </StackLayout>
+
+                    </Frame>
+
+                </StackLayout>
+
+            </DataTemplate>
+
+        </CollectionView.ItemTemplate>
+
+    </CollectionView>
+
+</pages:BaseContentPage>

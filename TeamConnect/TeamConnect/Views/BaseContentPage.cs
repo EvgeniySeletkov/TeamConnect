@@ -9,9 +9,9 @@ namespace TeamConnect.Views
     {
         public BaseContentPage()
         {
-            Xamarin.Forms.NavigationPage.SetHasNavigationBar(this, false);
+            //Xamarin.Forms.NavigationPage.SetHasNavigationBar(this, false);
             ViewModelLocator.SetAutowireViewModel(this, true);
-            On<iOS>().SetUseSafeArea(true);
+            //On<iOS>().SetUseSafeArea(true);
         }
     }
 }
