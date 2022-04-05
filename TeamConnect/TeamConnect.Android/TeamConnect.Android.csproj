@@ -16,7 +16,6 @@
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
-    <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
     <TargetFrameworkVersion>v11.0</TargetFrameworkVersion>
     <AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
     <AndroidUseAapt2>true</AndroidUseAapt2>
@@ -94,7 +93,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TeamConnect\TeamConnect.csproj">
-      <Project>{78C5B3CE-5F23-4237-93AE-35B525B8FDE7}</Project>
+      <Project>{EC8B0CC4-B0E8-4118-80A0-8EF28D640931}</Project>
       <Name>TeamConnect</Name>
     </ProjectReference>
   </ItemGroup>
