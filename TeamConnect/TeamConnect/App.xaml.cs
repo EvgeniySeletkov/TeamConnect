@@ -21,7 +21,7 @@ namespace TeamConnect
         {
             InitializeComponent();
 
-            NavigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(TeamTimeListPage)}");
+            NavigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(LoginPage)}");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -33,7 +33,9 @@ namespace TeamConnect
 
             // Pages
             containerRegistry.RegisterForNavigation<NavigationPage>();
-            containerRegistry.RegisterForNavigation<MainPage>();
+            containerRegistry.RegisterForNavigation<LoginPage, LoginPageViewModel>();
+            containerRegistry.RegisterForNavigation<CreateAccountFirstPage, CreateAccountFirstPageViewModel>();
+            containerRegistry.RegisterForNavigation<CreateAccountSecondPage, CreateAccountSecondPageViewModel>();
             containerRegistry.RegisterForNavigation<RequestsPage, RequestsPageViewModel>();
             containerRegistry.RegisterForNavigation<TeamTimeListPage, TeamTimeListPageViewModel>();
         }

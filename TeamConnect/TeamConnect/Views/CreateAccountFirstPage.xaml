@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:BaseContentPage xmlns:pages="clr-namespace:TeamConnect.Views"
+                       xmlns="http://xamarin.com/schemas/2014/forms"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                       xmlns:viewmodels="clr-namespace:TeamConnect.ViewModels"
+                       x:Class="TeamConnect.Views.CreateAccountFirstPage"
+                       x:DataType="viewmodels:CreateAccountFirstPageViewModel"
+                       Title="Create account">
+
+    <StackLayout>
+
+        <Entry Placeholder="Name"/>
+
+        <Entry Placeholder="Surname"/>
+
+        <Button Text="Next"
+                Command="{Binding NextTapCommand}"/>
+
+    </StackLayout>
+
+</pages:BaseContentPage>

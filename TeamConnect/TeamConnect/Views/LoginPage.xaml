@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:BaseContentPage xmlns:pages="clr-namespace:TeamConnect.Views"
+                       xmlns="http://xamarin.com/schemas/2014/forms"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                       xmlns:viewmodels="clr-namespace:TeamConnect.ViewModels"
+                       x:Class="TeamConnect.Views.LoginPage"
+                       x:DataType="viewmodels:LoginPageViewModel"
+                       Title="Login">
+
+    <StackLayout>
+
+        <Entry Placeholder="Email"/>
+
+        <Entry Placeholder="Password"/>
+
+        <Button Text="Log in"/>
+
+        <Button Text="Sign up"
+                Command="{Binding SignUpTapCommand}"/>
+
+    </StackLayout>
+    
+</pages:BaseContentPage>
