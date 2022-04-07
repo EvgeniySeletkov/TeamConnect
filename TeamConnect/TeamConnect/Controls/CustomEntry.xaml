@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<StackLayout xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:TeamConnect.Controls"
+             x:Class="TeamConnect.Controls.CustomEntry"
+             x:Name="customEntry">
+
+    <Frame x:Name="frame"
+           BindingContext="{x:Reference customEntry}"
+           HasShadow="False"
+           Padding="16, 18"
+           CornerRadius="16"
+           BackgroundColor="Transparent"
+           BorderColor="{x:DynamicResource appcolor_i4}">
+
+        <Frame.GestureRecognizers>
+
+            <TapGestureRecognizer Tapped="EntryTapped"/>
+
+        </Frame.GestureRecognizers>
+
+        <Grid ColumnDefinitions="Auto, *, Auto"
+              ColumnSpacing="12">
+
+            <Image Grid.Column="0"
+                   BindingContext="{x:Reference customEntry}"
+                   Source="{Binding Icon}">
+
+                <Image.Triggers>
+
+                    <DataTrigger TargetType="Image"
+                                 Binding="{Binding IsFocused, Source={x:Reference entry}}"
+                                 Value="True">
+
+                        <Setter Property="Source"
+                                Value="{Binding FocusedIcon}"/>
+
+                    </DataTrigger>
+
+                </Image.Triggers>
+
+            </Image>
+
+            <controls:BorderlessEntry x:Name="entry"
+                                      Grid.Column="1"
+                                      BindingContext="{x:Reference customEntry}"
+                                      VerticalOptions="Center"
+                                      FontFamily="IMediumFont"
+                                      FontSize="{x:DynamicResource tsize_i7}"
+                                      TextColor="{x:DynamicResource appcolor_i10}"
+                                      PlaceholderColor="{x:DynamicResource appcolor_i7}"
+                                      Placeholder="{Binding Placeholder}"
+                                      Keyboard="{Binding Keyboard}"
+                                      TranslationY="{OnPlatform Android=-2, iOS=0}"
+                                      Text="{Binding Text}"
+                                      IsPassword="{Binding IsPassword}"
+                                      Focused="EntryFocused"
+                                      Unfocused="EntryUnfocused"/>
+
+            <Image x:Name="passwordButton"
+                   Grid.Column="2"
+                   Source="ic_eye_off"
+                   IsVisible="{Binding IsPasswordButtonVisible, Source={x:Reference customEntry}}">
+
+                <Image.GestureRecognizers>
+
+                    <TapGestureRecognizer Tapped="PasswordButtonTapped"/>
+
+                </Image.GestureRecognizers>
+
+            </Image>
+
+        </Grid>
+
+    </Frame>
+
+    <Label BindingContext="{x:Reference customEntry}"
+           IsVisible="{Binding IsError}"
+           Text="{Binding ErrorText}"
+           Style="{x:DynamicResource tstyle_i7}"/>
+
+</StackLayout>
