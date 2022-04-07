@@ -12,6 +12,16 @@ namespace TeamConnect.Models.User
 
         public string Surname { get; set; }
 
+        public double Latitude { get; set; }
+
+        public double Longitude { get; set; }
+
+        public string Address { get; set; }
+
+        public string TimeZoneId { get; set; }
+
+        public string CountryCode { get; set; }
+
         public DateTime StartWorkTime { get; set; }
 
         public DateTime EndWorkTime { get; set; }

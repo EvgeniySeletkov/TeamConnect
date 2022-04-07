@@ -13,7 +13,8 @@
 
         <Entry Placeholder="Password"/>
 
-        <Button Text="Log in"/>
+        <Button Text="Log in"
+                Command="{Binding LogInTapCommand}"/>
 
         <Button Text="Sign up"
                 Command="{Binding SignUpTapCommand}"/>

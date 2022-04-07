@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:BaseContentPage xmlns:pages="clr-namespace:TeamConnect.Views"
+                       xmlns="http://xamarin.com/schemas/2014/forms"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                       xmlns:viewmodels="clr-namespace:TeamConnect.ViewModels" 
+                       xmlns:xct="http://xamarin.com/schemas/2020/toolkit" 
+                       xmlns:controls="clr-namespace:TeamConnect.Controls"
+                       x:Class="TeamConnect.Views.SelectLocationPage"
+                       x:DataType="viewmodels:SelectLocationPageViewModel"
+                       Title="Select address">
+
+    <StackLayout>
+
+        <Entry Placeholder="Address"
+               Text="{Binding Address}"/>
+
+        <controls:CustomMap IsShowingUser="True"
+                            Pin="{Binding Pin}">
+
+            <controls:CustomMap.Behaviors>
+
+                <xct:EventToCommandBehavior EventName="MapClicked"
+                                            Command="{Binding SelectLocationCommand}"/>
+
+            </controls:CustomMap.Behaviors>
+            
+        </controls:CustomMap>
+
+    </StackLayout>
+
+</pages:BaseContentPage>
