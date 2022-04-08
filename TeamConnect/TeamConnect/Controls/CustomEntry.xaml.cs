@@ -13,6 +13,17 @@ namespace TeamConnect.Controls
 
         #region -- Public properties --
 
+        public static readonly BindableProperty BorderColorProperty = BindableProperty.Create(
+            propertyName: nameof(BorderColor),
+            returnType: typeof(Color),
+            declaringType: typeof(CustomEntry));
+
+        public Color BorderColor
+        {
+            get => (Color)GetValue(BorderColorProperty);
+            set => SetValue(BorderColorProperty, value);
+        }
+
         public static readonly BindableProperty TextProperty = BindableProperty.Create(
             propertyName: nameof(Text),
             returnType: typeof(string),
@@ -36,26 +47,48 @@ namespace TeamConnect.Controls
             set => SetValue(PlaceholderProperty, value);
         }
 
-        public static readonly BindableProperty IconProperty = BindableProperty.Create(
-            propertyName: nameof(Icon),
+        public static readonly BindableProperty FontFamilyProperty = BindableProperty.Create(
+            propertyName: nameof(FontFamily),
             returnType: typeof(string),
             declaringType: typeof(CustomEntry));
 
-        public string Icon
+        public string FontFamily
         {
-            get => (string)GetValue(IconProperty);
-            set => SetValue(IconProperty, value);
+            get => (string)GetValue(FontFamilyProperty);
+            set => SetValue(FontFamilyProperty, value);
         }
 
-        public static readonly BindableProperty FocusedIconProperty = BindableProperty.Create(
-            propertyName: nameof(FocusedIcon),
-            returnType: typeof(string),
+        public static readonly BindableProperty FontSizeProperty = BindableProperty.Create(
+            propertyName: nameof(FontSize),
+            returnType: typeof(double),
             declaringType: typeof(CustomEntry));
 
-        public string FocusedIcon
+        public double FontSize
         {
-            get => (string)GetValue(FocusedIconProperty);
-            set => SetValue(FocusedIconProperty, value);
+            get => (double)GetValue(FontSizeProperty);
+            set => SetValue(FontSizeProperty, value);
+        }
+
+        public static readonly BindableProperty TextColorProperty = BindableProperty.Create(
+            propertyName: nameof(TextColor),
+            returnType: typeof(Color),
+            declaringType: typeof(CustomEntry));
+
+        public Color TextColor
+        {
+            get => (Color)GetValue(TextColorProperty);
+            set => SetValue(TextColorProperty, value);
+        }
+
+        public static readonly BindableProperty PlaceholderColorProperty = BindableProperty.Create(
+            propertyName: nameof(PlaceholderColor),
+            returnType: typeof(Color),
+            declaringType: typeof(CustomEntry));
+
+        public Color PlaceholderColor
+        {
+            get => (Color)GetValue(PlaceholderColorProperty);
+            set => SetValue(PlaceholderColorProperty, value);
         }
 
         public static readonly BindableProperty IsPasswordProperty = BindableProperty.Create(
@@ -80,15 +113,37 @@ namespace TeamConnect.Controls
             set => SetValue(IsPasswordButtonVisibleProperty, value);
         }
 
-        public static readonly BindableProperty ButtonIconProperty = BindableProperty.Create(
-            propertyName: nameof(ButtonIcon),
+        public static readonly BindableProperty NotPasswordIconProperty = BindableProperty.Create(
+            propertyName: nameof(NotPasswordIcon),
             returnType: typeof(ImageSource),
             declaringType: typeof(CustomEntry));
 
-        private ImageSource ButtonIcon
+        public ImageSource NotPasswordIcon
         {
-            get => (ImageSource)GetValue(ButtonIconProperty);
-            set => SetValue(ButtonIconProperty, value);
+            get => (ImageSource)GetValue(NotPasswordIconProperty);
+            set => SetValue(NotPasswordIconProperty, value);
+        }
+
+        public static readonly BindableProperty PasswordIconProperty = BindableProperty.Create(
+            propertyName: nameof(PasswordIcon),
+            returnType: typeof(ImageSource),
+            declaringType: typeof(CustomEntry));
+
+        public ImageSource PasswordIcon
+        {
+            get => (ImageSource)GetValue(PasswordIconProperty);
+            set => SetValue(PasswordIconProperty, value);
+        }
+
+        public static readonly BindableProperty FocusedColorProperty = BindableProperty.Create(
+            propertyName: nameof(FocusedColor),
+            returnType: typeof(Color),
+            declaringType: typeof(CustomEntry));
+
+        public Color FocusedColor
+        {
+            get => (Color)GetValue(FocusedColorProperty);
+            set => SetValue(FocusedColorProperty, value);
         }
 
         public static readonly BindableProperty IsErrorProperty = BindableProperty.Create(
@@ -112,6 +167,39 @@ namespace TeamConnect.Controls
         {
             get => (string)GetValue(ErrorTextProperty);
             set => SetValue(ErrorTextProperty, value);
+        }
+
+        public static readonly BindableProperty ErrorFontFamilyProperty = BindableProperty.Create(
+            propertyName: nameof(ErrorFontFamily),
+            returnType: typeof(string),
+            declaringType: typeof(CustomEntry));
+
+        public string ErrorFontFamily
+        {
+            get => (string)GetValue(ErrorFontFamilyProperty);
+            set => SetValue(ErrorFontFamilyProperty, value);
+        }
+
+        public static readonly BindableProperty ErrorFontSizeProperty = BindableProperty.Create(
+            propertyName: nameof(ErrorFontSize),
+            returnType: typeof(double),
+            declaringType: typeof(CustomEntry));
+
+        public double ErrorFontSize
+        {
+            get => (double)GetValue(ErrorFontSizeProperty);
+            set => SetValue(ErrorFontSizeProperty, value);
+        }
+
+        public static readonly BindableProperty ErrorColorProperty = BindableProperty.Create(
+            propertyName: nameof(ErrorColor),
+            returnType: typeof(Color),
+            declaringType: typeof(CustomEntry));
+
+        public Color ErrorColor
+        {
+            get => (Color)GetValue(ErrorColorProperty);
+            set => SetValue(ErrorColorProperty, value);
         }
 
         public static readonly BindableProperty IsEntryFocusedProperty = BindableProperty.Create(
@@ -144,7 +232,11 @@ namespace TeamConnect.Controls
         {
             base.OnPropertyChanged(propertyName);
 
-            if (propertyName == IsEntryFocusedProperty.PropertyName)
+            if (propertyName == BorderColorProperty.PropertyName)
+            {
+                SetFrameColor();
+            }
+            else if (propertyName == IsEntryFocusedProperty.PropertyName)
             {
                 IsError = false;
                 SetFrameColor();
@@ -156,9 +248,7 @@ namespace TeamConnect.Controls
             else if (propertyName == IsPasswordProperty.PropertyName)
             {
                 passwordButton.RemoveDynamicResource(Image.SourceProperty);
-                string imageRes = IsPassword ? "ic_eye_off" : "ic_eye";
-
-                passwordButton.SetDynamicResource(Image.SourceProperty, imageRes);
+                passwordButton.Source = IsPassword ? PasswordIcon : NotPasswordIcon;
             }
         }
 
@@ -169,9 +259,7 @@ namespace TeamConnect.Controls
         private void SetFrameColor()
         {
             frame.RemoveDynamicResource(Frame.BorderColorProperty);
-            string colorRes = IsEntryFocused ? "appcolor_i16" : IsError ? "appcolor_i22" : "appcolor_i4";
-
-            frame.SetDynamicResource(Frame.BorderColorProperty, colorRes);
+            frame.BorderColor = IsEntryFocused ? FocusedColor : IsError ? ErrorColor : BorderColor;
         }
 
         private void PasswordButtonTapped(object sender, EventArgs e)

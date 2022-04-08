@@ -1,8 +1,76 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms" 
                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                    xmlns:controls="clr-namespace:TeamConnect.Controls"
                     x:Class="TeamConnect.Resources.Styles.DefaultResources">
-    
-    
-    
+
+    <!-- TEXT SIZE -->
+    <x:Double x:Key="tsize_i14">16</x:Double> <!-- 14px -->
+    <x:Double x:Key="tsize_i10">12</x:Double> <!-- 10px -->
+
+    <!-- NAVIGATION PAGE STYLE -->
+    <Style TargetType="NavigationPage">
+        <Setter Property="BarBackgroundColor" Value="{DynamicResource appcolor_i4}"/>
+        <Setter Property="BarTextColor" Value="{DynamicResource tcolor_i1}"/>
+    </Style>
+
+    <!-- ENTRY STYLES -->
+    <Style x:Key="estyle_i1" TargetType="controls:CustomEntry">
+        <Setter Property="BorderColor" Value="{DynamicResource appcolor_i2}"/>
+        <Setter Property="FocusedColor" Value="{DynamicResource appcolor_i1}"/>
+        <Setter Property="ErrorColor" Value="{DynamicResource appcolor_i3}"/>
+        <Setter Property="FontFamily" Value="RegularFont"/>
+        <Setter Property="FontSize" Value="{DynamicResource tsize_i14}"/>
+        <Setter Property="TextColor" Value="{DynamicResource tcolor_i1}"/>
+        <Setter Property="PlaceholderColor" Value="{DynamicResource tcolor_i2}"/>
+        <Setter Property="ErrorFontFamily" Value="RegularFont"/>
+        <Setter Property="ErrorFontSize" Value="{DynamicResource tsize_i10}"/>
+    </Style>
+
+    <!-- BUTTON STYLES -->
+    <Style x:Key="bstyle_i1" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="{DynamicResource appcolor_i1}"/>
+        <Setter Property="TextColor" Value="{DynamicResource tcolor_i3}"/>
+        <Setter Property="FontFamily" Value="MediumFont"/>
+        <Setter Property="FontSize" Value="{DynamicResource tsize_i14}"/>
+        <Setter Property="TextTransform" Value="None"/>
+        <Setter Property="HeightRequest" Value="56"/>
+        <Setter Property="CornerRadius" Value="16"/>
+    </Style>
+
+    <Style x:Key="bstyle_i2" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="{DynamicResource appcolor_i4}"/>
+        <Setter Property="TextColor" Value="{DynamicResource tcolor_i4}"/>
+        <Setter Property="FontFamily" Value="MediumFont"/>
+        <Setter Property="FontSize" Value="{DynamicResource tsize_i14}"/>
+        <Setter Property="TextTransform" Value="None"/>
+        <Setter Property="HeightRequest" Value="56"/>
+        <Setter Property="CornerRadius" Value="16"/>
+        <Setter Property="BorderWidth" Value="1"/>
+        <Setter Property="BorderColor" Value="{DynamicResource appcolor_i1}"/>
+    </Style>
+
+    <!-- DISABLED BUTTON STYLES -->
+    <Style x:Key="bstyle_i3" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="{DynamicResource appcolor_i2}"/>
+        <Setter Property="TextColor" Value="{DynamicResource tcolor_i3}"/>
+        <Setter Property="FontFamily" Value="MediumFont"/>
+        <Setter Property="FontSize" Value="{DynamicResource tsize_i14}"/>
+        <Setter Property="TextTransform" Value="None"/>
+        <Setter Property="HeightRequest" Value="56"/>
+        <Setter Property="CornerRadius" Value="16"/>
+    </Style>
+
+    <Style x:Key="bstyle_i4" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="{DynamicResource appcolor_i4}"/>
+        <Setter Property="TextColor" Value="{DynamicResource appcolor_i2}"/>
+        <Setter Property="FontFamily" Value="MediumFont"/>
+        <Setter Property="FontSize" Value="{DynamicResource tsize_i14}"/>
+        <Setter Property="TextTransform" Value="None"/>
+        <Setter Property="HeightRequest" Value="56"/>
+        <Setter Property="CornerRadius" Value="16"/>
+        <Setter Property="BorderWidth" Value="1"/>
+        <Setter Property="BorderColor" Value="{DynamicResource appcolor_i2}"/>
+    </Style>
+
 </ResourceDictionary>

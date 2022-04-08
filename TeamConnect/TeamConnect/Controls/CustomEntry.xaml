@@ -10,8 +10,7 @@
            HasShadow="False"
            Padding="16, 18"
            CornerRadius="16"
-           BackgroundColor="Transparent"
-           BorderColor="{x:DynamicResource appcolor_i4}">
+           BackgroundColor="Transparent">
 
         <Frame.GestureRecognizers>
 
@@ -19,36 +18,17 @@
 
         </Frame.GestureRecognizers>
 
-        <Grid ColumnDefinitions="Auto, *, Auto"
+        <Grid ColumnDefinitions="*, Auto"
               ColumnSpacing="12">
 
-            <Image Grid.Column="0"
-                   BindingContext="{x:Reference customEntry}"
-                   Source="{Binding Icon}">
-
-                <Image.Triggers>
-
-                    <DataTrigger TargetType="Image"
-                                 Binding="{Binding IsFocused, Source={x:Reference entry}}"
-                                 Value="True">
-
-                        <Setter Property="Source"
-                                Value="{Binding FocusedIcon}"/>
-
-                    </DataTrigger>
-
-                </Image.Triggers>
-
-            </Image>
-
             <controls:BorderlessEntry x:Name="entry"
-                                      Grid.Column="1"
+                                      Grid.Column="0"
                                       BindingContext="{x:Reference customEntry}"
                                       VerticalOptions="Center"
-                                      FontFamily="IMediumFont"
-                                      FontSize="{x:DynamicResource tsize_i7}"
-                                      TextColor="{x:DynamicResource appcolor_i10}"
-                                      PlaceholderColor="{x:DynamicResource appcolor_i7}"
+                                      FontFamily="{Binding FontFamily}"
+                                      FontSize="{Binding FontSize}"
+                                      TextColor="{Binding TextColor}"
+                                      PlaceholderColor="{Binding PlaceholderColor}"
                                       Placeholder="{Binding Placeholder}"
                                       Keyboard="{Binding Keyboard}"
                                       TranslationY="{OnPlatform Android=-2, iOS=0}"
@@ -58,8 +38,7 @@
                                       Unfocused="EntryUnfocused"/>
 
             <Image x:Name="passwordButton"
-                   Grid.Column="2"
-                   Source="ic_eye_off"
+                   Grid.Column="1"
                    IsVisible="{Binding IsPasswordButtonVisible, Source={x:Reference customEntry}}">
 
                 <Image.GestureRecognizers>
@@ -76,7 +55,9 @@
 
     <Label BindingContext="{x:Reference customEntry}"
            IsVisible="{Binding IsError}"
+           FontFamily="{Binding ErrorFontFamily}"
+           FontSize="{Binding ErrorFontSize}"
            Text="{Binding ErrorText}"
-           Style="{x:DynamicResource tstyle_i7}"/>
+           TextColor="{Binding ErrorColor}"/>
 
 </StackLayout>

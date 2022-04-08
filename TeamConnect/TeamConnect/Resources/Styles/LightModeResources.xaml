@@ -2,7 +2,21 @@
 <ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms" 
                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                     x:Class="TeamConnect.Resources.Styles.LightModeResources">
-    
-    
+
+    <!-- APP COLOR -->
+    <Color x:Key="appcolor_i1">Blue</Color>
+    <Color x:Key="appcolor_i2">LightGray</Color>
+    <Color x:Key="appcolor_i3">Red</Color>
+    <Color x:Key="appcolor_i4">White</Color>
+
+    <!-- TEXT COLORS -->
+    <Color x:Key="tcolor_i1">Black</Color>
+    <Color x:Key="tcolor_i2">Gray</Color>
+    <Color x:Key="tcolor_i3">White</Color>
+    <Color x:Key="tcolor_i4">Blue</Color>
+
+    <!-- IMAGES -->
+    <ImageSource x:Key="ic_eye">ic_eye</ImageSource>
+    <ImageSource x:Key="ic_eye_off">ic_eye_off</ImageSource>
     
 </ResourceDictionary>
