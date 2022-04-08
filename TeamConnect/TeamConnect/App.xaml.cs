@@ -1,6 +1,8 @@
 ﻿using Acr.UserDialogs;
 using Prism.Ioc;
 using Prism.Unity;
+using System.Globalization;
+using TeamConnect.Resources.Strings;
 using TeamConnect.Services.MapService;
 using TeamConnect.Services.MockDataService;
 using TeamConnect.Services.RequestService;
@@ -9,6 +11,7 @@ using TeamConnect.Services.TimeZoneService;
 using TeamConnect.Services.UserService;
 using TeamConnect.ViewModels;
 using TeamConnect.Views;
+using Xamarin.CommunityToolkit.Helpers;
 using Xamarin.Forms;
 
 namespace TeamConnect
@@ -24,6 +27,8 @@ namespace TeamConnect
         protected override void OnInitialized()
         {
             InitializeComponent();
+
+            InitializeLocalizationManager();
 
             NavigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(LoginPage)}");
         }
@@ -61,6 +66,24 @@ namespace TeamConnect
 
         protected override void OnResume()
         {
+        }
+
+        #endregion
+
+        #region -- Private helpers --
+
+        private void InitializeLocalizationManager()
+        {
+            var enCulture = new CultureInfo("en");
+
+            CultureInfo.DefaultThreadCurrentCulture = enCulture;
+            CultureInfo.DefaultThreadCurrentUICulture = enCulture;
+            CultureInfo.CurrentCulture = enCulture;
+            CultureInfo.CurrentUICulture = enCulture;
+
+            LocalizationResourceManager.Current.PropertyChanged += (sender, e) => Strings.Culture = LocalizationResourceManager.Current.CurrentCulture;
+            LocalizationResourceManager.Current.Init(Strings.ResourceManager);
+            LocalizationResourceManager.Current.CurrentCulture = enCulture;
         }
 
         #endregion

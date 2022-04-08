@@ -3,29 +3,29 @@
                        xmlns="http://xamarin.com/schemas/2014/forms"
                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                        xmlns:viewmodels="clr-namespace:TeamConnect.ViewModels"
-                       xmlns:controls="clr-namespace:TeamConnect.Controls"
+                       xmlns:controls="clr-namespace:TeamConnect.Controls" xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
                        x:Class="TeamConnect.Views.LoginPage"
                        x:DataType="viewmodels:LoginPageViewModel"
                        BackgroundColor="{DynamicResource tcolor_i3}"
-                       Title="Login">
+                       Title="{xct:Translate Login}">
 
     <StackLayout Padding="24, 100, 24, 0"
                  Spacing="16">
 
         <controls:CustomEntry Style="{DynamicResource estyle_i1}"
-                              Placeholder="Email"
-                              ErrorText="Error"/>
+                              Placeholder="{xct:Translate Email}"
+                              ErrorText="{xct:Translate WrongEmail}"/>
 
         <controls:CustomEntry Style="{DynamicResource estyle_i1}"
-                              Placeholder="Password"
-                              ErrorText="Error"
+                              Placeholder="{xct:Translate Password}"
+                              ErrorText="{xct:Translate WrongPassword}"
                               PasswordIcon="{DynamicResource ic_eye_off}"
                               NotPasswordIcon="{DynamicResource ic_eye}"
                               IsPassword="True"
                               IsPasswordButtonVisible="True"/>
 
         <Button Style="{DynamicResource bstyle_i1}"
-                Text="Log in"
+                Text="{xct:Translate Login}"
                 Command="{Binding LogInTapCommand}"
                 InputTransparent="True"
                 Margin="0, 84, 0, 0">
@@ -45,7 +45,7 @@
         </Button>
 
         <Button Style="{DynamicResource bstyle_i2}"
-                Text="Sign up"
+                Text="{xct:Translate SignUp}"
                 Command="{Binding SignUpTapCommand}"/>
 
     </StackLayout>
