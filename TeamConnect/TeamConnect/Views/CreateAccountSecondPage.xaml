@@ -3,20 +3,79 @@
                        xmlns="http://xamarin.com/schemas/2014/forms"
                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                        xmlns:viewmodels="clr-namespace:TeamConnect.ViewModels"
+                       xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+                       xmlns:controls="clr-namespace:TeamConnect.Controls"
                        x:Class="TeamConnect.Views.CreateAccountSecondPage"
                        x:DataType="viewmodels:CreateAccountSecondPageViewModel"
-                       Title="Create account">
+                       Title="{xct:Translate CreateAccount}">
 
-    <StackLayout>
+    <StackLayout Padding="24, 100, 24, 0"
+                 Spacing="16">
 
-        <Entry Placeholder="Email"/>
+        <controls:CustomEntry Style="{DynamicResource estyle_i1}"
+                              Placeholder="{xct:Translate Email}"
+                              Text="{Binding Email}"
+                              IsError="{Binding IsEmailError}"
+                              ErrorText="{Binding EmailError}"/>
 
-        <Entry Placeholder="Password"/>
+        <controls:CustomEntry Style="{DynamicResource estyle_i1}"
+                              Placeholder="{xct:Translate Password}"
+                              Text="{Binding Password}"
+                              PasswordIcon="{DynamicResource ic_eye_off}"
+                              NotPasswordIcon="{DynamicResource ic_eye}"
+                              IsPassword="True"
+                              IsPasswordButtonVisible="True"
+                              IsError="{Binding IsPasswordError}"
+                              ErrorText="{Binding PasswordError}"/>
 
-        <Entry Placeholder="Confirm password"/>
+        <controls:CustomEntry Style="{DynamicResource estyle_i1}"
+                              Placeholder="{xct:Translate ConfirmPassword}"
+                              Text="{Binding ConfirmPassword}"
+                              PasswordIcon="{DynamicResource ic_eye_off}"
+                              NotPasswordIcon="{DynamicResource ic_eye}"
+                              IsPassword="True"
+                              IsPasswordButtonVisible="True"
+                              IsError="{Binding IsConfirmPasswordError}"
+                              ErrorText="{Binding ConfirmPasswordError}"/>
 
-        <Button Text="Create account"
-                Command="{Binding CreateAccountTapCommand}"/>
+        <Button Style="{DynamicResource bstyle_i3}"
+                Text="{xct:Translate CreateAccount}"
+                Command="{Binding CreateAccountTapCommand}"
+                InputTransparent="True"
+                Margin="0, 84, 0, 0">
+
+            <Button.Triggers>
+
+                <Trigger TargetType="Button"
+                         Property="InputTransparent"
+                         Value="False">
+
+                    <Setter Property="Style" Value="{DynamicResource bstyle_i1}"/>
+
+                </Trigger>
+
+                <MultiTrigger TargetType="Button">
+
+                    <MultiTrigger.Conditions>
+
+                        <BindingCondition Binding="{Binding Email, Converter={StaticResource isNotNullOrEmptyConverter}}"
+                                          Value="True"/>
+
+                        <BindingCondition Binding="{Binding Password, Converter={StaticResource isNotNullOrEmptyConverter}}"
+                                          Value="True"/>
+
+                        <BindingCondition Binding="{Binding ConfirmPassword, Converter={StaticResource isNotNullOrEmptyConverter}}"
+                                          Value="True"/>
+
+                    </MultiTrigger.Conditions>
+
+                    <Setter Property="InputTransparent" Value="False"/>
+
+                </MultiTrigger>
+
+            </Button.Triggers>
+
+        </Button>
 
     </StackLayout>
     

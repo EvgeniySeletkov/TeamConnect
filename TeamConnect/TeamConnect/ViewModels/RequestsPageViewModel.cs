@@ -6,23 +6,23 @@ using System.Threading.Tasks;
 using TeamConnect.Extensions;
 using TeamConnect.Models.Request;
 using TeamConnect.Services.RequestService;
-using TeamConnect.Services.UserService;
+using TeamConnect.Services.AuthorizationService;
 
 namespace TeamConnect.ViewModels
 {
     public class RequestsPageViewModel : BaseViewModel
     {
         private readonly IRequestService _requestService;
-        private readonly IUserService _userService;
+        private readonly IAuthorizationService _authorizationService;
 
         public RequestsPageViewModel(
             INavigationService navigationService,
             IRequestService requestService,
-            IUserService userService)
+            IAuthorizationService authorizationService)
             : base(navigationService)
         {
             _requestService = requestService;
-            _userService = userService;
+            _authorizationService = authorizationService;
         }
 
         #region -- Public properties --
@@ -70,7 +70,7 @@ namespace TeamConnect.ViewModels
                     {
                         if (requestGroup.Date >= request.StartDate && requestGroup.Date <= request.EndDate)
                         {
-                            var getUserResult = await _userService.GetUserByIdAsync(request.UserId);
+                            var getUserResult = await _authorizationService.GetUserByIdAsync(request.UserId);
 
                             if (getUserResult.IsSuccess)
                             {

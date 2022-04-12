@@ -10,10 +10,10 @@ namespace TeamConnect.Services.MockDataService
 {
     public class MockDataService : IMockDataService
     {
-        private readonly TaskCompletionSource<bool> _initComletionSource = new TaskCompletionSource<bool>();
+        private readonly TaskCompletionSource<bool> _initCompletionSource = new TaskCompletionSource<bool>();
 
-        private IEnumerable<UserModel> _users;
-        private IEnumerable<RequestModel> _requests;
+        private IList<UserModel> _users;
+        private IList<RequestModel> _requests;
 
         public MockDataService()
         {
@@ -28,7 +28,7 @@ namespace TeamConnect.Services.MockDataService
 
             try
             {
-                await _initComletionSource.Task;
+                await _initCompletionSource.Task;
 
                 if (_users != null)
                 {
@@ -51,6 +51,35 @@ namespace TeamConnect.Services.MockDataService
             return result;
         }
 
+        public async Task<OperationResult> AddUserAsync(UserModel user)
+        {
+            var result = new OperationResult();
+
+            try
+            {
+                await _initCompletionSource.Task;
+
+                int ordersCount = _users.Count;
+
+                _users.Add(user);
+
+                if (_users.Count == ordersCount + 1)
+                {
+                    result.SetSuccess();
+                }
+                else
+                {
+                    result.SetFailure();
+                }
+            }
+            catch (Exception ex)
+            {
+                result.SetError($"{nameof(AddUserAsync)} : exception", "Something went wrong", ex);
+            }
+
+            return result;
+        }
+
         #endregion
 
         #region -- Requests methods --
@@ -61,7 +90,7 @@ namespace TeamConnect.Services.MockDataService
 
             try
             {
-                await _initComletionSource.Task;
+                await _initCompletionSource.Task;
 
                 if (_requests != null)
                 {
@@ -94,12 +123,12 @@ namespace TeamConnect.Services.MockDataService
                 InitUsersAsync(),
                 InitRequestsAsync());
 
-            _initComletionSource.TrySetResult(true);
+            _initCompletionSource.TrySetResult(true);
         }
 
         private Task InitUsersAsync() => Task.Run(() =>
         {
-            var time = 
+            var time =
 
             _users = new List<UserModel>
             {
@@ -108,6 +137,8 @@ namespace TeamConnect.Services.MockDataService
                     Id = 1,
                     Name = "Yevhen",
                     Surname = "Selietkov",
+                    Email = "evgeniy@mail.com",
+                    Password = "Evgeniy99",
                     StartWorkTime = new DateTime() + new TimeSpan(9, 0, 0),
                     EndWorkTime = new DateTime() + new TimeSpan(17, 0, 0),
                 },
@@ -116,6 +147,8 @@ namespace TeamConnect.Services.MockDataService
                     Id = 2,
                     Name = "Hanna",
                     Surname = "Vicheva",
+                    Email = "hanna@mail.com",
+                    Password = "Hanna98",
                     StartWorkTime = new DateTime() + new TimeSpan(6, 0, 0),
                     EndWorkTime = new DateTime() + new TimeSpan(14, 0, 0),
                 },
@@ -124,6 +157,8 @@ namespace TeamConnect.Services.MockDataService
                     Id = 3,
                     Name = "Yuriy",
                     Surname = "Ziryanov",
+                    Email = "yuriy@mail.com",
+                    Password = "Yuriy99",
                     StartWorkTime = new DateTime() + new TimeSpan(13, 0, 0),
                     EndWorkTime = new DateTime() + new TimeSpan(21, 0, 0),
                 },

@@ -3,7 +3,8 @@
                        xmlns="http://xamarin.com/schemas/2014/forms"
                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                        xmlns:viewmodels="clr-namespace:TeamConnect.ViewModels"
-                       xmlns:controls="clr-namespace:TeamConnect.Controls" xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+                       xmlns:controls="clr-namespace:TeamConnect.Controls"
+                       xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
                        x:Class="TeamConnect.Views.LoginPage"
                        x:DataType="viewmodels:LoginPageViewModel"
                        BackgroundColor="{DynamicResource tcolor_i3}"
@@ -14,15 +15,19 @@
 
         <controls:CustomEntry Style="{DynamicResource estyle_i1}"
                               Placeholder="{xct:Translate Email}"
-                              ErrorText="{xct:Translate WrongEmail}"/>
+                              Text="{Binding Email}"
+                              IsError="{Binding IsEmailError}"
+                              ErrorText="{xct:Translate InvalidEmail}"/>
 
         <controls:CustomEntry Style="{DynamicResource estyle_i1}"
                               Placeholder="{xct:Translate Password}"
-                              ErrorText="{xct:Translate WrongPassword}"
+                              Text="{Binding Password}"
                               PasswordIcon="{DynamicResource ic_eye_off}"
                               NotPasswordIcon="{DynamicResource ic_eye}"
                               IsPassword="True"
-                              IsPasswordButtonVisible="True"/>
+                              IsPasswordButtonVisible="True"
+                              IsError="{Binding IsPasswordError}"
+                              ErrorText="{xct:Translate InvalidPassword}"/>
 
         <Button Style="{DynamicResource bstyle_i1}"
                 Text="{xct:Translate Login}"
@@ -39,6 +44,22 @@
                     <Setter Property="Style" Value="{DynamicResource bstyle_i3}"/>
 
                 </Trigger>
+
+                <MultiTrigger TargetType="Button">
+
+                    <MultiTrigger.Conditions>
+
+                        <BindingCondition Binding="{Binding Email, Converter={StaticResource isNotNullOrEmptyConverter}}"
+                                          Value="True"/>
+
+                        <BindingCondition Binding="{Binding Password, Converter={StaticResource isNotNullOrEmptyConverter}}"
+                                          Value="True"/>
+
+                    </MultiTrigger.Conditions>
+
+                    <Setter Property="InputTransparent" Value="False"/>
+
+                </MultiTrigger>
 
             </Button.Triggers>
 

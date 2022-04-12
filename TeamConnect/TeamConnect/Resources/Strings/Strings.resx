@@ -135,4 +135,31 @@
   <data name="WrongPassword" xml:space="preserve">
     <value>Wrong password</value>
   </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Surname" xml:space="preserve">
+    <value>Surname</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="ConfirmPassword" xml:space="preserve">
+    <value>Confirm password</value>
+  </data>
+  <data name="CreateAccount" xml:space="preserve">
+    <value>Create account</value>
+  </data>
+  <data name="PleaseConfirmPassword" xml:space="preserve">
+    <value>Please confirm password</value>
+  </data>
+  <data name="PleaseTypeYourEmail" xml:space="preserve">
+    <value>Please type your email</value>
+  </data>
+  <data name="InvalidEmail" xml:space="preserve">
+    <value>Invalid email</value>
+  </data>
+  <data name="InvalidPassword" xml:space="preserve">
+    <value>Invalid password</value>
+  </data>
 </root>

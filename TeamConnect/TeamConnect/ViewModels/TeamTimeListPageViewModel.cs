@@ -5,20 +5,20 @@ using System.Linq;
 using System.Threading.Tasks;
 using TeamConnect.Extensions;
 using TeamConnect.Models.User;
-using TeamConnect.Services.UserService;
+using TeamConnect.Services.AuthorizationService;
 
 namespace TeamConnect.ViewModels
 {
     public class TeamTimeListPageViewModel : BaseViewModel
     {
-        private readonly IUserService _userService;
+        private readonly IAuthorizationService _authorizationService;
 
         public TeamTimeListPageViewModel(
             INavigationService navigationService,
-            IUserService userService)
+            IAuthorizationService authorizationService)
             : base(navigationService)
         {
-            _userService = userService;
+            _authorizationService = authorizationService;
         }
 
         #region -- Public properties --
@@ -47,7 +47,7 @@ namespace TeamConnect.ViewModels
 
         private async Task LoadTeamAvailableTimes()
         {
-            var getUsersResult = await _userService.GetMissingUsersAsync(DateTime.Now.AddDays(30).Date);
+            var getUsersResult = await _authorizationService.GetMissingUsersAsync(DateTime.Now.AddDays(30).Date);
 
             if (getUsersResult.IsSuccess)
             {

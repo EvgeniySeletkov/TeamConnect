@@ -2,6 +2,12 @@
 {
     public static class Constants
     {
+        public static class Navigation
+        {
+            public const string USER = nameof(USER);
+            public const string EMAIL = nameof(EMAIL);
+        }
+
         public static class GoogleAPI
         {
             public const string API_KEY = "AIzaSyDCu7o1IVRZysBWkCR95qIZH52KL-1okhM";

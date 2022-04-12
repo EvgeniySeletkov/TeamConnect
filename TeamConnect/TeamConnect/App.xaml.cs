@@ -8,7 +8,7 @@ using TeamConnect.Services.MockDataService;
 using TeamConnect.Services.RequestService;
 using TeamConnect.Services.RestService;
 using TeamConnect.Services.TimeZoneService;
-using TeamConnect.Services.UserService;
+using TeamConnect.Services.AuthorizationService;
 using TeamConnect.ViewModels;
 using TeamConnect.Views;
 using Xamarin.CommunityToolkit.Helpers;
@@ -42,7 +42,7 @@ namespace TeamConnect
             containerRegistry.RegisterInstance<IMockDataService>(Container.Resolve<MockDataService>());
             containerRegistry.RegisterInstance<IRestService>(Container.Resolve<RestService>());
             containerRegistry.RegisterInstance<ITimeZoneService>(Container.Resolve<TimeZoneService>());
-            containerRegistry.RegisterInstance<IUserService>(Container.Resolve<UserService>());
+            containerRegistry.RegisterInstance<IAuthorizationService>(Container.Resolve<AuthorizationService>());
             containerRegistry.RegisterInstance<IRequestService>(Container.Resolve<RequestService>());
             containerRegistry.RegisterInstance<IMapService>(Container.Resolve<MapService>());
 

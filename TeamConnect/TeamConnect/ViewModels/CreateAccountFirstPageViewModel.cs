@@ -1,6 +1,7 @@
 ﻿using Prism.Navigation;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using TeamConnect.Models.User;
 using TeamConnect.Views;
 using Xamarin.CommunityToolkit.ObjectModel;
 
@@ -16,6 +17,20 @@ namespace TeamConnect.ViewModels
 
         #region -- Public properties --
 
+        private string _name;
+        public string Name
+        {
+            get => _name;
+            set => SetProperty(ref _name, value);
+        }
+
+        private string _surname;
+        public string Surname
+        {
+            get => _surname;
+            set => SetProperty(ref _surname, value);
+        }
+
         private ICommand _nextTapCommand;
         public ICommand NextTapCommand => _nextTapCommand ??= new AsyncCommand(OnNextTapCommandAsync);
 
@@ -25,7 +40,18 @@ namespace TeamConnect.ViewModels
 
         private Task OnNextTapCommandAsync()
         {
-            return NavigationService.NavigateAsync(nameof(CreateAccountSecondPage), null, false, true);
+            var user = new UserViewModel
+            {
+                Name = Name,
+                Surname = Surname,
+            };
+
+            var parameters = new NavigationParameters
+            {
+                { Constants.Navigation.USER,  user},
+            };
+
+            return NavigationService.NavigateAsync(nameof(CreateAccountSecondPage), parameters, false, true);
         }
 
         #endregion

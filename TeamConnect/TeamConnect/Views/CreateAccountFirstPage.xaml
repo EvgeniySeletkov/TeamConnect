@@ -3,18 +3,58 @@
                        xmlns="http://xamarin.com/schemas/2014/forms"
                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                        xmlns:viewmodels="clr-namespace:TeamConnect.ViewModels"
+                       xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+                       xmlns:controls="clr-namespace:TeamConnect.Controls"
                        x:Class="TeamConnect.Views.CreateAccountFirstPage"
                        x:DataType="viewmodels:CreateAccountFirstPageViewModel"
-                       Title="Create account">
+                       Title="{xct:Translate CreateAccount}">
 
-    <StackLayout>
+    <StackLayout Padding="24, 100, 24, 0"
+                 Spacing="16">
 
-        <Entry Placeholder="Name"/>
+        <controls:CustomEntry Style="{DynamicResource estyle_i1}"
+                              Placeholder="{xct:Translate Name}"
+                              Text="{Binding Name}"/>
 
-        <Entry Placeholder="Surname"/>
+        <controls:CustomEntry Style="{DynamicResource estyle_i1}"
+                              Placeholder="{xct:Translate Surname}"
+                              Text="{Binding Surname}"/>
 
-        <Button Text="Next"
-                Command="{Binding NextTapCommand}"/>
+        <Button Style="{DynamicResource bstyle_i3}"
+                Text="{xct:Translate Next}"
+                Command="{Binding NextTapCommand}"
+                InputTransparent="True"
+                Margin="0, 156, 0, 0">
+
+            <Button.Triggers>
+
+                <Trigger TargetType="Button"
+                         Property="InputTransparent"
+                         Value="False">
+
+                    <Setter Property="Style" Value="{DynamicResource bstyle_i1}"/>
+
+                </Trigger>
+
+                <MultiTrigger TargetType="Button">
+
+                    <MultiTrigger.Conditions>
+
+                        <BindingCondition Binding="{Binding Name, Converter={StaticResource isNotNullOrEmptyConverter}}"
+                                          Value="True"/>
+
+                        <BindingCondition Binding="{Binding Surname, Converter={StaticResource isNotNullOrEmptyConverter}}"
+                                          Value="True"/>
+
+                    </MultiTrigger.Conditions>
+
+                    <Setter Property="InputTransparent" Value="False"/>
+
+                </MultiTrigger>
+
+            </Button.Triggers>
+
+        </Button>
 
     </StackLayout>
 

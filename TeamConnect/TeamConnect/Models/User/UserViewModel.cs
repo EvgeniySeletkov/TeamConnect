@@ -35,6 +35,20 @@ namespace TeamConnect.Models.User
             set => SetProperty(ref _surname, value);
         }
 
+        private string _email;
+        public string Email
+        {
+            get => _email;
+            set => SetProperty(ref _email, value);
+        }
+
+        private string _password;
+        public string Password
+        {
+            get => _password;
+            set => SetProperty(ref _password, value);
+        }
+
         private DateTime _startWorkTime;
         public DateTime StartWorkTime
         {
