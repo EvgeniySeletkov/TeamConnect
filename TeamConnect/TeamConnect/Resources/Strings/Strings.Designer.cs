@@ -136,5 +136,23 @@ namespace TeamConnect.Resources.Strings {
                 return ResourceManager.GetString("InvalidPassword", resourceCulture);
             }
         }
+        
+        internal static string Address {
+            get {
+                return ResourceManager.GetString("Address", resourceCulture);
+            }
+        }
+        
+        internal static string SelectAddress {
+            get {
+                return ResourceManager.GetString("SelectAddress", resourceCulture);
+            }
+        }
+        
+        internal static string WrongLocation {
+            get {
+                return ResourceManager.GetString("WrongLocation", resourceCulture);
+            }
+        }
     }
 }

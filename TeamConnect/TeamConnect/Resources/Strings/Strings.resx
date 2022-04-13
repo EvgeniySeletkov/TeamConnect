@@ -162,4 +162,13 @@
   <data name="InvalidPassword" xml:space="preserve">
     <value>Invalid password</value>
   </data>
+  <data name="Address" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="SelectAddress" xml:space="preserve">
+    <value>Select address</value>
+  </data>
+  <data name="WrongLocation" xml:space="preserve">
+    <value>Wrong location</value>
+  </data>
 </root>

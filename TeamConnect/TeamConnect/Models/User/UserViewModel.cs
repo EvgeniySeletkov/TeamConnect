@@ -49,6 +49,41 @@ namespace TeamConnect.Models.User
             set => SetProperty(ref _password, value);
         }
 
+        private double _latitude;
+        public double Latitude
+        {
+            get => _latitude;
+            set => SetProperty(ref _latitude, value);
+        }
+
+        private double _longitude;
+        public double Longitude
+        {
+            get => _longitude;
+            set => SetProperty(ref _longitude, value);
+        }
+
+        private string _address;
+        public string Address
+        {
+            get => _address;
+            set => SetProperty(ref _address, value);
+        }
+
+        private string _timeZoneId;
+        public string TimeZoneId
+        {
+            get => _timeZoneId;
+            set => SetProperty(ref _timeZoneId, value);
+        }
+
+        private string _countryCode;
+        public string CountryCode
+        {
+            get => _countryCode;
+            set => SetProperty(ref _countryCode, value);
+        }
+
         private DateTime _startWorkTime;
         public DateTime StartWorkTime
         {
@@ -61,6 +96,13 @@ namespace TeamConnect.Models.User
         {
             get => _endWorkTime;
             set => SetProperty(ref _endWorkTime, value);
+        }
+
+        private bool _isAccountCreated;
+        public bool IsAccountCreated
+        {
+            get => _isAccountCreated;
+            set => SetProperty(ref _isAccountCreated, value);
         }
 
         #endregion

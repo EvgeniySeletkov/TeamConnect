@@ -1,6 +1,7 @@
 ﻿using Prism.Navigation;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using TeamConnect.Extensions;
 using TeamConnect.Services.AuthorizationService;
 using TeamConnect.Views;
 using Xamarin.CommunityToolkit.ObjectModel;
@@ -81,7 +82,22 @@ namespace TeamConnect.ViewModels
             {
                 IsEmailError = false;
                 IsPasswordError = false;
-                await NavigationService.NavigateAsync(nameof(SelectLocationPage), null, false, true);
+
+                var user = logInResult.Result.ToViewModel();
+
+                if (user.IsAccountCreated)
+                {
+
+                }
+                else
+                {
+                    var parameters = new NavigationParameters
+                    {
+                        { Constants.Navigation.USER, user.ToModel() },
+                    };
+
+                    await NavigationService.NavigateAsync(nameof(SelectLocationPage), parameters, false, true);
+                }
             }
             else
             {

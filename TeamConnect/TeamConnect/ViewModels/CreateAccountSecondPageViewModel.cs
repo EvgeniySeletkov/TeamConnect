@@ -102,9 +102,9 @@ namespace TeamConnect.ViewModels
         {
             base.Initialize(parameters);
 
-            if (parameters.TryGetValue(Constants.Navigation.USER, out UserViewModel user))
+            if (parameters.TryGetValue(Constants.Navigation.USER, out UserModel user))
             {
-                _user = user;
+                _user = user.ToViewModel();
             }
         }
 

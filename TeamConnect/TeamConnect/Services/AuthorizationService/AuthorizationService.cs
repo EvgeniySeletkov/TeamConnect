@@ -54,9 +54,9 @@ namespace TeamConnect.Services.AuthorizationService
             return result;
         }
 
-        public async Task<OperationResult> LogInAsync(string email, string password)
+        public async Task<OperationResult<UserModel>> LogInAsync(string email, string password)
         {
-            var result = new OperationResult();
+            var result = new OperationResult<UserModel>();
 
             try
             {
@@ -68,7 +68,7 @@ namespace TeamConnect.Services.AuthorizationService
 
                     if (user != null)
                     {
-                        result.SetSuccess();
+                        result.SetSuccess(user);
                     }
                     else
                     {

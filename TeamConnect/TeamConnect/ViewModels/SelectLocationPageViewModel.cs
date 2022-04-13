@@ -1,16 +1,16 @@
 ﻿using Acr.UserDialogs;
 using Prism.Navigation;
 using System;
-using System.Globalization;
-using System.Linq;
+using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using TeamConnect.Extensions;
 using TeamConnect.Models.TimeZone;
 using TeamConnect.Models.User;
+using TeamConnect.Resources.Strings;
 using TeamConnect.Services.MapService;
 using TeamConnect.Services.TimeZoneService;
 using Xamarin.CommunityToolkit.ObjectModel;
-using Xamarin.Essentials;
 using Xamarin.Forms.Maps;
 
 namespace TeamConnect.ViewModels
@@ -21,7 +21,7 @@ namespace TeamConnect.ViewModels
         private readonly ITimeZoneService _timeZoneService;
         private readonly IMapService _mapService;
 
-        private UserModel _user;
+        private UserViewModel _user;
 
         public SelectLocationPageViewModel(
             INavigationService navigationService,
@@ -53,6 +53,30 @@ namespace TeamConnect.ViewModels
 
         private ICommand _selectLocationCommand;
         public ICommand SelectLocationCommand => _selectLocationCommand ??= new AsyncCommand<MapClickedEventArgs>(OnSelectLocationCommandAsync);
+
+        #endregion
+
+        #region -- Overrides --
+
+        public override void Initialize(INavigationParameters parameters)
+        {
+            base.Initialize(parameters);
+
+            if (parameters.TryGetValue(Constants.Navigation.USER, out UserModel user))
+            {
+                _user = user.ToViewModel();
+            }
+        }
+
+        protected override void OnPropertyChanged(PropertyChangedEventArgs args)
+        {
+            base.OnPropertyChanged(args);
+
+            if (args.PropertyName == nameof(Address) && string.IsNullOrWhiteSpace(Address))
+            {
+                Pin = null;
+            }
+        }
 
         #endregion
 
@@ -97,7 +121,7 @@ namespace TeamConnect.ViewModels
 
                     Pin = new Pin
                     {
-                        Label = "",
+                        Label = string.Empty,
                         Position = position,
                     };
 
@@ -110,12 +134,12 @@ namespace TeamConnect.ViewModels
                 }
                 else
                 {
-                    await _userDialogs.AlertAsync("Wrong location!");
+                    await _userDialogs.AlertAsync(Strings.WrongLocation);
                 }
             }
             else
             {
-                await _userDialogs.AlertAsync("Wrong location!");
+                await _userDialogs.AlertAsync(Strings.WrongLocation);
             }
         }
 

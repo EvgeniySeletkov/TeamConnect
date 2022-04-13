@@ -7,12 +7,15 @@
                        xmlns:controls="clr-namespace:TeamConnect.Controls"
                        x:Class="TeamConnect.Views.SelectLocationPage"
                        x:DataType="viewmodels:SelectLocationPageViewModel"
-                       Title="Select address">
+                       BackgroundColor="{DynamicResource tcolor_i3}"
+                       Title="{xct:Translate SelectAddress}">
 
-    <StackLayout>
+    <StackLayout Spacing="0">
 
-        <Entry Placeholder="Address"
-               Text="{Binding Address}"/>
+        <controls:CustomEntry Style="{DynamicResource estyle_i1}"
+                              Placeholder="{xct:Translate Address}"
+                              Text="{Binding Address}"
+                              Margin="24"/>
 
         <controls:CustomMap IsShowingUser="True"
                             Pin="{Binding Pin}">

@@ -16,6 +16,7 @@ namespace TeamConnect.Extensions
                 Password = model.Password,
                 StartWorkTime = model.StartWorkTime,
                 EndWorkTime = model.EndWorkTime,
+                IsAccountCreated = model.IsAccountCreated,
             };
         }
 
@@ -31,6 +32,7 @@ namespace TeamConnect.Extensions
                 Password = viewModel.Password,
                 StartWorkTime = viewModel.StartWorkTime,
                 EndWorkTime = viewModel.EndWorkTime,
+                IsAccountCreated = viewModel.IsAccountCreated,
             };
         }
     }

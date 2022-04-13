@@ -1,6 +1,7 @@
 ﻿using Prism.Navigation;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using TeamConnect.Extensions;
 using TeamConnect.Models.User;
 using TeamConnect.Views;
 using Xamarin.CommunityToolkit.ObjectModel;
@@ -48,7 +49,7 @@ namespace TeamConnect.ViewModels
 
             var parameters = new NavigationParameters
             {
-                { Constants.Navigation.USER,  user},
+                { Constants.Navigation.USER,  user.ToModel() },
             };
 
             return NavigationService.NavigateAsync(nameof(CreateAccountSecondPage), parameters, false, true);

@@ -10,7 +10,7 @@ namespace TeamConnect.Services.AuthorizationService
     {
         Task<OperationResult> CheckIsEmailExistAsync(string email);
 
-        Task<OperationResult> LogInAsync(string email, string password);
+        Task<OperationResult<UserModel>> LogInAsync(string email, string password);
 
         Task<OperationResult<UserModel>> GetUserByIdAsync(int userId);
 

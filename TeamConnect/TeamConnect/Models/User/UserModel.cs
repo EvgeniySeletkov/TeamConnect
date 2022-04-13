@@ -29,5 +29,7 @@ namespace TeamConnect.Models.User
         public DateTime StartWorkTime { get; set; }
 
         public DateTime EndWorkTime { get; set; }
+
+        public bool IsAccountCreated { get; set; }
     }
 }
