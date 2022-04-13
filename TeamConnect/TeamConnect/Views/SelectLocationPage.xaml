@@ -17,17 +17,51 @@
                               Text="{Binding Address}"
                               Margin="24"/>
 
-        <controls:CustomMap IsShowingUser="True"
-                            Pin="{Binding Pin}">
+        <Grid HorizontalOptions="FillAndExpand"
+              VerticalOptions="FillAndExpand">
 
-            <controls:CustomMap.Behaviors>
+            <controls:CustomMap IsShowingUser="True"
+                                Pin="{Binding Pin}">
 
-                <xct:EventToCommandBehavior EventName="MapClicked"
-                                            Command="{Binding SelectLocationCommand}"/>
+                <controls:CustomMap.Behaviors>
 
-            </controls:CustomMap.Behaviors>
-            
-        </controls:CustomMap>
+                    <xct:EventToCommandBehavior EventName="MapClicked"
+                                                Command="{Binding SelectLocationCommand}"/>
+
+                </controls:CustomMap.Behaviors>
+
+            </controls:CustomMap>
+
+            <Button Style="{DynamicResource bstyle_i1}"
+                    Text="{xct:Translate Next}"
+                    Command="{Binding NextTapCommand}"
+                    InputTransparent="True"
+                    VerticalOptions="End"
+                    Margin="24, 0, 24, 24">
+
+                <Button.Triggers>
+
+                    <Trigger TargetType="Button"
+                             Property="InputTransparent"
+                             Value="True">
+
+                        <Setter Property="Style" Value="{DynamicResource bstyle_i3}"/>
+
+                    </Trigger>
+
+                    <DataTrigger TargetType="Button"
+                                 Binding="{Binding Pin, Converter={StaticResource isNotNullOrEmptyConverter}}"
+                                 Value="True">
+
+                        <Setter Property="InputTransparent" Value="False"/>
+
+                    </DataTrigger>
+
+                </Button.Triggers>
+
+            </Button>
+
+        </Grid>
 
     </StackLayout>
 

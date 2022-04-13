@@ -10,6 +10,7 @@ using TeamConnect.Models.User;
 using TeamConnect.Resources.Strings;
 using TeamConnect.Services.MapService;
 using TeamConnect.Services.TimeZoneService;
+using TeamConnect.Views;
 using Xamarin.CommunityToolkit.ObjectModel;
 using Xamarin.Forms.Maps;
 
@@ -53,6 +54,9 @@ namespace TeamConnect.ViewModels
 
         private ICommand _selectLocationCommand;
         public ICommand SelectLocationCommand => _selectLocationCommand ??= new AsyncCommand<MapClickedEventArgs>(OnSelectLocationCommandAsync);
+
+        private ICommand _nextTapCommand;
+        public ICommand NextTapCommand => _nextTapCommand ??= new AsyncCommand(OnNextTapCommandAsync);
 
         #endregion
 
@@ -151,6 +155,16 @@ namespace TeamConnect.ViewModels
             {
                 _user.TimeZoneId = getTimeZoneResult.Result.TimeZoneID;
             }
+        }
+
+        private Task OnNextTapCommandAsync()
+        {
+            var parameters = new NavigationParameters
+            {
+                { Constants.Navigation.USER, _user.ToModel() },
+            };
+
+            return NavigationService.NavigateAsync(nameof(SelectWorkingTimePage), parameters, false, true);
         }
 
         private DateTime GetDateTime(TimeZoneModel timeZone)
