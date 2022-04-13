@@ -143,15 +143,87 @@ namespace TeamConnect.Resources.Strings {
             }
         }
         
-        internal static string SelectAddress {
-            get {
-                return ResourceManager.GetString("SelectAddress", resourceCulture);
-            }
-        }
-        
         internal static string WrongLocation {
             get {
                 return ResourceManager.GetString("WrongLocation", resourceCulture);
+            }
+        }
+        
+        internal static string CompleteRegistration {
+            get {
+                return ResourceManager.GetString("CompleteRegistration", resourceCulture);
+            }
+        }
+        
+        internal static string HR {
+            get {
+                return ResourceManager.GetString("HR", resourceCulture);
+            }
+        }
+        
+        internal static string ProjectManager {
+            get {
+                return ResourceManager.GetString("ProjectManager", resourceCulture);
+            }
+        }
+        
+        internal static string FrontendDeveloper {
+            get {
+                return ResourceManager.GetString("FrontendDeveloper", resourceCulture);
+            }
+        }
+        
+        internal static string BackendDeveloper {
+            get {
+                return ResourceManager.GetString("BackendDeveloper", resourceCulture);
+            }
+        }
+        
+        internal static string MobileDeveloper {
+            get {
+                return ResourceManager.GetString("MobileDeveloper", resourceCulture);
+            }
+        }
+        
+        internal static string QA {
+            get {
+                return ResourceManager.GetString("QA", resourceCulture);
+            }
+        }
+        
+        internal static string Designer {
+            get {
+                return ResourceManager.GetString("Designer", resourceCulture);
+            }
+        }
+        
+        internal static string SelectPosition {
+            get {
+                return ResourceManager.GetString("SelectPosition", resourceCulture);
+            }
+        }
+        
+        internal static string Cancel {
+            get {
+                return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
+        
+        internal static string Position {
+            get {
+                return ResourceManager.GetString("Position", resourceCulture);
+            }
+        }
+        
+        internal static string From {
+            get {
+                return ResourceManager.GetString("From", resourceCulture);
+            }
+        }
+        
+        internal static string To {
+            get {
+                return ResourceManager.GetString("To", resourceCulture);
             }
         }
     }

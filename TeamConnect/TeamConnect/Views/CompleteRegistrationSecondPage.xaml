@@ -2,14 +2,55 @@
 <pages:BaseContentPage xmlns:pages="clr-namespace:TeamConnect.Views"
                        xmlns="http://xamarin.com/schemas/2014/forms"
                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                       xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
                        xmlns:viewmodels="clr-namespace:TeamConnect.ViewModels"
-                       x:Class="TeamConnect.Views.SelectWorkingTimePage"
-                       x:DataType="viewmodels:SelectWorkingTimePageViewModel"
+                       x:Class="TeamConnect.Views.CompleteRegistrationSecondPage"
+                       x:DataType="viewmodels:CompleteRegistrationSecondPageViewModel"
                        BackgroundColor="{DynamicResource tcolor_i3}"
-                       Title="Working time">
+                       Title="{xct:Translate CompleteRegistration}">
 
-    <StackLayout Padding="24, 100, 24, 0"
+    <StackLayout Padding="24, 34, 24, 24"
                  Spacing="16">
+
+        <Label Style="{DynamicResource tstyle_i1_1}"
+               Text="{xct:Translate Position}"/>
+
+        <Frame HasShadow="False"
+               Padding="16, 18"
+               CornerRadius="16"
+               BorderColor="{DynamicResource appcolor_i2}"
+               BackgroundColor="Transparent">
+
+            <Frame.GestureRecognizers>
+
+                <TapGestureRecognizer Command="{Binding SelectRoleCommand}"/>
+
+            </Frame.GestureRecognizers>
+
+            <Label Text="{xct:Translate SelectPosition}"
+                   Style="{DynamicResource tstyle_i2_1}">
+
+                <Label.Triggers>
+
+                    <DataTrigger TargetType="Label"
+                                 Binding="{Binding SelectedPosition, Converter={StaticResource isNotNullOrEmptyConverter}}"
+                                 Value="True">
+
+                        <Setter Property="Text" Value="{Binding SelectedPosition}"/>
+
+                        <Setter Property="TextColor" Value="{DynamicResource tcolor_i1}"/>
+
+                    </DataTrigger>
+
+                </Label.Triggers>
+
+            </Label>
+
+        </Frame>
+
+        <Label Style="{DynamicResource tstyle_i1_1}"
+               Text="Working time"
+               Margin="0, 34, 0, 0"/>
 
         <Frame HasShadow="False"
                Padding="16, 18"
@@ -23,8 +64,8 @@
 
             </Frame.GestureRecognizers>
 
-            <Label Text="From"
-                   Style="{DynamicResource lstyle_i1}">
+            <Label Text="{xct:Translate From}"
+                   Style="{DynamicResource tstyle_i2_1}">
 
                 <Label.Triggers>
 
@@ -56,8 +97,8 @@
 
             </Frame.GestureRecognizers>
 
-            <Label Text="To"
-                   Style="{DynamicResource lstyle_i1}">
+            <Label Text="{xct:Translate To}"
+                   Style="{DynamicResource tstyle_i2_1}">
 
                 <Label.Triggers>
 
@@ -78,9 +119,9 @@
         </Frame>
 
         <Button Style="{DynamicResource bstyle_i3}"
-                Text="Complete registration"
+                Text="{xct:Translate CompleteRegistration}"
                 InputTransparent="True"
-                Margin="0, 156, 0, 0">
+                VerticalOptions="EndAndExpand">
 
             <Button.Triggers>
 
@@ -95,6 +136,9 @@
                 <MultiTrigger TargetType="Button">
 
                     <MultiTrigger.Conditions>
+
+                        <BindingCondition Binding="{Binding SelectedPosition, Converter={StaticResource isNotNullOrEmptyConverter}}"
+                                          Value="True"/>
 
                         <BindingCondition Binding="{Binding IsStartWorkingTimeChanged}"
                                           Value="True"/>

@@ -16,7 +16,7 @@ using Xamarin.Forms.Maps;
 
 namespace TeamConnect.ViewModels
 {
-    public class SelectLocationPageViewModel : BaseViewModel
+    public class CompleteRegistrationFirstPageViewModel : BaseViewModel
     {
         private readonly IUserDialogs _userDialogs;
         private readonly ITimeZoneService _timeZoneService;
@@ -24,7 +24,7 @@ namespace TeamConnect.ViewModels
 
         private UserViewModel _user;
 
-        public SelectLocationPageViewModel(
+        public CompleteRegistrationFirstPageViewModel(
             INavigationService navigationService,
             IUserDialogs userDialogs,
             IMapService mapService,
@@ -164,7 +164,7 @@ namespace TeamConnect.ViewModels
                 { Constants.Navigation.USER, _user.ToModel() },
             };
 
-            return NavigationService.NavigateAsync(nameof(SelectWorkingTimePage), parameters, false, true);
+            return NavigationService.NavigateAsync(nameof(CompleteRegistrationSecondPage), parameters, false, true);
         }
 
         private DateTime GetDateTime(TimeZoneModel timeZone)

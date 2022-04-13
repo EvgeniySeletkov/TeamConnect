@@ -2,6 +2,8 @@
 {
     public static class Constants
     {
+        public const int DEFAULT_WORKING_TIME = 8;
+
         public static class Navigation
         {
             public const string USER = nameof(USER);

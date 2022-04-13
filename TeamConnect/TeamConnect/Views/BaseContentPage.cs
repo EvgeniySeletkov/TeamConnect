@@ -11,7 +11,7 @@ namespace TeamConnect.Views
         {
             //Xamarin.Forms.NavigationPage.SetHasNavigationBar(this, false);
             ViewModelLocator.SetAutowireViewModel(this, true);
-            //On<iOS>().SetUseSafeArea(true);
+            On<iOS>().SetUseSafeArea(true);
         }
     }
 }

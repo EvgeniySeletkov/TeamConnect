@@ -14,6 +14,7 @@
     <Color x:Key="tcolor_i2">Gray</Color>
     <Color x:Key="tcolor_i3">White</Color>
     <Color x:Key="tcolor_i4">Blue</Color>
+    <Color x:Key="tcolor_i5">LightSlateGray</Color>
 
     <!-- IMAGES -->
     <ImageSource x:Key="ic_eye">ic_eye</ImageSource>

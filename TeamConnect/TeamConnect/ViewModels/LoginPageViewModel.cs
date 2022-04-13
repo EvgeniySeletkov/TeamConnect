@@ -96,7 +96,7 @@ namespace TeamConnect.ViewModels
                         { Constants.Navigation.USER, user.ToModel() },
                     };
 
-                    await NavigationService.NavigateAsync(nameof(SelectLocationPage), parameters, false, true);
+                    await NavigationService.NavigateAsync(nameof(CompleteRegistrationFirstPage), parameters, false, true);
                 }
             }
             else

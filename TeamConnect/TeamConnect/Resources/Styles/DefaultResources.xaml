@@ -15,16 +15,30 @@
         <Setter Property="BarTextColor" Value="{DynamicResource tcolor_i1}"/>
     </Style>
 
-    <Style x:Key="lstyle_i1" TargetType="Label">
-        <Setter Property="FontFamily" Value="RegularFont"/>
-        <Setter Property="FontSize" Value="{DynamicResource tsize_i14}"/>
-        <Setter Property="TextColor" Value="{DynamicResource tcolor_i2}"/>
+    <!-- CONTENT STYLES -->
+    <Style x:Key="BaseTitle" TargetType="Label">
+        <Setter Property="FontFamily" Value="SemiBoldFont"/>
     </Style>
 
-    <Style x:Key="lstyle_i2" TargetType="Label">
-        <Setter Property="FontFamily" Value="RegularFont"/>
+    <Style x:Key="Title_18px" TargetType="Label" BasedOn="{StaticResource BaseTitle}"> <!-- Title 18px -->
         <Setter Property="FontSize" Value="{DynamicResource tsize_i14}"/>
-        <Setter Property="TextColor" Value="{DynamicResource tcolor_i1}"/>
+    </Style>
+
+    <Style x:Key="tstyle_i1_1" TargetType="Label" BasedOn="{StaticResource Title_18px}">
+        <Setter Property="TextColor" Value="{DynamicResource tcolor_i5}"/>
+    </Style>
+
+    <!-- CONTENT STYLES -->
+    <Style x:Key="BaseContent" TargetType="Label">
+        <Setter Property="FontFamily" Value="RegularFont"/>
+    </Style>
+
+    <Style x:Key="Content_14px" TargetType="Label" BasedOn="{StaticResource BaseContent}"> <!-- Content 14px-->
+        <Setter Property="FontSize" Value="{DynamicResource tsize_i14}"/>
+    </Style>
+
+    <Style x:Key="tstyle_i2_1" TargetType="Label" BasedOn="{StaticResource Content_14px}">
+        <Setter Property="TextColor" Value="{DynamicResource tcolor_i2}"/>
     </Style>
 
     <!-- ENTRY STYLES -->

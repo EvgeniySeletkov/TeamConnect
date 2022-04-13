@@ -1,21 +1,23 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Acr.UserDialogs;
 using Prism.Navigation;
 using TeamConnect.Extensions;
 using TeamConnect.Models.User;
+using TeamConnect.Resources.Strings;
 using Xamarin.CommunityToolkit.ObjectModel;
 
 namespace TeamConnect.ViewModels
 {
-    public class SelectWorkingTimePageViewModel : BaseViewModel
+    public class CompleteRegistrationSecondPageViewModel : BaseViewModel
     {
         private readonly IUserDialogs _userDialogs;
 
         private UserViewModel _user;
 
-        public SelectWorkingTimePageViewModel(
+        public CompleteRegistrationSecondPageViewModel(
             INavigationService navigationService,
             IUserDialogs userDialogs)
             : base(navigationService)
@@ -24,6 +26,20 @@ namespace TeamConnect.ViewModels
         }
 
         #region -- Public properties --
+
+        private List<string> _positions;
+        public List<string> Positions
+        {
+            get => _positions;
+            set => SetProperty(ref _positions, value);
+        }
+
+        private string _selectedPosition;
+        public string SelectedPosition
+        {
+            get => _selectedPosition;
+            set => SetProperty(ref _selectedPosition, value);
+        }
 
         private bool _isStartWorkingTimeChanged;
         public bool IsStartWorkingTimeChanged
@@ -53,6 +69,9 @@ namespace TeamConnect.ViewModels
             set => SetProperty(ref _endWorkingTime, value);
         }
 
+        private ICommand _selectRoleCommand;
+        public ICommand SelectRoleCommand => _selectRoleCommand ??= new AsyncCommand(OnSelectRoleCommandAsync);
+
         private ICommand _selectStartWorkingTimeCommand;
         public ICommand SelectStartWorkingTimeCommand => _selectStartWorkingTimeCommand ??= new AsyncCommand(OnSelectStartWorkingTimeCommandAsync);
 
@@ -74,11 +93,37 @@ namespace TeamConnect.ViewModels
             {
                 _user = user.ToViewModel();
             }
+
+            InitializePositions();
         }
 
         #endregion
 
         #region -- Private helpers --
+
+        private void InitializePositions()
+        {
+            Positions = new List<string>
+            {
+                Strings.HR,
+                Strings.ProjectManager,
+                Strings.FrontendDeveloper,
+                Strings.BackendDeveloper,
+                Strings.MobileDeveloper,
+                Strings.QA,
+                Strings.Designer,
+            };
+        }
+
+        private async Task OnSelectRoleCommandAsync()
+        {
+            var selectedPosition = await _userDialogs.ActionSheetAsync(Strings.SelectPosition, Strings.Cancel, null, null, Positions.ToArray());
+
+            if (selectedPosition != Strings.Cancel)
+            {
+                SelectedPosition = selectedPosition;
+            }
+        }
 
         private async Task OnSelectStartWorkingTimeCommandAsync()
         {
@@ -88,24 +133,42 @@ namespace TeamConnect.ViewModels
             {
                 IsStartWorkingTimeChanged = true;
                 StartWorkingTime = timePromptResult.SelectedTime;
+
+                if (!IsEndWorkingTimeChanged)
+                {
+                    IsEndWorkingTimeChanged = true;
+                    EndWorkingTime = StartWorkingTime + TimeSpan.FromHours(Constants.DEFAULT_WORKING_TIME);
+                }
             }
         }
 
         private async Task OnSelectEndWorkingTimeCommandAsync()
         {
+            var config = new TimePromptConfig();
+            config.AndroidStyleId = 1;
+            config.iOSPickerStyle = iOSPickerStyle.Wheels;
+
             var timePromptResult = await _userDialogs.TimePromptAsync();
 
             if (timePromptResult.Ok)
             {
                 IsEndWorkingTimeChanged = true;
                 EndWorkingTime = timePromptResult.SelectedTime;
+
+                if (!IsStartWorkingTimeChanged)
+                {
+                    IsStartWorkingTimeChanged = true;
+                    StartWorkingTime = EndWorkingTime - TimeSpan.FromHours(Constants.DEFAULT_WORKING_TIME);
+                }
             }
         }
 
         private Task OnCompleteRegistrationTapCommandAsync()
         {
+            _user.Position = SelectedPosition;
             _user.StartWorkTime = DateTime.Now.Date + StartWorkingTime;
             _user.EndWorkTime = DateTime.Now + EndWorkingTime;
+            _user.IsAccountCreated = true;
 
             return Task.CompletedTask;
         }

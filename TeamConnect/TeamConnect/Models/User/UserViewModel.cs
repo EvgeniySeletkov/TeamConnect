@@ -84,6 +84,13 @@ namespace TeamConnect.Models.User
             set => SetProperty(ref _countryCode, value);
         }
 
+        private string _position;
+        public string Position
+        {
+            get => _position;
+            set => SetProperty(ref _position, value);
+        }
+
         private DateTime _startWorkTime;
         public DateTime StartWorkTime
         {

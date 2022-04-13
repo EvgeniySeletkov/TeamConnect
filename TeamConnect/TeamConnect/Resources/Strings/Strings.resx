@@ -165,10 +165,46 @@
   <data name="Address" xml:space="preserve">
     <value>Address</value>
   </data>
-  <data name="SelectAddress" xml:space="preserve">
-    <value>Select address</value>
-  </data>
   <data name="WrongLocation" xml:space="preserve">
     <value>Wrong location</value>
+  </data>
+  <data name="CompleteRegistration" xml:space="preserve">
+    <value>Complete registration</value>
+  </data>
+  <data name="HR" xml:space="preserve">
+    <value>HR</value>
+  </data>
+  <data name="ProjectManager" xml:space="preserve">
+    <value>Project Manager</value>
+  </data>
+  <data name="FrontendDeveloper" xml:space="preserve">
+    <value>Front-end Developer</value>
+  </data>
+  <data name="BackendDeveloper" xml:space="preserve">
+    <value>Back-end Developer</value>
+  </data>
+  <data name="MobileDeveloper" xml:space="preserve">
+    <value>Mobile Developer</value>
+  </data>
+  <data name="QA" xml:space="preserve">
+    <value>QA</value>
+  </data>
+  <data name="Designer" xml:space="preserve">
+    <value>Designer</value>
+  </data>
+  <data name="SelectPosition" xml:space="preserve">
+    <value>Select position</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Position" xml:space="preserve">
+    <value>Position</value>
+  </data>
+  <data name="From" xml:space="preserve">
+    <value>From</value>
+  </data>
+  <data name="To" xml:space="preserve">
+    <value>To</value>
   </data>
 </root>

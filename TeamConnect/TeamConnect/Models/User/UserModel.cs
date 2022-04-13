@@ -26,6 +26,8 @@ namespace TeamConnect.Models.User
 
         public string CountryCode { get; set; }
 
+        public string Position { get; set; }
+
         public DateTime StartWorkTime { get; set; }
 
         public DateTime EndWorkTime { get; set; }

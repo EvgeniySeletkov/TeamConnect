@@ -5,10 +5,10 @@
                        xmlns:viewmodels="clr-namespace:TeamConnect.ViewModels" 
                        xmlns:xct="http://xamarin.com/schemas/2020/toolkit" 
                        xmlns:controls="clr-namespace:TeamConnect.Controls"
-                       x:Class="TeamConnect.Views.SelectLocationPage"
-                       x:DataType="viewmodels:SelectLocationPageViewModel"
+                       x:Class="TeamConnect.Views.CompleteRegistrationFirstPage"
+                       x:DataType="viewmodels:CompleteRegistrationFirstPageViewModel"
                        BackgroundColor="{DynamicResource tcolor_i3}"
-                       Title="{xct:Translate SelectAddress}">
+                       Title="{xct:Translate CompleteRegistration}">
 
     <StackLayout Spacing="0">
 

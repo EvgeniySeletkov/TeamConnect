@@ -51,8 +51,8 @@ namespace TeamConnect
             containerRegistry.RegisterForNavigation<LoginPage, LoginPageViewModel>();
             containerRegistry.RegisterForNavigation<CreateAccountFirstPage, CreateAccountFirstPageViewModel>();
             containerRegistry.RegisterForNavigation<CreateAccountSecondPage, CreateAccountSecondPageViewModel>();
-            containerRegistry.RegisterForNavigation<SelectLocationPage, SelectLocationPageViewModel>();
-            containerRegistry.RegisterForNavigation<SelectWorkingTimePage, SelectWorkingTimePageViewModel>();
+            containerRegistry.RegisterForNavigation<CompleteRegistrationFirstPage, CompleteRegistrationFirstPageViewModel>();
+            containerRegistry.RegisterForNavigation<CompleteRegistrationSecondPage, CompleteRegistrationSecondPageViewModel>();
             containerRegistry.RegisterForNavigation<RequestsPage, RequestsPageViewModel>();
             containerRegistry.RegisterForNavigation<TeamTimeListPage, TeamTimeListPageViewModel>();
         }
