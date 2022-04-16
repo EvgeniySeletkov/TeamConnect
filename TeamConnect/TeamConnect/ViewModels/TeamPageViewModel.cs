@@ -3,20 +3,20 @@ using System.Linq;
 using Prism.Navigation;
 using TeamConnect.Extensions;
 using TeamConnect.Models.User;
-using TeamConnect.Services.AuthorizationService;
+using TeamConnect.Services.UserService;
 
 namespace TeamConnect.ViewModels
 {
     public class TeamPageViewModel : BaseViewModel
     {
-        private readonly IAuthorizationService _authorizationService;
+        private readonly IUserService _userService;
 
         public TeamPageViewModel(
             INavigationService navigationService,
-            IAuthorizationService authorizationService)
+            IUserService userService)
             : base(navigationService)
         {
-            _authorizationService = authorizationService;
+            _userService = userService;
         }
 
         #region -- Public properties --
@@ -36,7 +36,7 @@ namespace TeamConnect.ViewModels
         {
             base.Initialize(parameters);
 
-            var getAllUsersResult = await _authorizationService.GetAllUsersAsync();
+            var getAllUsersResult = await _userService.GetAllUsersAsync();
 
             if (getAllUsersResult.IsSuccess)
             {

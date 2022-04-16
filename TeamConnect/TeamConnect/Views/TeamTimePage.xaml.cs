@@ -1,8 +1,8 @@
 ﻿namespace TeamConnect.Views
 {
-    public partial class TeamTimeListPage
+    public partial class TeamTimePage
     {
-        public TeamTimeListPage()
+        public TeamTimePage()
         {
             InitializeComponent();
         }

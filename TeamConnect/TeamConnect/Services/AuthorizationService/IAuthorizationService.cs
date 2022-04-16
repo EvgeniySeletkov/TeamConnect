@@ -12,12 +12,6 @@ namespace TeamConnect.Services.AuthorizationService
 
         Task<OperationResult<UserModel>> LogInAsync(string email, string password);
 
-        Task<OperationResult<UserModel>> GetUserByIdAsync(int userId);
-
         Task<OperationResult> SignUpAsync(UserModel user);
-
-        Task<OperationResult<IEnumerable<UserModel>>> GetAllUsersAsync();
-
-        Task<OperationResult<IEnumerable<UserModel>>> GetMissingUsersAsync(DateTime date);
     }
 }

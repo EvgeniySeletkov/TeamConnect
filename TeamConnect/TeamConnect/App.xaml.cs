@@ -13,6 +13,7 @@ using TeamConnect.ViewModels;
 using TeamConnect.Views;
 using Xamarin.CommunityToolkit.Helpers;
 using Xamarin.Forms;
+using TeamConnect.Services.UserService;
 
 namespace TeamConnect
 {
@@ -31,7 +32,7 @@ namespace TeamConnect
             InitializeLocalizationManager();
 
             //NavigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(LoginPage)}");
-            NavigationService.NavigateAsync($"/{nameof(MainMasterPage)}/{nameof(NavigationPage)}/{nameof(TeamPage)}");
+            NavigationService.NavigateAsync($"/{nameof(MainMasterPage)}/{nameof(NavigationPage)}/{nameof(TeamTimePage)}");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -44,6 +45,7 @@ namespace TeamConnect
             containerRegistry.RegisterInstance<IRestService>(Container.Resolve<RestService>());
             containerRegistry.RegisterInstance<ITimeZoneService>(Container.Resolve<TimeZoneService>());
             containerRegistry.RegisterInstance<IAuthorizationService>(Container.Resolve<AuthorizationService>());
+            containerRegistry.RegisterInstance<IUserService>(Container.Resolve<UserService>());
             containerRegistry.RegisterInstance<IRequestService>(Container.Resolve<RequestService>());
             containerRegistry.RegisterInstance<IMapService>(Container.Resolve<MapService>());
 
@@ -57,7 +59,7 @@ namespace TeamConnect
             containerRegistry.RegisterForNavigation<MainMasterPage, MainMasterPageViewModel>();
             containerRegistry.RegisterForNavigation<TeamPage, TeamPageViewModel>();
             containerRegistry.RegisterForNavigation<RequestsPage, RequestsPageViewModel>();
-            containerRegistry.RegisterForNavigation<TeamTimeListPage, TeamTimeListPageViewModel>();
+            containerRegistry.RegisterForNavigation<TeamTimePage, TeamTimePageViewModel>();
         }
 
         protected override void OnStart()

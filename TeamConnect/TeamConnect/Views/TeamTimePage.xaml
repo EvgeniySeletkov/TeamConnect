@@ -1,16 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<page:BaseContentPage xmlns:page="clr-namespace:TeamConnect.Views" 
-                      xmlns="http://xamarin.com/schemas/2014/forms"
-                      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                      xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
-                      xmlns:viewmodels="clr-namespace:TeamConnect.ViewModels"
-                      xmlns:models="clr-namespace:TeamConnect.Models.User"
-                      x:Class="TeamConnect.Views.TeamPage"
-                      x:DataType="viewmodels:TeamPageViewModel"
-                      BackgroundColor="{DynamicResource appcolor_i4}"
-                      Title="{xct:Translate Team}">
+<pages:BaseContentPage xmlns:pages="clr-namespace:TeamConnect.Views"
+                       xmlns="http://xamarin.com/schemas/2014/forms"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                       xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+                       xmlns:viewmodels="clr-namespace:TeamConnect.ViewModels"
+                       xmlns:models="clr-namespace:TeamConnect.Models.User"
+                       x:Class="TeamConnect.Views.TeamTimePage"
+                       x:DataType="viewmodels:TeamTimePageViewModel"
+                       BackgroundColor="{DynamicResource appcolor_i4}"
+                       Title="{xct:Translate TeamTime}">
 
-    <CollectionView ItemsSource="{Binding Users}">
+    <CollectionView ItemsSource="{Binding TeamTimes}"
+                    IsGrouped="True">
 
         <CollectionView.ItemsLayout>
 
@@ -21,9 +22,39 @@
 
         <CollectionView.Header>
 
-            <StackLayout HeightRequest="{OnPlatform iOS=20}"/>
+            <StackLayout HeightRequest="{OnPlatform iOS=10}"/>
 
         </CollectionView.Header>
+
+        <CollectionView.GroupHeaderTemplate>
+
+            <DataTemplate x:DataType="models:UserGroupViewModel">
+
+                <StackLayout Padding="{OnPlatform Android='24, 10, 24, 0', iOS='24, 20, 24, 0'}">
+
+                    <Label Style="{DynamicResource tstyle_i1_2}">
+
+                        <Label.FormattedText>
+
+                            <FormattedString>
+
+                                <Span Text="{Binding StartWorkTime, StringFormat='{0:HH:mm}'}"/>
+
+                                <Span Text=" - "/>
+
+                                <Span Text="{Binding EndWorkTime, StringFormat='{0:HH:mm}'}"/>
+
+                            </FormattedString>
+
+                        </Label.FormattedText>
+
+                    </Label>
+
+                </StackLayout>
+
+            </DataTemplate>
+
+        </CollectionView.GroupHeaderTemplate>
 
         <CollectionView.ItemTemplate>
 
@@ -36,7 +67,7 @@
                            BorderColor="{DynamicResource appcolor_i2}">
 
                         <StackLayout Orientation="Horizontal"
-                                         Spacing="10">
+                                     Spacing="10">
 
                             <Frame HasShadow="False"
                                    IsClippedToBounds="True"
@@ -49,7 +80,7 @@
                                    VerticalOptions="CenterAndExpand"/>
 
                             <StackLayout Spacing="10"
-                                             VerticalOptions="CenterAndExpand">
+                                         VerticalOptions="CenterAndExpand">
 
                                 <Label Style="{DynamicResource tstyle_i1_2}">
 
@@ -90,4 +121,4 @@
 
     </CollectionView>
 
-</page:BaseContentPage>
+</pages:BaseContentPage>

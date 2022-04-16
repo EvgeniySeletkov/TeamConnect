@@ -16,6 +16,8 @@
     <None Remove="Resources\Fonts\Inter_Medium.ttf" />
     <None Remove="Resources\Fonts\Inter_Regular.ttf" />
     <None Remove="Resources\Fonts\Inter_SemiBold.ttf" />
+    <None Remove="Nager.Date" />
+    <None Remove="Services\UserService\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -33,6 +35,7 @@
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2401" />
     <PackageReference Include="Xamarin.Essentials" Version="1.7.1" />
     <PackageReference Include="Xamarin.Forms.Maps" Version="5.0.0.2401" />
+    <PackageReference Include="Nager.Date" Version="1.33.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -72,5 +75,8 @@
     <EmbeddedResource Update="Views\TeamTimeListPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Services\UserService\" />
   </ItemGroup>
 </Project>

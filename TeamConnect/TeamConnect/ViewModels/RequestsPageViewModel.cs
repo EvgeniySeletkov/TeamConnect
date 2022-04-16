@@ -1,28 +1,27 @@
 ﻿using Prism.Navigation;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using TeamConnect.Extensions;
 using TeamConnect.Models.Request;
 using TeamConnect.Services.RequestService;
-using TeamConnect.Services.AuthorizationService;
+using TeamConnect.Services.UserService;
 
 namespace TeamConnect.ViewModels
 {
     public class RequestsPageViewModel : BaseViewModel
     {
         private readonly IRequestService _requestService;
-        private readonly IAuthorizationService _authorizationService;
+        private readonly IUserService _userService;
 
         public RequestsPageViewModel(
             INavigationService navigationService,
             IRequestService requestService,
-            IAuthorizationService authorizationService)
+            IUserService userService)
             : base(navigationService)
         {
             _requestService = requestService;
-            _authorizationService = authorizationService;
+            _userService = userService;
         }
 
         #region -- Public properties --
@@ -70,7 +69,7 @@ namespace TeamConnect.ViewModels
                     {
                         if (requestGroup.Date >= request.StartDate && requestGroup.Date <= request.EndDate)
                         {
-                            var getUserResult = await _authorizationService.GetUserByIdAsync(request.UserId);
+                            var getUserResult = await _userService.GetUserByIdAsync(request.UserId);
 
                             if (getUserResult.IsSuccess)
                             {

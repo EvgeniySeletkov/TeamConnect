@@ -210,4 +210,7 @@
   <data name="Team" xml:space="preserve">
     <value>Team</value>
   </data>
+  <data name="TeamTime" xml:space="preserve">
+    <value>Team time</value>
+  </data>
 </root>

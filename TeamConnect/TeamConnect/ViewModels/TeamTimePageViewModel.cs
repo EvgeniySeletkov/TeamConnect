@@ -5,29 +5,29 @@ using System.Linq;
 using System.Threading.Tasks;
 using TeamConnect.Extensions;
 using TeamConnect.Models.User;
-using TeamConnect.Services.AuthorizationService;
+using TeamConnect.Services.UserService;
 
 namespace TeamConnect.ViewModels
 {
-    public class TeamTimeListPageViewModel : BaseViewModel
+    public class TeamTimePageViewModel : BaseViewModel
     {
-        private readonly IAuthorizationService _authorizationService;
+        private readonly IUserService _userService;
 
-        public TeamTimeListPageViewModel(
+        public TeamTimePageViewModel(
             INavigationService navigationService,
-            IAuthorizationService authorizationService)
+            IUserService userService)
             : base(navigationService)
         {
-            _authorizationService = authorizationService;
+            _userService = userService;
         }
 
         #region -- Public properties --
 
-        private List<UserGroupViewModel> _teamAvailableTimes;
-        public List<UserGroupViewModel> TeamAvailableTimes
+        private List<UserGroupViewModel> _teamTimes;
+        public List<UserGroupViewModel> TeamTimes
         {
-            get => _teamAvailableTimes;
-            set => SetProperty(ref _teamAvailableTimes, value);
+            get => _teamTimes;
+            set => SetProperty(ref _teamTimes, value);
         }
 
         #endregion
@@ -38,43 +38,43 @@ namespace TeamConnect.ViewModels
         {
             base.Initialize(parameters);
 
-            await LoadTeamAvailableTimes();
+            await LoadTeamTimes();
         }
 
         #endregion
 
         #region -- Private helpers --
 
-        private async Task LoadTeamAvailableTimes()
+        private async Task LoadTeamTimes()
         {
-            var getUsersResult = await _authorizationService.GetMissingUsersAsync(DateTime.Now.AddDays(30).Date);
+            var getUsersResult = await _userService.GetNotMissingUsersAsync(new DateTime(2022, 5, 30).Date);
 
             if (getUsersResult.IsSuccess)
             {
                 var users = getUsersResult.Result.Select(u => u.ToViewModel()).ToList();
 
-                var teamAvailableTimeGroups = new List<UserGroupViewModel>();
+                var teamTimeGroups = new List<UserGroupViewModel>();
 
                 for (int i = 0; i < users.Count; i++)
                 {
                     for (int j = i + 1; j < users.Count; j++)
                     {
-                        var group = GetTeamAvailableTimeGroup(users[i], users[j]);
+                        var group = GetTeamTimeGroup(users[i], users[j]);
 
                         if (group is not null
                             && group.StartWorkTime != group.EndWorkTime
-                            && teamAvailableTimeGroups.FirstOrDefault(
+                            && teamTimeGroups.FirstOrDefault(
                                 t => t.StartWorkTime == group.StartWorkTime
                                 && t.EndWorkTime == group.EndWorkTime) is null)
                         {
-                            teamAvailableTimeGroups.Add(group);
+                            teamTimeGroups.Add(group);
                         }
                     }
                 }
 
                 foreach (var user in users)
                 {
-                    foreach (var group in teamAvailableTimeGroups)
+                    foreach (var group in teamTimeGroups)
                     {
                         if (user.StartWorkTime <= group.StartWorkTime
                             && user.EndWorkTime >= group.EndWorkTime)
@@ -84,11 +84,11 @@ namespace TeamConnect.ViewModels
                     }
                 }
 
-                TeamAvailableTimes = teamAvailableTimeGroups;
+                TeamTimes = teamTimeGroups;
             }
         }
 
-        private UserGroupViewModel GetTeamAvailableTimeGroup(UserViewModel user1, UserViewModel user2)
+        private UserGroupViewModel GetTeamTimeGroup(UserViewModel user1, UserViewModel user2)
         {
             UserGroupViewModel result = null;
 
