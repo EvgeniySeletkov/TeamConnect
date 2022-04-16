@@ -6,6 +6,7 @@
                     x:Class="TeamConnect.Resources.Styles.DefaultResources">
 
     <!-- TEXT SIZE -->
+    <x:Double x:Key="tsize_i16">18</x:Double> <!-- 16px -->
     <x:Double x:Key="tsize_i14">16</x:Double> <!-- 14px -->
     <x:Double x:Key="tsize_i10">12</x:Double> <!-- 10px -->
 
@@ -20,24 +21,44 @@
         <Setter Property="FontFamily" Value="SemiBoldFont"/>
     </Style>
 
-    <Style x:Key="Title_18px" TargetType="Label" BasedOn="{StaticResource BaseTitle}"> <!-- Title 18px -->
+    <Style x:Key="Title_16px" TargetType="Label" BasedOn="{StaticResource BaseTitle}"> <!-- Title 16px -->
+        <Setter Property="FontSize" Value="{DynamicResource tsize_i16}"/>
+    </Style>
+
+    <Style x:Key="Title_14px" TargetType="Label" BasedOn="{StaticResource BaseTitle}"> <!-- Title 14px -->
         <Setter Property="FontSize" Value="{DynamicResource tsize_i14}"/>
     </Style>
 
-    <Style x:Key="tstyle_i1_1" TargetType="Label" BasedOn="{StaticResource Title_18px}">
+    <Style x:Key="tstyle_i1_1" TargetType="Label" BasedOn="{StaticResource Title_14px}"> <!-- Title 14px LightSlateGray -->
         <Setter Property="TextColor" Value="{DynamicResource tcolor_i5}"/>
     </Style>
 
+    <Style x:Key="tstyle_i1_2" TargetType="Label" BasedOn="{StaticResource Title_16px}"> <!-- Title 16px Black -->
+        <Setter Property="TextColor" Value="{DynamicResource tcolor_i1}"/>
+    </Style>
+
     <!-- CONTENT STYLES -->
-    <Style x:Key="BaseContent" TargetType="Label">
+    <Style x:Key="BaseContentRegular" TargetType="Label">
         <Setter Property="FontFamily" Value="RegularFont"/>
     </Style>
 
-    <Style x:Key="Content_14px" TargetType="Label" BasedOn="{StaticResource BaseContent}"> <!-- Content 14px-->
+    <Style x:Key="ContentRegular_14px" TargetType="Label" BasedOn="{StaticResource BaseContentRegular}"> <!-- Content 14px-->
         <Setter Property="FontSize" Value="{DynamicResource tsize_i14}"/>
     </Style>
 
-    <Style x:Key="tstyle_i2_1" TargetType="Label" BasedOn="{StaticResource Content_14px}">
+    <Style x:Key="tstyle_i2_1" TargetType="Label" BasedOn="{StaticResource ContentRegular_14px}"> <!-- Content 14px Gray -->
+        <Setter Property="TextColor" Value="{DynamicResource tcolor_i2}"/>
+    </Style>
+
+    <Style x:Key="BaseContentMedium" TargetType="Label">
+        <Setter Property="FontFamily" Value="MediumFont"/>
+    </Style>
+
+    <Style x:Key="ContentMedium_14px" TargetType="Label" BasedOn="{StaticResource BaseContentMedium}"> <!-- Content 14px-->
+        <Setter Property="FontSize" Value="{DynamicResource tsize_i14}"/>
+    </Style>
+
+    <Style x:Key="tstyle_i3_1" TargetType="Label" BasedOn="{StaticResource ContentMedium_14px}"> <!-- Content 14px Gray -->
         <Setter Property="TextColor" Value="{DynamicResource tcolor_i2}"/>
     </Style>
 

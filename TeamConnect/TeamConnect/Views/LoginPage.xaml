@@ -7,7 +7,7 @@
                        xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
                        x:Class="TeamConnect.Views.LoginPage"
                        x:DataType="viewmodels:LoginPageViewModel"
-                       BackgroundColor="{DynamicResource tcolor_i3}"
+                       BackgroundColor="{DynamicResource appcolor_i4}"
                        Title="{xct:Translate Login}">
 
     <StackLayout Padding="24, 100, 24, 0"

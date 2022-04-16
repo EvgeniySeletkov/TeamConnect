@@ -7,7 +7,9 @@ using Prism.Navigation;
 using TeamConnect.Extensions;
 using TeamConnect.Models.User;
 using TeamConnect.Resources.Strings;
+using TeamConnect.Views;
 using Xamarin.CommunityToolkit.ObjectModel;
+using Xamarin.Forms;
 
 namespace TeamConnect.ViewModels
 {
@@ -127,7 +129,10 @@ namespace TeamConnect.ViewModels
 
         private async Task OnSelectStartWorkingTimeCommandAsync()
         {
-            var timePromptResult = await _userDialogs.TimePromptAsync();
+            var config = new TimePromptConfig();
+            config.iOSPickerStyle = iOSPickerStyle.Wheels;
+
+            var timePromptResult = await _userDialogs.TimePromptAsync(config);
 
             if (timePromptResult.Ok)
             {
@@ -145,10 +150,9 @@ namespace TeamConnect.ViewModels
         private async Task OnSelectEndWorkingTimeCommandAsync()
         {
             var config = new TimePromptConfig();
-            config.AndroidStyleId = 1;
             config.iOSPickerStyle = iOSPickerStyle.Wheels;
 
-            var timePromptResult = await _userDialogs.TimePromptAsync();
+            var timePromptResult = await _userDialogs.TimePromptAsync(config);
 
             if (timePromptResult.Ok)
             {
@@ -170,7 +174,7 @@ namespace TeamConnect.ViewModels
             _user.EndWorkTime = DateTime.Now + EndWorkingTime;
             _user.IsAccountCreated = true;
 
-            return Task.CompletedTask;
+            return NavigationService.NavigateAsync($"/{nameof(MainMasterPage)}/{nameof(NavigationPage)}/{nameof(TeamPage)}", null, false, true);
         }
 
         #endregion

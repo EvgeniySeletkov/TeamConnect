@@ -30,7 +30,8 @@ namespace TeamConnect
 
             InitializeLocalizationManager();
 
-            NavigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(LoginPage)}");
+            //NavigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(LoginPage)}");
+            NavigationService.NavigateAsync($"/{nameof(MainMasterPage)}/{nameof(NavigationPage)}/{nameof(TeamPage)}");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -53,6 +54,8 @@ namespace TeamConnect
             containerRegistry.RegisterForNavigation<CreateAccountSecondPage, CreateAccountSecondPageViewModel>();
             containerRegistry.RegisterForNavigation<CompleteRegistrationFirstPage, CompleteRegistrationFirstPageViewModel>();
             containerRegistry.RegisterForNavigation<CompleteRegistrationSecondPage, CompleteRegistrationSecondPageViewModel>();
+            containerRegistry.RegisterForNavigation<MainMasterPage, MainMasterPageViewModel>();
+            containerRegistry.RegisterForNavigation<TeamPage, TeamPageViewModel>();
             containerRegistry.RegisterForNavigation<RequestsPage, RequestsPageViewModel>();
             containerRegistry.RegisterForNavigation<TeamTimeListPage, TeamTimeListPageViewModel>();
         }

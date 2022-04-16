@@ -120,6 +120,7 @@
 
         <Button Style="{DynamicResource bstyle_i3}"
                 Text="{xct:Translate CompleteRegistration}"
+                Command="{Binding CompleteRegistrationTapCommand}"
                 InputTransparent="True"
                 VerticalOptions="EndAndExpand">
 

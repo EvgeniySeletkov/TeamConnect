@@ -139,6 +139,7 @@ namespace TeamConnect.Services.MockDataService
                     Surname = "Selietkov",
                     Email = "evgeniy@mail.com",
                     Password = "Evgeniy99",
+                    Position = "Mobile Developer",
                     StartWorkTime = new DateTime() + new TimeSpan(9, 0, 0),
                     EndWorkTime = new DateTime() + new TimeSpan(17, 0, 0),
                 },
@@ -149,6 +150,7 @@ namespace TeamConnect.Services.MockDataService
                     Surname = "Vicheva",
                     Email = "hanna@mail.com",
                     Password = "Hanna98",
+                    Position = "HR",
                     StartWorkTime = new DateTime() + new TimeSpan(6, 0, 0),
                     EndWorkTime = new DateTime() + new TimeSpan(14, 0, 0),
                 },
@@ -159,33 +161,10 @@ namespace TeamConnect.Services.MockDataService
                     Surname = "Ziryanov",
                     Email = "yuriy@mail.com",
                     Password = "Yuriy99",
+                    Position = "QA",
                     StartWorkTime = new DateTime() + new TimeSpan(13, 0, 0),
                     EndWorkTime = new DateTime() + new TimeSpan(21, 0, 0),
                 },
-                //new UserModel
-                //{
-                //    Id = 1,
-                //    Name = "Yevhen",
-                //    Surname = "Selietkov",
-                //    StartWorkTime = new DateTime() + new TimeSpan(9, 0, 0),
-                //    EndWorkTime = new DateTime() + new TimeSpan(17, 0, 0),
-                //},
-                //new UserModel
-                //{
-                //    Id = 2,
-                //    Name = "Hanna",
-                //    Surname = "Vicheva",
-                //    StartWorkTime = new DateTime() + new TimeSpan(6, 0, 0),
-                //    EndWorkTime = new DateTime() + new TimeSpan(14, 0, 0),
-                //},
-                //new UserModel
-                //{
-                //    Id = 3,
-                //    Name = "Yuriy",
-                //    Surname = "Ziryanov",
-                //    StartWorkTime = new DateTime() + new TimeSpan(14, 0, 0),
-                //    EndWorkTime = new DateTime() + new TimeSpan(21, 0, 0),
-                //},
             };
         });
 

@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<page:BaseContentPage xmlns:page="clr-namespace:TeamConnect.Views" 
+                      xmlns="http://xamarin.com/schemas/2014/forms"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                      xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+                      xmlns:viewmodels="clr-namespace:TeamConnect.ViewModels"
+                      xmlns:models="clr-namespace:TeamConnect.Models.User"
+                      x:Class="TeamConnect.Views.TeamPage"
+                      x:DataType="viewmodels:TeamPageViewModel"
+                      BackgroundColor="{DynamicResource appcolor_i4}"
+                      Title="{xct:Translate Team}">
+
+    <Grid>
+
+        <CollectionView ItemsSource="{Binding Users}">
+
+            <CollectionView.ItemsLayout>
+
+                <LinearItemsLayout Orientation="Vertical"
+                                   ItemSpacing="10"/>
+
+            </CollectionView.ItemsLayout>
+
+            <CollectionView.Header>
+
+                <StackLayout HeightRequest="{OnPlatform iOS=20}"/>
+
+            </CollectionView.Header>
+
+            <CollectionView.ItemTemplate>
+
+                <DataTemplate x:DataType="models:UserViewModel">
+
+                    <StackLayout Padding="24, 0">
+
+                        <Frame HasShadow="False"
+                               CornerRadius="16"
+                               BorderColor="{DynamicResource appcolor_i2}">
+
+                            <StackLayout Orientation="Horizontal"
+                                         Spacing="10">
+
+                                <Frame HasShadow="False"
+                                       IsClippedToBounds="True"
+                                       Padding="0"
+                                       HeightRequest="64"
+                                       WidthRequest="64"
+                                       CornerRadius="32"
+                                       BackgroundColor="{DynamicResource appcolor_i2}"
+                                       HorizontalOptions="Start"
+                                       VerticalOptions="CenterAndExpand"/>
+
+                                <StackLayout Spacing="10"
+                                             VerticalOptions="CenterAndExpand">
+
+                                    <Label Style="{DynamicResource tstyle_i1_2}">
+
+                                        <Label.FormattedText>
+
+                                            <FormattedString>
+
+                                                <Span Text="{Binding Name}"/>
+                                                <Span Text=" "/>
+                                                <Span Text="{Binding Surname}"/>
+
+                                            </FormattedString>
+
+                                        </Label.FormattedText>
+
+                                    </Label>
+
+                                    <Label Style="{DynamicResource tstyle_i3_1}"
+                                           Text="{Binding Position}"/>
+
+                                </StackLayout>
+
+                            </StackLayout>
+
+                        </Frame>
+
+                    </StackLayout>
+
+                </DataTemplate>
+
+            </CollectionView.ItemTemplate>
+
+            <CollectionView.Footer>
+
+                <StackLayout HeightRequest="20"/>
+
+            </CollectionView.Footer>
+
+        </CollectionView>
+
+    </Grid>
+
+</page:BaseContentPage>

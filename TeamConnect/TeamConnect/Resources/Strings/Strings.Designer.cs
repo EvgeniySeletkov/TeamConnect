@@ -226,5 +226,11 @@ namespace TeamConnect.Resources.Strings {
                 return ResourceManager.GetString("To", resourceCulture);
             }
         }
+        
+        internal static string Team {
+            get {
+                return ResourceManager.GetString("Team", resourceCulture);
+            }
+        }
     }
 }
