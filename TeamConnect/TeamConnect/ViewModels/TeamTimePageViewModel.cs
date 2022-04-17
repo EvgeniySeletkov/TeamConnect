@@ -23,6 +23,13 @@ namespace TeamConnect.ViewModels
 
         #region -- Public properties --
 
+        private DateTime _date;
+        public DateTime Date
+        {
+            get => _date;
+            set => SetProperty(ref _date, value);
+        }
+
         private List<UserGroupViewModel> _teamTimes;
         public List<UserGroupViewModel> TeamTimes
         {
@@ -47,7 +54,9 @@ namespace TeamConnect.ViewModels
 
         private async Task LoadTeamTimes()
         {
-            var getUsersResult = await _userService.GetNotMissingUsersAsync(new DateTime(2022, 5, 30).Date);
+            Date = new DateTime(2022, 6, 30).Date;
+
+            var getUsersResult = await _userService.GetNotMissingUsersAsync(Date);
 
             if (getUsersResult.IsSuccess)
             {

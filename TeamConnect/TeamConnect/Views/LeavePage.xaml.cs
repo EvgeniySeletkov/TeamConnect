@@ -1,8 +1,8 @@
 ﻿namespace TeamConnect.Views
 {
-    public partial class RequestsPage
+    public partial class LeavePage
     {
-        public RequestsPage()
+        public LeavePage()
         {
             InitializeComponent();
         }

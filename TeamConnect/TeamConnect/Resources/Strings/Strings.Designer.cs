@@ -238,5 +238,17 @@ namespace TeamConnect.Resources.Strings {
                 return ResourceManager.GetString("TeamTime", resourceCulture);
             }
         }
+        
+        internal static string Leave {
+            get {
+                return ResourceManager.GetString("Leave", resourceCulture);
+            }
+        }
+        
+        internal static string Menu {
+            get {
+                return ResourceManager.GetString("Menu", resourceCulture);
+            }
+        }
     }
 }

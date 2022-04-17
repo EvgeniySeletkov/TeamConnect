@@ -10,115 +10,141 @@
                        BackgroundColor="{DynamicResource appcolor_i4}"
                        Title="{xct:Translate TeamTime}">
 
-    <CollectionView ItemsSource="{Binding TeamTimes}"
-                    IsGrouped="True">
+    <Grid RowDefinitions="Auto, *"
+          RowSpacing="0">
 
-        <CollectionView.ItemsLayout>
+        <!-- DATE -->
+        <StackLayout Grid.Row="0"
+                     HeightRequest="60"
+                     Padding="24, 0">
 
-            <LinearItemsLayout Orientation="Vertical"
-                               ItemSpacing="10"/>
+            <Label Style="{DynamicResource tstyle_i1_2}"
+                   FontSize="22"
+                   VerticalOptions="CenterAndExpand">
 
-        </CollectionView.ItemsLayout>
+                <Label.FormattedText>
 
-        <CollectionView.Header>
+                    <FormattedString>
 
-            <StackLayout HeightRequest="{OnPlatform iOS=10}"/>
+                        <Span Text="{Binding Date, StringFormat='{0:dddd}'}"/>
+                        <Span Text=", "/>
+                        <Span Text="{Binding Date, StringFormat='{0:dd MMM yyyy}'}"/>
 
-        </CollectionView.Header>
+                    </FormattedString>
 
-        <CollectionView.GroupHeaderTemplate>
+                </Label.FormattedText>
 
-            <DataTemplate x:DataType="models:UserGroupViewModel">
+            </Label>
 
-                <StackLayout Padding="{OnPlatform Android='24, 10, 24, 0', iOS='24, 20, 24, 0'}">
+        </StackLayout>
 
-                    <Label Style="{DynamicResource tstyle_i1_2}">
+        <!-- TEAM TIMES -->
+        <CollectionView Grid.Row="1"
+                        ItemsSource="{Binding TeamTimes}"
+                        IsGrouped="True">
 
-                        <Label.FormattedText>
+            <CollectionView.ItemsLayout>
 
-                            <FormattedString>
+                <LinearItemsLayout Orientation="Vertical"
+                                   ItemSpacing="10"/>
 
-                                <Span Text="{Binding StartWorkTime, StringFormat='{0:HH:mm}'}"/>
+            </CollectionView.ItemsLayout>
 
-                                <Span Text=" - "/>
+            <CollectionView.GroupHeaderTemplate>
 
-                                <Span Text="{Binding EndWorkTime, StringFormat='{0:HH:mm}'}"/>
+                <DataTemplate x:DataType="models:UserGroupViewModel">
 
-                            </FormattedString>
+                    <StackLayout Padding="{OnPlatform Android='24, 10, 24, 0', iOS='24, 20, 24, 0'}">
 
-                        </Label.FormattedText>
+                        <Label Style="{DynamicResource tstyle_i1_2}">
 
-                    </Label>
+                            <Label.FormattedText>
 
-                </StackLayout>
+                                <FormattedString>
 
-            </DataTemplate>
+                                    <Span Text="{Binding StartWorkTime, StringFormat='{0:HH:mm}'}"/>
 
-        </CollectionView.GroupHeaderTemplate>
+                                    <Span Text=" - "/>
 
-        <CollectionView.ItemTemplate>
+                                    <Span Text="{Binding EndWorkTime, StringFormat='{0:HH:mm}'}"/>
 
-            <DataTemplate x:DataType="models:UserViewModel">
+                                </FormattedString>
 
-                <StackLayout Padding="24, 0">
+                            </Label.FormattedText>
 
-                    <Frame HasShadow="False"
-                           CornerRadius="16"
-                           BorderColor="{DynamicResource appcolor_i2}">
+                        </Label>
 
-                        <StackLayout Orientation="Horizontal"
-                                     Spacing="10">
+                    </StackLayout>
 
-                            <Frame HasShadow="False"
-                                   IsClippedToBounds="True"
-                                   Padding="0"
-                                   HeightRequest="64"
-                                   WidthRequest="64"
-                                   CornerRadius="32"
-                                   BackgroundColor="{DynamicResource appcolor_i2}"
-                                   HorizontalOptions="Start"
-                                   VerticalOptions="CenterAndExpand"/>
+                </DataTemplate>
 
-                            <StackLayout Spacing="10"
-                                         VerticalOptions="CenterAndExpand">
+            </CollectionView.GroupHeaderTemplate>
 
-                                <Label Style="{DynamicResource tstyle_i1_2}">
+            <CollectionView.ItemTemplate>
 
-                                    <Label.FormattedText>
+                <DataTemplate x:DataType="models:UserViewModel">
 
-                                        <FormattedString>
+                    <StackLayout Padding="24, 0">
 
-                                            <Span Text="{Binding Name}"/>
-                                            <Span Text=" "/>
-                                            <Span Text="{Binding Surname}"/>
+                        <Frame HasShadow="False"
+                               CornerRadius="16"
+                               BorderColor="{DynamicResource appcolor_i2}">
 
-                                        </FormattedString>
+                            <StackLayout Orientation="Horizontal"
+                                         Spacing="10">
 
-                                    </Label.FormattedText>
+                                <Frame HasShadow="False"
+                                       IsClippedToBounds="True"
+                                       Padding="0"
+                                       HeightRequest="64"
+                                       WidthRequest="64"
+                                       CornerRadius="32"
+                                       BackgroundColor="{DynamicResource appcolor_i2}"
+                                       HorizontalOptions="Start"
+                                       VerticalOptions="CenterAndExpand"/>
 
-                                </Label>
+                                <StackLayout Spacing="10"
+                                             VerticalOptions="CenterAndExpand">
 
-                                <Label Style="{DynamicResource tstyle_i3_1}"
-                                       Text="{Binding Position}"/>
+                                    <Label Style="{DynamicResource tstyle_i1_2}">
+
+                                        <Label.FormattedText>
+
+                                            <FormattedString>
+
+                                                <Span Text="{Binding Name}"/>
+                                                <Span Text=" "/>
+                                                <Span Text="{Binding Surname}"/>
+
+                                            </FormattedString>
+
+                                        </Label.FormattedText>
+
+                                    </Label>
+
+                                    <Label Style="{DynamicResource tstyle_i3_1}"
+                                           Text="{Binding Position}"/>
+
+                                </StackLayout>
 
                             </StackLayout>
 
-                        </StackLayout>
+                        </Frame>
 
-                    </Frame>
+                    </StackLayout>
 
-                </StackLayout>
+                </DataTemplate>
 
-            </DataTemplate>
+            </CollectionView.ItemTemplate>
 
-        </CollectionView.ItemTemplate>
+            <CollectionView.Footer>
 
-        <CollectionView.Footer>
+                <StackLayout HeightRequest="20"/>
 
-            <StackLayout HeightRequest="20"/>
+            </CollectionView.Footer>
 
-        </CollectionView.Footer>
+        </CollectionView>
 
-    </CollectionView>
+    </Grid>
 
 </pages:BaseContentPage>

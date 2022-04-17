@@ -213,4 +213,10 @@
   <data name="TeamTime" xml:space="preserve">
     <value>Team time</value>
   </data>
+  <data name="Leave" xml:space="preserve">
+    <value>Leave</value>
+  </data>
+  <data name="Menu" xml:space="preserve">
+    <value>Menu</value>
+  </data>
 </root>

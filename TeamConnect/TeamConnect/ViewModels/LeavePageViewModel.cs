@@ -9,12 +9,12 @@ using TeamConnect.Services.UserService;
 
 namespace TeamConnect.ViewModels
 {
-    public class RequestsPageViewModel : BaseViewModel
+    public class LeavePageViewModel : BaseViewModel
     {
         private readonly IRequestService _requestService;
         private readonly IUserService _userService;
 
-        public RequestsPageViewModel(
+        public LeavePageViewModel(
             INavigationService navigationService,
             IRequestService requestService,
             IUserService userService)
@@ -26,11 +26,11 @@ namespace TeamConnect.ViewModels
 
         #region -- Public properties --
 
-        private List<RequestGroupViewModel> _requests;
-        public List<RequestGroupViewModel> Requests
+        private List<RequestGroupViewModel> _leaves;
+        public List<RequestGroupViewModel> Leaves
         {
-            get => _requests;
-            set => SetProperty(ref _requests, value);
+            get => _leaves;
+            set => SetProperty(ref _leaves, value);
         }
 
         #endregion
@@ -50,36 +50,36 @@ namespace TeamConnect.ViewModels
 
         private async Task LoadRequestsAsync()
         {
-            var getRequestsResult = await _requestService.GetAllRequestsAsync();
+            var getLeavesResult = await _requestService.GetAllRequestsAsync();
 
-            if (getRequestsResult.IsSuccess)
+            if (getLeavesResult.IsSuccess)
             {
-                var requests = getRequestsResult.Result;
+                var leaves = getLeavesResult.Result;
 
-                var requestsGroups = new List<RequestGroupViewModel>();
+                var leavesGroups = new List<RequestGroupViewModel>();
 
                 for (int i = 0; i < 7; i++)
                 {
-                    requestsGroups.Add(new RequestGroupViewModel(DateTime.Now.AddDays(i)));
+                    leavesGroups.Add(new RequestGroupViewModel(DateTime.Now.AddDays(i)));
                 }
 
-                foreach (var requestGroup in requestsGroups)
+                foreach (var leaveGroup in leavesGroups)
                 {
-                    foreach (var request in requests)
+                    foreach (var leave in leaves)
                     {
-                        if (requestGroup.Date >= request.StartDate && requestGroup.Date <= request.EndDate)
+                        if (leaveGroup.Date >= leave.StartDate && leaveGroup.Date <= leave.EndDate)
                         {
-                            var getUserResult = await _userService.GetUserByIdAsync(request.UserId);
+                            var getUserResult = await _userService.GetUserByIdAsync(leave.UserId);
 
                             if (getUserResult.IsSuccess)
                             {
-                                requestGroup.Add(request.ToViewModel(getUserResult.Result));
+                                leaveGroup.Add(leave.ToViewModel(getUserResult.Result));
                             }
                         }
                     }
                 }
 
-                Requests = requestsGroups;
+                Leaves = leavesGroups;
             }
         }
 

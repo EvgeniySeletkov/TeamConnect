@@ -1,15 +1,28 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
                   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
                   xmlns:pages="clr-namespace:TeamConnect.Views"
+                  xmlns:viewmodels="clr-namespace:TeamConnect.ViewModels"
                   x:Class="TeamConnect.Views.MainMasterPage"
-                  IsGestureEnabled="{OnPlatform iOS=False}">
+                  x:DataType="viewmodels:MainMasterPageViewModel"
+                  IsGestureEnabled="{OnPlatform iOS=False}"
+                  IsPresented="{Binding IsPresented}">
 
     <MasterDetailPage.Master>
 
-        <pages:BaseContentPage Title="Menu">
+        <pages:BaseContentPage Title="{xct:Translate Menu}">
 
             <StackLayout>
+
+                <Button Text="{xct:Translate Team}"
+                        Command="{Binding TeamTapCommand}"/>
+
+                <Button Text="{xct:Translate Leave}"
+                        Command="{Binding LeaveTapCommand}"/>
+
+                <Button Text="{xct:Translate TeamTime}"
+                        Command="{Binding TeamTimeTapCommand}"/>
 
             </StackLayout>
 
