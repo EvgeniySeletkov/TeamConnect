@@ -139,8 +139,8 @@ namespace TeamConnect.Services.MockDataService
                     Password = "Evgeniy99",
                     CountryCode = "UA",
                     Position = "Mobile Developer",
-                    StartWorkTime = new DateTime() + new TimeSpan(9, 0, 0),
-                    EndWorkTime = new DateTime() + new TimeSpan(17, 0, 0),
+                    StartWorkTime = new TimeSpan(9, 0, 0).ToString(),
+                    EndWorkTime = new TimeSpan(17, 0, 0).ToString(),
                 },
                 new UserModel
                 {
@@ -151,8 +151,8 @@ namespace TeamConnect.Services.MockDataService
                     Password = "Hanna98",
                     CountryCode = "US",
                     Position = "HR",
-                    StartWorkTime = new DateTime() + new TimeSpan(6, 0, 0),
-                    EndWorkTime = new DateTime() + new TimeSpan(14, 0, 0),
+                    StartWorkTime = new TimeSpan(6, 0, 0).ToString(),
+                    EndWorkTime = new TimeSpan(14, 0, 0).ToString(),
                 },
                 new UserModel
                 {
@@ -163,8 +163,8 @@ namespace TeamConnect.Services.MockDataService
                     Password = "Yuriy99",
                     CountryCode = "AU",
                     Position = "QA",
-                    StartWorkTime = new DateTime() + new TimeSpan(13, 0, 0),
-                    EndWorkTime = new DateTime() + new TimeSpan(21, 0, 0),
+                    StartWorkTime = new TimeSpan(13, 0, 0).ToString(),
+                    EndWorkTime = new TimeSpan(21, 0, 0).ToString(),
                 },
             };
         });

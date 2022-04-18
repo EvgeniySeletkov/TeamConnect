@@ -170,8 +170,8 @@ namespace TeamConnect.ViewModels
         private Task OnCompleteRegistrationTapCommandAsync()
         {
             _user.Position = SelectedPosition;
-            _user.StartWorkTime = DateTime.Now.Date + StartWorkingTime;
-            _user.EndWorkTime = DateTime.Now + EndWorkingTime;
+            _user.StartWorkTime = StartWorkingTime;
+            _user.EndWorkTime = EndWorkingTime;
             _user.IsAccountCreated = true;
 
             return NavigationService.NavigateAsync($"/{nameof(MainMasterPage)}/{nameof(NavigationPage)}/{nameof(TeamPage)}", null, false, true);

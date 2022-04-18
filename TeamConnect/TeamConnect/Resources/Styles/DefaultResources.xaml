@@ -6,6 +6,7 @@
                     x:Class="TeamConnect.Resources.Styles.DefaultResources">
 
     <!-- TEXT SIZE -->
+    <x:Double x:Key="tsize_i20">22</x:Double> <!-- 20px -->
     <x:Double x:Key="tsize_i16">18</x:Double> <!-- 16px -->
     <x:Double x:Key="tsize_i14">16</x:Double> <!-- 14px -->
     <x:Double x:Key="tsize_i10">12</x:Double> <!-- 10px -->
@@ -21,6 +22,10 @@
         <Setter Property="FontFamily" Value="SemiBoldFont"/>
     </Style>
 
+    <Style x:Key="Title_20px" TargetType="Label" BasedOn="{StaticResource BaseTitle}"> <!-- Title 20px -->
+        <Setter Property="FontSize" Value="{DynamicResource tsize_i20}"/>
+    </Style>
+
     <Style x:Key="Title_16px" TargetType="Label" BasedOn="{StaticResource BaseTitle}"> <!-- Title 16px -->
         <Setter Property="FontSize" Value="{DynamicResource tsize_i16}"/>
     </Style>
@@ -34,6 +39,10 @@
     </Style>
 
     <Style x:Key="tstyle_i1_2" TargetType="Label" BasedOn="{StaticResource Title_16px}"> <!-- Title 16px Black -->
+        <Setter Property="TextColor" Value="{DynamicResource tcolor_i1}"/>
+    </Style>
+
+    <Style x:Key="tstyle_i1_3" TargetType="Label" BasedOn="{StaticResource Title_20px}"> <!-- Title 20px Black -->
         <Setter Property="TextColor" Value="{DynamicResource tcolor_i1}"/>
     </Style>
 

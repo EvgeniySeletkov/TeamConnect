@@ -1,4 +1,5 @@
-﻿using TeamConnect.Models.User;
+﻿using System;
+using TeamConnect.Models.User;
 
 namespace TeamConnect.Extensions
 {
@@ -15,8 +16,8 @@ namespace TeamConnect.Extensions
                 Email = model.Email,
                 Password = model.Password,
                 Position = model.Position,
-                StartWorkTime = model.StartWorkTime,
-                EndWorkTime = model.EndWorkTime,
+                StartWorkTime = TimeSpan.Parse(model.StartWorkTime),
+                EndWorkTime = TimeSpan.Parse(model.EndWorkTime),
                 IsAccountCreated = model.IsAccountCreated,
             };
         }
@@ -32,8 +33,8 @@ namespace TeamConnect.Extensions
                 Email = viewModel.Email,
                 Password = viewModel.Password,
                 Position = viewModel.Position,
-                StartWorkTime = viewModel.StartWorkTime,
-                EndWorkTime = viewModel.EndWorkTime,
+                StartWorkTime = viewModel.StartWorkTime.ToString(),
+                EndWorkTime = viewModel.EndWorkTime.ToString(),
                 IsAccountCreated = viewModel.IsAccountCreated,
             };
         }

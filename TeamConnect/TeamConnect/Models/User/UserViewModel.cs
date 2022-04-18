@@ -91,15 +91,15 @@ namespace TeamConnect.Models.User
             set => SetProperty(ref _position, value);
         }
 
-        private DateTime _startWorkTime;
-        public DateTime StartWorkTime
+        private TimeSpan _startWorkTime;
+        public TimeSpan StartWorkTime
         {
             get => _startWorkTime;
             set => SetProperty(ref _startWorkTime, value);
         }
 
-        private DateTime _endWorkTime;
-        public DateTime EndWorkTime
+        private TimeSpan _endWorkTime;
+        public TimeSpan EndWorkTime
         {
             get => _endWorkTime;
             set => SetProperty(ref _endWorkTime, value);
