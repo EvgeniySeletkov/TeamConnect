@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<DataTemplate xmlns="http://xamarin.com/schemas/2014/forms"
+              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:viewmodels="clr-namespace:TeamConnect.Models.Request"
+              x:Class="TeamConnect.Views.DataTemplates.LeaveGroupDataTemplate"
+              x:DataType="viewmodels:RequestGroupViewModel">
+
+    <StackLayout Orientation="Horizontal"
+                 Padding="{OnPlatform Android='24, 10, 24, 0', iOS='24, 20, 24, 0'}">
+
+        <Label Style="{DynamicResource tstyle_i1_2}"
+               Text="{Binding Date, StringFormat='{0:dddd}'}"/>
+
+        <Label Style="{DynamicResource tstyle_i1_2}"
+               Text="{Binding Date, StringFormat='{0:dd MMM yyyy}'}"
+               HorizontalOptions="EndAndExpand"/>
+
+    </StackLayout>
+
+</DataTemplate>

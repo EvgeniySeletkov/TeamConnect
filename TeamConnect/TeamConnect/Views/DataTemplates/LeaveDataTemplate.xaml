@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<DataTemplate xmlns="http://xamarin.com/schemas/2014/forms"
+              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              x:Class="TeamConnect.Views.DataTemplates.LeaveDataTemplate"
+              xmlns:viewmodels="clr-namespace:TeamConnect.Models.Request"
+              x:DataType="viewmodels:RequestViewModel">
+
+    <StackLayout Padding="24, 0">
+
+        <Frame HasShadow="False"
+               CornerRadius="16"
+               BorderColor="{DynamicResource appcolor_i2}">
+
+            <StackLayout Orientation="Horizontal"
+                         Spacing="10">
+
+                <Frame HasShadow="False"
+                       IsClippedToBounds="True"
+                       Padding="0"
+                       HeightRequest="64"
+                       WidthRequest="64"
+                       CornerRadius="32"
+                       BackgroundColor="{DynamicResource appcolor_i2}"
+                       HorizontalOptions="Start"
+                       VerticalOptions="CenterAndExpand"/>
+
+                <StackLayout Spacing="10"
+                             VerticalOptions="CenterAndExpand">
+
+                    <Label Style="{DynamicResource tstyle_i1_2}">
+
+                        <Label.FormattedText>
+
+                            <FormattedString>
+
+                                <Span Text="{Binding UserName}"/>
+                                <Span Text=" "/>
+                                <Span Text="{Binding UserSurname}"/>
+
+                            </FormattedString>
+
+                        </Label.FormattedText>
+
+                    </Label>
+
+                    <Label Style="{DynamicResource tstyle_i3_1}"
+                           Text="{Binding Type}"/>
+
+                </StackLayout>
+
+            </StackLayout>
+
+        </Frame>
+
+    </StackLayout>
+
+</DataTemplate>

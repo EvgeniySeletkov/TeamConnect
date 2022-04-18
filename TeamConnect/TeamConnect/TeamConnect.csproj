@@ -18,6 +18,7 @@
     <None Remove="Resources\Fonts\Inter_SemiBold.ttf" />
     <None Remove="Nager.Date" />
     <None Remove="Services\UserService\" />
+    <None Remove="Views\DataTemplates\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -78,5 +79,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Services\UserService\" />
+    <Folder Include="Views\DataTemplates\" />
   </ItemGroup>
 </Project>

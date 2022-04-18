@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<DataTemplate xmlns="http://xamarin.com/schemas/2014/forms"
+              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:viewmodels="clr-namespace:TeamConnect.Models.User"
+              x:Class="TeamConnect.Views.DataTemplates.TeamTimeGroupDataTemplate"
+              x:DataType="viewmodels:UserGroupViewModel">
+
+    <StackLayout Padding="{OnPlatform Android='24, 10, 24, 0', iOS='24, 20, 24, 0'}">
+
+        <Label Style="{DynamicResource tstyle_i1_2}">
+
+            <Label.FormattedText>
+
+                <FormattedString>
+
+                    <Span Text="{Binding StartWorkTime, StringFormat='{0:HH:mm}'}"/>
+
+                    <Span Text=" - "/>
+
+                    <Span Text="{Binding EndWorkTime, StringFormat='{0:HH:mm}'}"/>
+
+                </FormattedString>
+
+            </Label.FormattedText>
+
+        </Label>
+
+    </StackLayout>
+
+</DataTemplate>
