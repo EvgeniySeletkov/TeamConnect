@@ -4,16 +4,16 @@
                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                        xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
                        xmlns:viewmodels="clr-namespace:TeamConnect.ViewModels"
-                       x:Class="TeamConnect.Views.CompleteRegistrationSecondPage"
-                       x:DataType="viewmodels:CompleteRegistrationSecondPageViewModel"
+                       x:Class="TeamConnect.Views.AddLeavePage"
+                       x:DataType="viewmodels:AddLeavePageViewModel"
                        BackgroundColor="{DynamicResource tcolor_i3}"
-                       Title="{xct:Translate CompleteRegistration}">
+                       Title="{xct:Translate NewLeave}">
 
     <StackLayout Padding="24, 34, 24, 24"
                  Spacing="16">
 
         <Label Style="{DynamicResource tstyle_i1_1}"
-               Text="{xct:Translate Position}"/>
+               Text="{xct:Translate RequestType}"/>
 
         <Frame HasShadow="False"
                Padding="16, 18"
@@ -23,20 +23,20 @@
 
             <Frame.GestureRecognizers>
 
-                <TapGestureRecognizer Command="{Binding SelectPositionCommand}"/>
+                <TapGestureRecognizer Command="{Binding SelectRequestTypeCommand}"/>
 
             </Frame.GestureRecognizers>
 
-            <Label Text="{xct:Translate SelectPosition}"
+            <Label Text="{xct:Translate SelectType}"
                    Style="{DynamicResource tstyle_i2_1}">
 
                 <Label.Triggers>
 
                     <DataTrigger TargetType="Label"
-                                 Binding="{Binding SelectedPosition, Converter={StaticResource isNotNullOrEmptyConverter}}"
+                                 Binding="{Binding SelectedRequestType, Converter={StaticResource isNotNullOrEmptyConverter}}"
                                  Value="True">
 
-                        <Setter Property="Text" Value="{Binding SelectedPosition}"/>
+                        <Setter Property="Text" Value="{Binding SelectedRequestType}"/>
 
                         <Setter Property="TextColor" Value="{DynamicResource tcolor_i1}"/>
 
@@ -49,7 +49,7 @@
         </Frame>
 
         <Label Style="{DynamicResource tstyle_i1_1}"
-               Text="{xct:Translate WorkingTime}"
+               Text="{xct:Translate Duration}"
                Margin="0, 34, 0, 0"/>
 
         <Frame HasShadow="False"
@@ -60,7 +60,7 @@
 
             <Frame.GestureRecognizers>
 
-                <TapGestureRecognizer Command="{Binding SelectStartWorkingTimeCommand}"/>
+                <TapGestureRecognizer Command="{Binding SelectStartDateCommand}"/>
 
             </Frame.GestureRecognizers>
 
@@ -70,10 +70,10 @@
                 <Label.Triggers>
 
                     <DataTrigger TargetType="Label"
-                                 Binding="{Binding IsStartWorkingTimeChanged}"
+                                 Binding="{Binding IsStartDateChanged}"
                                  Value="True">
 
-                        <Setter Property="Text" Value="{Binding StartWorkingTime}"/>
+                        <Setter Property="Text" Value="{Binding StartDate, StringFormat='{0:dd MMM yyyy}'}"/>
 
                         <Setter Property="TextColor" Value="{DynamicResource tcolor_i1}"/>
 
@@ -93,7 +93,7 @@
 
             <Frame.GestureRecognizers>
 
-                <TapGestureRecognizer Command="{Binding SelectEndWorkingTimeCommand}"/>
+                <TapGestureRecognizer Command="{Binding SelectEndDateCommand}"/>
 
             </Frame.GestureRecognizers>
             
@@ -103,10 +103,10 @@
                 <Label.Triggers>
 
                     <DataTrigger TargetType="Label"
-                                 Binding="{Binding IsEndWorkingTimeChanged}"
+                                 Binding="{Binding IsEndDateChanged}"
                                  Value="True">
 
-                        <Setter Property="Text" Value="{Binding EndWorkingTime}"/>
+                        <Setter Property="Text" Value="{Binding EndDate, StringFormat='{0:dd MMM yyyy}'}"/>
 
                         <Setter Property="TextColor" Value="{DynamicResource tcolor_i1}"/>
 
@@ -119,8 +119,8 @@
         </Frame>
 
         <Button Style="{DynamicResource bstyle_i3}"
-                Text="{xct:Translate CompleteRegistration}"
-                Command="{Binding CompleteRegistrationTapCommand}"
+                Text="{xct:Translate CreateRequest}"
+                Command="{Binding CreateRequestTapCommand}"
                 InputTransparent="True"
                 VerticalOptions="EndAndExpand">
 
@@ -138,13 +138,13 @@
 
                     <MultiTrigger.Conditions>
 
-                        <BindingCondition Binding="{Binding SelectedPosition, Converter={StaticResource isNotNullOrEmptyConverter}}"
+                        <BindingCondition Binding="{Binding SelectedRequestType, Converter={StaticResource isNotNullOrEmptyConverter}}"
                                           Value="True"/>
 
-                        <BindingCondition Binding="{Binding IsStartWorkingTimeChanged}"
+                        <BindingCondition Binding="{Binding IsStartDateChanged}"
                                           Value="True"/>
 
-                        <BindingCondition Binding="{Binding IsEndWorkingTimeChanged}"
+                        <BindingCondition Binding="{Binding IsEndDateChanged}"
                                           Value="True"/>
 
                     </MultiTrigger.Conditions>

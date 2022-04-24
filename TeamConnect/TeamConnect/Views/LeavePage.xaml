@@ -10,40 +10,53 @@
                       BackgroundColor="{DynamicResource appcolor_i4}"
                       Title="{xct:Translate Leave}">
 
-    <CollectionView ItemsSource="{Binding Leaves}"
-                    IsGrouped="True">
+    <Grid>
 
-        <CollectionView.ItemsLayout>
+        <CollectionView ItemsSource="{Binding Leaves}"
+                        IsGrouped="True">
 
-            <LinearItemsLayout Orientation="Vertical"
-                               ItemSpacing="10"/>
+            <CollectionView.ItemsLayout>
 
-        </CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical"
+                                   ItemSpacing="10"/>
 
-        <CollectionView.Header>
+            </CollectionView.ItemsLayout>
 
-            <StackLayout HeightRequest="{OnPlatform iOS=10}"/>
+            <CollectionView.Header>
 
-        </CollectionView.Header>
+                <StackLayout HeightRequest="{OnPlatform iOS=10}"/>
 
-        <CollectionView.GroupHeaderTemplate>
+            </CollectionView.Header>
 
-            <datatemplates:LeaveGroupDataTemplate/>
+            <CollectionView.GroupHeaderTemplate>
 
-        </CollectionView.GroupHeaderTemplate>
+                <datatemplates:LeaveGroupDataTemplate/>
 
-        <CollectionView.ItemTemplate>
+            </CollectionView.GroupHeaderTemplate>
 
-            <datatemplates:LeaveDataTemplate/>
+            <CollectionView.ItemTemplate>
 
-        </CollectionView.ItemTemplate>
+                <datatemplates:LeaveDataTemplate/>
 
-        <CollectionView.Footer>
+            </CollectionView.ItemTemplate>
 
-            <StackLayout HeightRequest="20"/>
+            <CollectionView.Footer>
 
-        </CollectionView.Footer>
+                <StackLayout HeightRequest="20"/>
 
-    </CollectionView>
+            </CollectionView.Footer>
+
+        </CollectionView>
+
+        <Button WidthRequest="64"
+                HeightRequest="64"
+                CornerRadius="32"
+                BackgroundColor="Blue"
+                HorizontalOptions="End"
+                VerticalOptions="End"
+                Margin="24"
+                Command="{Binding AddLeaveTapCommand}"/>
+
+    </Grid>
 
 </page:BaseContentPage>

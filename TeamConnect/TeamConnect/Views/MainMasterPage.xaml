@@ -24,7 +24,7 @@
                 <Button Text="{xct:Translate TeamTime}"
                         Command="{Binding TeamTimeTapCommand}"/>
 
-                <Button Text="Log Out"
+                <Button Text="{xct:Translate LogOut}"
                         Command="{Binding LogOutTapCommand}"/>
 
             </StackLayout>

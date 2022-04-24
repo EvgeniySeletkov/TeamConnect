@@ -250,5 +250,77 @@ namespace TeamConnect.Resources.Strings {
                 return ResourceManager.GetString("Menu", resourceCulture);
             }
         }
+        
+        internal static string LogOut {
+            get {
+                return ResourceManager.GetString("LogOut", resourceCulture);
+            }
+        }
+        
+        internal static string NewLeave {
+            get {
+                return ResourceManager.GetString("NewLeave", resourceCulture);
+            }
+        }
+        
+        internal static string RequestType {
+            get {
+                return ResourceManager.GetString("RequestType", resourceCulture);
+            }
+        }
+        
+        internal static string SelectType {
+            get {
+                return ResourceManager.GetString("SelectType", resourceCulture);
+            }
+        }
+        
+        internal static string WorkingTime {
+            get {
+                return ResourceManager.GetString("WorkingTime", resourceCulture);
+            }
+        }
+        
+        internal static string Duration {
+            get {
+                return ResourceManager.GetString("Duration", resourceCulture);
+            }
+        }
+        
+        internal static string CreateRequest {
+            get {
+                return ResourceManager.GetString("CreateRequest", resourceCulture);
+            }
+        }
+        
+        internal static string Vacation {
+            get {
+                return ResourceManager.GetString("Vacation", resourceCulture);
+            }
+        }
+        
+        internal static string SickLeave {
+            get {
+                return ResourceManager.GetString("SickLeave", resourceCulture);
+            }
+        }
+        
+        internal static string UnpaidLeave {
+            get {
+                return ResourceManager.GetString("UnpaidLeave", resourceCulture);
+            }
+        }
+        
+        internal static string StartRequestDateError {
+            get {
+                return ResourceManager.GetString("StartRequestDateError", resourceCulture);
+            }
+        }
+        
+        internal static string EndRequestDateError {
+            get {
+                return ResourceManager.GetString("EndRequestDateError", resourceCulture);
+            }
+        }
     }
 }

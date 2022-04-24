@@ -219,4 +219,40 @@
   <data name="Menu" xml:space="preserve">
     <value>Menu</value>
   </data>
+  <data name="LogOut" xml:space="preserve">
+    <value>Log Out</value>
+  </data>
+  <data name="NewLeave" xml:space="preserve">
+    <value>New leave</value>
+  </data>
+  <data name="RequestType" xml:space="preserve">
+    <value>Request Type</value>
+  </data>
+  <data name="SelectType" xml:space="preserve">
+    <value>Select type</value>
+  </data>
+  <data name="WorkingTime" xml:space="preserve">
+    <value>Working time</value>
+  </data>
+  <data name="Duration" xml:space="preserve">
+    <value>Duration</value>
+  </data>
+  <data name="CreateRequest" xml:space="preserve">
+    <value>Create request</value>
+  </data>
+  <data name="Vacation" xml:space="preserve">
+    <value>Vacation</value>
+  </data>
+  <data name="SickLeave" xml:space="preserve">
+    <value>Sick Leave</value>
+  </data>
+  <data name="UnpaidLeave" xml:space="preserve">
+    <value>Unpaid Leave</value>
+  </data>
+  <data name="StartRequestDateError" xml:space="preserve">
+    <value>Start date cannot be later than end date</value>
+  </data>
+  <data name="EndRequestDateError" xml:space="preserve">
+    <value>End date cannot be earlier than start date</value>
+  </data>
 </root>

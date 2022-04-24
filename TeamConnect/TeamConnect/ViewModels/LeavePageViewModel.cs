@@ -2,10 +2,13 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using TeamConnect.Extensions;
 using TeamConnect.Models.Request;
 using TeamConnect.Services.RequestService;
 using TeamConnect.Services.UserService;
+using TeamConnect.Views;
+using Xamarin.CommunityToolkit.ObjectModel;
 
 namespace TeamConnect.ViewModels
 {
@@ -32,6 +35,9 @@ namespace TeamConnect.ViewModels
             get => _leaves;
             set => SetProperty(ref _leaves, value);
         }
+
+        private ICommand _addLeaveTapCommand;
+        public ICommand AddLeaveTapCommand => _addLeaveTapCommand ??= new AsyncCommand(OnAddLeaveTapCommandAsync);
 
         #endregion
 
@@ -81,6 +87,11 @@ namespace TeamConnect.ViewModels
 
                 Leaves = leavesGroups;
             }
+        }
+
+        private Task OnAddLeaveTapCommandAsync()
+        {
+            return NavigationService.NavigateAsync(nameof(AddLeavePage), null, false, true);
         }
 
         #endregion

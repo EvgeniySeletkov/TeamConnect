@@ -70,6 +70,7 @@ namespace TeamConnect
             containerRegistry.RegisterForNavigation<MainMasterPage, MainMasterPageViewModel>();
             containerRegistry.RegisterForNavigation<TeamPage, TeamPageViewModel>();
             containerRegistry.RegisterForNavigation<LeavePage, LeavePageViewModel>();
+            containerRegistry.RegisterForNavigation<AddLeavePage, AddLeavePageViewModel>();
             containerRegistry.RegisterForNavigation<TeamTimePage, TeamTimePageViewModel>();
         }
 

@@ -75,8 +75,8 @@ namespace TeamConnect.ViewModels
             set => SetProperty(ref _endWorkingTime, value);
         }
 
-        private ICommand _selectRoleCommand;
-        public ICommand SelectRoleCommand => _selectRoleCommand ??= new AsyncCommand(OnSelectRoleCommandAsync);
+        private ICommand _selectPositionCommand;
+        public ICommand SelectPositionCommand => _selectPositionCommand ??= new AsyncCommand(OnSelectPositionCommandAsync);
 
         private ICommand _selectStartWorkingTimeCommand;
         public ICommand SelectStartWorkingTimeCommand => _selectStartWorkingTimeCommand ??= new AsyncCommand(OnSelectStartWorkingTimeCommandAsync);
@@ -121,7 +121,7 @@ namespace TeamConnect.ViewModels
             };
         }
 
-        private async Task OnSelectRoleCommandAsync()
+        private async Task OnSelectPositionCommandAsync()
         {
             var selectedPosition = await _userDialogs.ActionSheetAsync(Strings.SelectPosition, Strings.Cancel, null, null, Positions.ToArray());
 
