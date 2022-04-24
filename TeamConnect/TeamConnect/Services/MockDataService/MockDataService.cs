@@ -80,6 +80,35 @@ namespace TeamConnect.Services.MockDataService
             return result;
         }
 
+        public async Task<OperationResult> UpdateUserAsync(UserModel user)
+        {
+            var result = new OperationResult();
+
+            try
+            {
+                await _initCompletionSource.Task;
+
+                var userId = _users.ToList().FindIndex(u => u.Id == user.Id);
+
+                if (user is not null)
+                {
+                    _users[userId] = user;
+
+                    result.SetSuccess();
+                }
+                else
+                {
+                    result.SetFailure();
+                }
+            }
+            catch (Exception ex)
+            {
+                result.SetError($"{nameof(UpdateUserAsync)} : exception", "Something went wrong", ex);
+            }
+
+            return result;
+        }
+
         #endregion
 
         #region -- Requests methods --
@@ -142,6 +171,7 @@ namespace TeamConnect.Services.MockDataService
                     Position = "Mobile Developer",
                     StartWorkTime = new TimeSpan(9, 0, 0).ToString(),
                     EndWorkTime = new TimeSpan(17, 0, 0).ToString(),
+                    IsAccountCreated = true,
                 },
                 new UserModel
                 {
@@ -168,6 +198,7 @@ namespace TeamConnect.Services.MockDataService
                     Position = "QA",
                     StartWorkTime = new TimeSpan(9, 0, 0).ToString(),
                     EndWorkTime = new TimeSpan(17, 0, 0).ToString(),
+                    IsAccountCreated = true,
                 },
             };
         });

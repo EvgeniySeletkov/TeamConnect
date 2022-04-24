@@ -7,6 +7,7 @@ using Prism.Navigation;
 using TeamConnect.Extensions;
 using TeamConnect.Models.User;
 using TeamConnect.Resources.Strings;
+using TeamConnect.Services.AuthorizationService;
 using TeamConnect.Views;
 using Xamarin.CommunityToolkit.ObjectModel;
 using Xamarin.Forms;
@@ -16,15 +17,18 @@ namespace TeamConnect.ViewModels
     public class CompleteRegistrationSecondPageViewModel : BaseViewModel
     {
         private readonly IUserDialogs _userDialogs;
+        private readonly IAuthorizationService _authorizationService;
 
         private UserViewModel _user;
 
         public CompleteRegistrationSecondPageViewModel(
             INavigationService navigationService,
-            IUserDialogs userDialogs)
+            IUserDialogs userDialogs,
+            IAuthorizationService authorizationService)
             : base(navigationService)
         {
             _userDialogs = userDialogs;
+            _authorizationService = authorizationService;
         }
 
         #region -- Public properties --
@@ -169,14 +173,19 @@ namespace TeamConnect.ViewModels
             }
         }
 
-        private Task OnCompleteRegistrationTapCommandAsync()
+        private async Task OnCompleteRegistrationTapCommandAsync()
         {
             _user.Position = SelectedPosition;
             _user.StartWorkTime = DateTime.Now.Date + StartWorkingTime;
             _user.EndWorkTime = DateTime.Now.Date + EndWorkingTime;
             _user.IsAccountCreated = true;
 
-            return NavigationService.NavigateAsync($"/{nameof(MainMasterPage)}/{nameof(NavigationPage)}/{nameof(TeamPage)}", null, false, true);
+            var completeRegistrationResult = await _authorizationService.CompleteRegistration(_user.ToModelWithoutTimeConverting());
+
+            if (completeRegistrationResult.IsSuccess)
+            {
+                await NavigationService.NavigateAsync($"/{nameof(MainMasterPage)}/{nameof(NavigationPage)}/{nameof(TeamPage)}", null, false, true);
+            }
         }
 
         #endregion

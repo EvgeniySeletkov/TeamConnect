@@ -13,6 +13,8 @@ namespace TeamConnect.Services.MockDataService
 
         Task<OperationResult> AddUserAsync(UserModel user);
 
+        Task<OperationResult> UpdateUserAsync(UserModel user);
+
         Task<OperationResult<IEnumerable<RequestModel>>> GetRequestsAsync(Func<RequestModel, bool> func = null);
     }
 }

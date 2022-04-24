@@ -12,6 +12,8 @@ namespace TeamConnect.Services.AuthorizationService
 
         Task<OperationResult<UserModel>> LogInAsync(string email, string password);
 
+        Task<OperationResult> CompleteRegistration(UserModel user);
+
         Task<OperationResult> SignUpAsync(UserModel user);
     }
 }

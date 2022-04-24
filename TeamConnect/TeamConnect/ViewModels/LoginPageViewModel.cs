@@ -5,6 +5,7 @@ using TeamConnect.Extensions;
 using TeamConnect.Services.AuthorizationService;
 using TeamConnect.Views;
 using Xamarin.CommunityToolkit.ObjectModel;
+using Xamarin.Forms;
 
 namespace TeamConnect.ViewModels
 {
@@ -87,7 +88,7 @@ namespace TeamConnect.ViewModels
 
                 if (user.IsAccountCreated)
                 {
-
+                    await NavigationService.NavigateAsync($"/{nameof(MainMasterPage)}/{nameof(NavigationPage)}/{nameof(TeamPage)}", null, false, true);
                 }
                 else
                 {

@@ -87,6 +87,31 @@ namespace TeamConnect.Services.AuthorizationService
             return result;
         }
 
+        public async Task<OperationResult> CompleteRegistration(UserModel user)
+        {
+            var result = new OperationResult();
+
+            try
+            {
+                var addUserResult = await _mockDataService.UpdateUserAsync(user);
+
+                if (addUserResult.IsSuccess)
+                {
+                    result.SetSuccess();
+                }
+                else
+                {
+                    result.SetFailure();
+                }
+            }
+            catch (Exception ex)
+            {
+                result.SetError($"{nameof(CompleteRegistration)} : exception", "Something went wrong", ex);
+            }
+
+            return result;
+        }
+
         public async Task<OperationResult> SignUpAsync(UserModel user)
         {
             var result = new OperationResult();
