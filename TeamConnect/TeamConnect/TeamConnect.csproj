@@ -19,6 +19,7 @@
     <None Remove="Nager.Date" />
     <None Remove="Services\UserService\" />
     <None Remove="Views\DataTemplates\" />
+    <None Remove="Services\SettingsManager\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -80,5 +81,6 @@
   <ItemGroup>
     <Folder Include="Services\UserService\" />
     <Folder Include="Views\DataTemplates\" />
+    <Folder Include="Services\SettingsManager\" />
   </ItemGroup>
 </Project>

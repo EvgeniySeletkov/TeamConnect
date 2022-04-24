@@ -14,11 +14,15 @@ using TeamConnect.Views;
 using Xamarin.CommunityToolkit.Helpers;
 using Xamarin.Forms;
 using TeamConnect.Services.UserService;
+using TeamConnect.Services.SettingsManager;
 
 namespace TeamConnect
 {
     public partial class App : PrismApplication
     {
+        private IAuthorizationService _authorizationService;
+        private IAuthorizationService AuthorizationService => _authorizationService ??= Container.Resolve<IAuthorizationService>();
+
         public App()
         {
         }
@@ -30,9 +34,15 @@ namespace TeamConnect
             InitializeComponent();
 
             InitializeLocalizationManager();
-            
-            NavigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(LoginPage)}");
-            //NavigationService.NavigateAsync($"/{nameof(MainMasterPage)}/{nameof(NavigationPage)}/{nameof(TeamPage)}");
+
+            if (AuthorizationService.IsAuthorized)
+            {
+                NavigationService.NavigateAsync($"/{nameof(MainMasterPage)}/{nameof(NavigationPage)}/{nameof(TeamPage)}");
+            }
+            else
+            {
+                NavigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(LoginPage)}");
+            }
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -42,6 +52,7 @@ namespace TeamConnect
 
             // Services
             containerRegistry.RegisterInstance<IMockDataService>(Container.Resolve<MockDataService>());
+            containerRegistry.RegisterInstance<ISettingsManager>(Container.Resolve<SettingsManager>());
             containerRegistry.RegisterInstance<IRestService>(Container.Resolve<RestService>());
             containerRegistry.RegisterInstance<ITimeZoneService>(Container.Resolve<TimeZoneService>());
             containerRegistry.RegisterInstance<IAuthorizationService>(Container.Resolve<AuthorizationService>());

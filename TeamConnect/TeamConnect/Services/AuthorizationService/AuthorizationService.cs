@@ -4,20 +4,26 @@ using System.Threading.Tasks;
 using TeamConnect.Helpers;
 using TeamConnect.Models.User;
 using TeamConnect.Services.MockDataService;
+using TeamConnect.Services.SettingsManager;
 
 namespace TeamConnect.Services.AuthorizationService
 {
     public class AuthorizationService : IAuthorizationService
     {
         private readonly IMockDataService _mockDataService;
+        private readonly ISettingsManager _settingsManager;
 
         public AuthorizationService(
-            IMockDataService mockDataService)
+            IMockDataService mockDataService,
+            ISettingsManager settingsManager)
         {
             _mockDataService = mockDataService;
+            _settingsManager = settingsManager;
         }
 
         #region -- IUserService implementation --
+
+        public bool IsAuthorized => _settingsManager.UserId > 0;
 
         public async Task<OperationResult> CheckIsEmailExistAsync(string email)
         {
@@ -67,6 +73,11 @@ namespace TeamConnect.Services.AuthorizationService
 
                     if (user != null)
                     {
+                        if (user.IsAccountCreated)
+                        {
+                            _settingsManager.UserId = user.Id;
+                        }
+
                         result.SetSuccess(user);
                     }
                     else
@@ -97,6 +108,8 @@ namespace TeamConnect.Services.AuthorizationService
 
                 if (addUserResult.IsSuccess)
                 {
+                    _settingsManager.UserId = user.Id;
+
                     result.SetSuccess();
                 }
                 else
@@ -135,6 +148,11 @@ namespace TeamConnect.Services.AuthorizationService
             }
 
             return result;
+        }
+
+        public void LogOut()
+        {
+            _settingsManager.ClearSettings();
         }
 
         #endregion

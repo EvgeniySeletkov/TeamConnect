@@ -1,7 +1,7 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Windows.Input;
 using Prism.Navigation;
+using TeamConnect.Services.AuthorizationService;
 using TeamConnect.Views;
 using Xamarin.CommunityToolkit.ObjectModel;
 using Xamarin.Forms;
@@ -10,10 +10,14 @@ namespace TeamConnect.ViewModels
 {
     public class MainMasterPageViewModel : BaseViewModel
     {
+        private readonly IAuthorizationService _authorizationService;
+
         public MainMasterPageViewModel(
-            INavigationService navigationService)
+            INavigationService navigationService,
+            IAuthorizationService authorizationService)
             : base(navigationService)
         {
+            _authorizationService = authorizationService;
         }
 
         #region -- Public properties --
@@ -33,6 +37,9 @@ namespace TeamConnect.ViewModels
 
         private ICommand _teamTimeTapCommand;
         public ICommand TeamTimeTapCommand => _teamTimeTapCommand ??= new AsyncCommand(OnTeamTimeTapCommandAsync);
+
+        private ICommand _logOutTapCommand;
+        public ICommand LogOutTapCommand => _logOutTapCommand ??= new AsyncCommand(OnLogOutTapCommandAsync);
 
         #endregion
 
@@ -57,6 +64,15 @@ namespace TeamConnect.ViewModels
             IsPresented = false;
 
             return NavigationService.NavigateAsync($"/{nameof(MainMasterPage)}/{nameof(NavigationPage)}/{nameof(TeamTimePage)}", null, false, true);
+        }
+
+        private Task OnLogOutTapCommandAsync()
+        {
+            _authorizationService.LogOut();
+
+            IsPresented = false;
+
+            return NavigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(LoginPage)}", null, false, true);
         }
 
         #endregion
