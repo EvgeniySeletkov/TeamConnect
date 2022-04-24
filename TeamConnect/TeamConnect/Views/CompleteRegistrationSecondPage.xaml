@@ -96,7 +96,7 @@
                 <TapGestureRecognizer Command="{Binding SelectEndWorkingTimeCommand}"/>
 
             </Frame.GestureRecognizers>
-
+            
             <Label Text="{xct:Translate To}"
                    Style="{DynamicResource tstyle_i2_1}">
 

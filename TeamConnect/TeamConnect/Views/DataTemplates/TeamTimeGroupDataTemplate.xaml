@@ -13,11 +13,11 @@
 
                 <FormattedString>
 
-                    <Span Text="{Binding StartWorkTime, StringFormat='{0:hh\\:mm}'}"/>
+                    <Span Text="{Binding StartWorkTime, StringFormat='{0:HH\\:mm}'}"/>
 
                     <Span Text=" - "/>
 
-                    <Span Text="{Binding EndWorkTime, StringFormat='{0:hh\\:mm}'}"/>
+                    <Span Text="{Binding EndWorkTime, StringFormat='{0:HH\\:mm}'}"/>
 
                 </FormattedString>
 

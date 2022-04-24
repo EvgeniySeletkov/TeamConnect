@@ -133,12 +133,13 @@ namespace TeamConnect.ViewModels
             config.iOSPickerStyle = iOSPickerStyle.Wheels;
 
             var timePromptResult = await _userDialogs.TimePromptAsync(config);
-
+            
             if (timePromptResult.Ok)
             {
                 IsStartWorkingTimeChanged = true;
-                StartWorkingTime = timePromptResult.SelectedTime;
-
+                var time = timePromptResult.SelectedTime;
+                StartWorkingTime = new TimeSpan(time.Days, time.Hours, time.Minutes, 0);
+                
                 if (!IsEndWorkingTimeChanged)
                 {
                     IsEndWorkingTimeChanged = true;
@@ -151,13 +152,14 @@ namespace TeamConnect.ViewModels
         {
             var config = new TimePromptConfig();
             config.iOSPickerStyle = iOSPickerStyle.Wheels;
-
+            
             var timePromptResult = await _userDialogs.TimePromptAsync(config);
 
             if (timePromptResult.Ok)
             {
                 IsEndWorkingTimeChanged = true;
-                EndWorkingTime = timePromptResult.SelectedTime;
+                var time = timePromptResult.SelectedTime;
+                EndWorkingTime = new TimeSpan(time.Days, time.Hours, time.Minutes, 0);
 
                 if (!IsStartWorkingTimeChanged)
                 {
@@ -170,8 +172,8 @@ namespace TeamConnect.ViewModels
         private Task OnCompleteRegistrationTapCommandAsync()
         {
             _user.Position = SelectedPosition;
-            _user.StartWorkTime = StartWorkingTime;
-            _user.EndWorkTime = EndWorkingTime;
+            _user.StartWorkTime = DateTime.Now.Date + StartWorkingTime;
+            _user.EndWorkTime = DateTime.Now.Date + EndWorkingTime;
             _user.IsAccountCreated = true;
 
             return NavigationService.NavigateAsync($"/{nameof(MainMasterPage)}/{nameof(NavigationPage)}/{nameof(TeamPage)}", null, false, true);

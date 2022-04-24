@@ -15,9 +15,10 @@ namespace TeamConnect.Extensions
                 Surname = model.Surname,
                 Email = model.Email,
                 Password = model.Password,
+                TimeZoneId = model.TimeZoneId,
                 Position = model.Position,
-                StartWorkTime = TimeSpan.Parse(model.StartWorkTime),
-                EndWorkTime = TimeSpan.Parse(model.EndWorkTime),
+                StartWorkTime = ConvertTimeByTimeZoneId(TimeSpan.Parse(model.StartWorkTime), model.TimeZoneId),
+                EndWorkTime = ConvertTimeByTimeZoneId(TimeSpan.Parse(model.EndWorkTime), model.TimeZoneId),
                 IsAccountCreated = model.IsAccountCreated,
             };
         }
@@ -32,11 +33,24 @@ namespace TeamConnect.Extensions
                 Surname = viewModel.Surname,
                 Email = viewModel.Email,
                 Password = viewModel.Password,
+                TimeZoneId = viewModel.TimeZoneId,
                 Position = viewModel.Position,
-                StartWorkTime = viewModel.StartWorkTime.ToString(),
-                EndWorkTime = viewModel.EndWorkTime.ToString(),
+                StartWorkTime = viewModel.StartWorkTime.TimeOfDay.ToString(),
+                EndWorkTime = viewModel.EndWorkTime.TimeOfDay.ToString(),
                 IsAccountCreated = viewModel.IsAccountCreated,
             };
+        }
+
+        private static DateTime ConvertTimeByTimeZoneId(TimeSpan time, string timeZoneId)
+        {
+            var dateTime = DateTime.SpecifyKind(DateTime.Now.Date + time, DateTimeKind.Unspecified);
+
+            var convertedDateTime = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(
+                dateTime,
+                timeZoneId,
+                TimeZoneInfo.Local.Id);
+
+            return DateTime.SpecifyKind(convertedDateTime, DateTimeKind.Local);
         }
     }
 }

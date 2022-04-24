@@ -93,16 +93,6 @@ namespace TeamConnect.ViewModels
             await SetLocationAsync(position);
 
             await SetTimeZoneAsync(position);
-
-            //if (result.IsSuccess)
-            //{
-            //    var geos = await Geocoding.GetPlacemarksAsync(position.Latitude, position.Longitude);
-            //    var geo = geos.FirstOrDefault();
-            //    //var countryCode = geo.CountryCode;
-            //    var dateTime = GetDateTime(result.Result);
-            //    //var dt = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(dateTime, result.Result.TimeZoneID, TimeZoneInfo.Local.Id);
-            //    Console.WriteLine();
-            //}
         }
 
         private async Task SetLocationAsync(Position position)
@@ -115,6 +105,12 @@ namespace TeamConnect.ViewModels
 
                 if (placemark.CountryName is not null)
                 {
+                    Pin = new Pin
+                    {
+                        Label = string.Empty,
+                        Position = position,
+                    };
+
                     var locality = placemark.Locality is not null
                         ? $"{placemark.Locality}, "
                         : string.Empty;
@@ -122,12 +118,6 @@ namespace TeamConnect.ViewModels
                     var adminArea = placemark.AdminArea is not null
                         ? $", {placemark.AdminArea}"
                         : string.Empty;
-
-                    Pin = new Pin
-                    {
-                        Label = string.Empty,
-                        Position = position,
-                    };
 
                     Address = locality + country + adminArea;
 
@@ -165,13 +155,6 @@ namespace TeamConnect.ViewModels
             };
 
             return NavigationService.NavigateAsync(nameof(CompleteRegistrationSecondPage), parameters, false, true);
-        }
-
-        private DateTime GetDateTime(TimeZoneModel timeZone)
-        {
-            var dt = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.Now.Date + new TimeSpan(9, 0, 0), timeZone.TimeZoneID);
-
-            return dt;
         }
 
         #endregion

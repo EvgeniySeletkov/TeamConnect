@@ -30,9 +30,9 @@ namespace TeamConnect
             InitializeComponent();
 
             InitializeLocalizationManager();
-
-            //NavigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(LoginPage)}");
-            NavigationService.NavigateAsync($"/{nameof(MainMasterPage)}/{nameof(NavigationPage)}/{nameof(TeamPage)}");
+            
+            NavigationService.NavigateAsync($"/{nameof(NavigationPage)}/{nameof(LoginPage)}");
+            //NavigationService.NavigateAsync($"/{nameof(MainMasterPage)}/{nameof(NavigationPage)}/{nameof(TeamPage)}");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)

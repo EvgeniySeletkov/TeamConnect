@@ -137,6 +137,7 @@ namespace TeamConnect.Services.MockDataService
                     Surname = "Selietkov",
                     Email = "evgeniy@mail.com",
                     Password = "Evgeniy99",
+                    TimeZoneId = "Europe/Kiev",
                     CountryCode = "UA",
                     Position = "Mobile Developer",
                     StartWorkTime = new TimeSpan(9, 0, 0).ToString(),
@@ -149,10 +150,11 @@ namespace TeamConnect.Services.MockDataService
                     Surname = "Vicheva",
                     Email = "hanna@mail.com",
                     Password = "Hanna98",
+                    TimeZoneId = "America/New_York",
                     CountryCode = "US",
                     Position = "HR",
-                    StartWorkTime = new TimeSpan(6, 0, 0).ToString(),
-                    EndWorkTime = new TimeSpan(14, 0, 0).ToString(),
+                    StartWorkTime = new TimeSpan(9, 0, 0).ToString(),
+                    EndWorkTime = new TimeSpan(17, 0, 0).ToString(),
                 },
                 new UserModel
                 {
@@ -161,10 +163,11 @@ namespace TeamConnect.Services.MockDataService
                     Surname = "Ziryanov",
                     Email = "yuriy@mail.com",
                     Password = "Yuriy99",
+                    TimeZoneId = "Asia/Tokyo",
                     CountryCode = "AU",
                     Position = "QA",
-                    StartWorkTime = new TimeSpan(13, 0, 0).ToString(),
-                    EndWorkTime = new TimeSpan(21, 0, 0).ToString(),
+                    StartWorkTime = new TimeSpan(9, 0, 0).ToString(),
+                    EndWorkTime = new TimeSpan(17, 0, 0).ToString(),
                 },
             };
         });

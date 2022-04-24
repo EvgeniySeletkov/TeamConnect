@@ -9,8 +9,8 @@ namespace TeamConnect.Models.User
     public class UserGroupViewModel : ObservableCollection<UserViewModel>
     {
         public UserGroupViewModel(
-            TimeSpan startWorkTime,
-            TimeSpan endWorkTime)
+            DateTime startWorkTime,
+            DateTime endWorkTime)
         {
             StartWorkTime = startWorkTime;
             EndWorkTime = endWorkTime;
@@ -18,15 +18,15 @@ namespace TeamConnect.Models.User
 
         #region -- Publlic properties --
 
-        private TimeSpan _endWorkTime;
-        public TimeSpan EndWorkTime
+        private DateTime _endWorkTime;
+        public DateTime EndWorkTime
         {
             get => _endWorkTime;
             set => SetProperty(ref _endWorkTime, value);
         }
 
-        private TimeSpan _startWorkTime;
-        public TimeSpan StartWorkTime
+        private DateTime _startWorkTime;
+        public DateTime StartWorkTime
         {
             get => _startWorkTime;
             set => SetProperty(ref _startWorkTime, value);

@@ -104,22 +104,34 @@ namespace TeamConnect.ViewModels
             if (user1.StartWorkTime >= user2.StartWorkTime
                 && user2.EndWorkTime <= user1.EndWorkTime)
             {
-                result = new UserGroupViewModel(user1.StartWorkTime, user2.EndWorkTime);
+                if (user1.StartWorkTime < user2.EndWorkTime)
+                {
+                    result = new UserGroupViewModel(user1.StartWorkTime, user2.EndWorkTime);
+                }
             }
             else if (user2.StartWorkTime >= user1.StartWorkTime
                 && user1.EndWorkTime <= user2.EndWorkTime)
             {
-                result = new UserGroupViewModel(user2.StartWorkTime, user1.EndWorkTime);
+                if (user2.StartWorkTime < user1.EndWorkTime)
+                {
+                    result = new UserGroupViewModel(user2.StartWorkTime, user1.EndWorkTime);
+                }
             }
             else if (user1.StartWorkTime >= user2.StartWorkTime
                 && user1.EndWorkTime <= user2.EndWorkTime)
             {
-                result = new UserGroupViewModel(user1.StartWorkTime, user1.EndWorkTime);
+                if (user1.StartWorkTime < user1.EndWorkTime)
+                {
+                    result = new UserGroupViewModel(user1.StartWorkTime, user1.EndWorkTime);
+                }
             }
             else if (user2.StartWorkTime >= user1.StartWorkTime
                 && user2.EndWorkTime <= user1.EndWorkTime)
             {
-                result = new UserGroupViewModel(user2.StartWorkTime, user2.EndWorkTime);
+                if (user2.StartWorkTime < user2.EndWorkTime)
+                {
+                    result = new UserGroupViewModel(user2.StartWorkTime, user2.EndWorkTime);
+                }
             }
 
             return result;
