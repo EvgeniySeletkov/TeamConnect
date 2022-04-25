@@ -4,10 +4,10 @@
                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                        xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
                        xmlns:viewmodels="clr-namespace:TeamConnect.ViewModels"
-                       x:Class="TeamConnect.Views.AddLeavePage"
-                       x:DataType="viewmodels:AddLeavePageViewModel"
+                       x:Class="TeamConnect.Views.NewRequestPage"
+                       x:DataType="viewmodels:NewRequestPageViewModel"
                        BackgroundColor="{DynamicResource tcolor_i3}"
-                       Title="{xct:Translate NewLeave}">
+                       Title="{xct:Translate NewRequest}">
 
     <StackLayout Padding="24, 34, 24, 24"
                  Spacing="16">

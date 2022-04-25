@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <DataTemplate xmlns="http://xamarin.com/schemas/2014/forms"
               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-              xmlns:viewmodels="clr-namespace:TeamConnect.Models.Request"
+              xmlns:viewmodels="clr-namespace:TeamConnect.Models.Leave"
               x:Class="TeamConnect.Views.DataTemplates.LeaveGroupDataTemplate"
-              x:DataType="viewmodels:RequestGroupViewModel">
+              x:DataType="viewmodels:LeaveGroupViewModel">
 
     <StackLayout Orientation="Horizontal"
                  Padding="{OnPlatform Android='24, 10, 24, 0', iOS='24, 20, 24, 0'}">

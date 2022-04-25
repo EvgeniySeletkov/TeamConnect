@@ -9,11 +9,11 @@ using Xamarin.CommunityToolkit.ObjectModel;
 
 namespace TeamConnect.ViewModels
 {
-    public class AddLeavePageViewModel : BaseViewModel
+    public class NewRequestPageViewModel : BaseViewModel
     {
         private readonly IUserDialogs _userDialogs;
 
-        public AddLeavePageViewModel(
+        public NewRequestPageViewModel(
             INavigationService navigationService,
             IUserDialogs userDialogs)
             : base(navigationService)

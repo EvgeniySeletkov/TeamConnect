@@ -1,9 +1,9 @@
 ﻿using Prism.Mvvm;
 using System;
 
-namespace TeamConnect.Models.Request
+namespace TeamConnect.Models.Leave
 {
-    public class RequestViewModel : BindableBase
+    public class LeaveViewModel : BindableBase
     {
         #region -- Public properties --
 

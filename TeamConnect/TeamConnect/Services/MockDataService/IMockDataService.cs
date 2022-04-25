@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using TeamConnect.Helpers;
-using TeamConnect.Models.Request;
+using TeamConnect.Models.Leave;
 using TeamConnect.Models.User;
 
 namespace TeamConnect.Services.MockDataService
@@ -15,6 +15,6 @@ namespace TeamConnect.Services.MockDataService
 
         Task<OperationResult> UpdateUserAsync(UserModel user);
 
-        Task<OperationResult<IEnumerable<RequestModel>>> GetRequestsAsync(Func<RequestModel, bool> func = null);
+        Task<OperationResult<IEnumerable<LeaveModel>>> GetLeavesAsync(Func<LeaveModel, bool> func = null);
     }
 }

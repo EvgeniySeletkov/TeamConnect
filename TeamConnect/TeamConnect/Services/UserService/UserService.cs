@@ -60,7 +60,7 @@ namespace TeamConnect.Services.UserService
 
                     foreach (var item in users.Result)
                     {
-                        var userLeaveResult = await _mockDataService.GetRequestsAsync(
+                        var userLeaveResult = await _mockDataService.GetLeavesAsync(
                             r => r.StartDate <= date
                             && r.EndDate >= date
                             && r.UserId == item.Id);

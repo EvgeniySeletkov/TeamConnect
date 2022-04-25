@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TeamConnect.Helpers;
-using TeamConnect.Models.Request;
+using TeamConnect.Models.Leave;
 using TeamConnect.Models.User;
 
 namespace TeamConnect.Services.MockDataService
@@ -13,7 +13,7 @@ namespace TeamConnect.Services.MockDataService
         private readonly TaskCompletionSource<bool> _initCompletionSource = new TaskCompletionSource<bool>();
 
         private IList<UserModel> _users;
-        private IList<RequestModel> _requests;
+        private IList<LeaveModel> _leaves;
 
         public MockDataService()
         {
@@ -111,23 +111,23 @@ namespace TeamConnect.Services.MockDataService
 
         #endregion
 
-        #region -- Requests methods --
+        #region -- Leaves methods --
 
-        public async Task<OperationResult<IEnumerable<RequestModel>>> GetRequestsAsync(Func<RequestModel, bool> func = null)
+        public async Task<OperationResult<IEnumerable<LeaveModel>>> GetLeavesAsync(Func<LeaveModel, bool> func = null)
         {
-            var result = new OperationResult<IEnumerable<RequestModel>>();
+            var result = new OperationResult<IEnumerable<LeaveModel>>();
 
             try
             {
                 await _initCompletionSource.Task;
 
-                if (_requests != null)
+                if (_leaves != null)
                 {
-                    var requests = func is null
-                        ? _requests
-                        : _requests.Where(func);
+                    var leaves = func is null
+                        ? _leaves
+                        : _leaves.Where(func);
 
-                    result.SetSuccess(requests);
+                    result.SetSuccess(leaves);
                 }
                 else
                 {
@@ -150,7 +150,7 @@ namespace TeamConnect.Services.MockDataService
         {
             await Task.WhenAll(
                 InitUsersAsync(),
-                InitRequestsAsync());
+                InitLeavesAsync());
 
             _initCompletionSource.TrySetResult(true);
         }
@@ -203,11 +203,11 @@ namespace TeamConnect.Services.MockDataService
             };
         });
 
-        private Task InitRequestsAsync() => Task.Run(() =>
+        private Task InitLeavesAsync() => Task.Run(() =>
         {
-            _requests = new List<RequestModel>
+            _leaves = new List<LeaveModel>
             {
-                new RequestModel
+                new LeaveModel
                 {
                     Id = 1,
                     Type = "Holiday",
@@ -215,7 +215,7 @@ namespace TeamConnect.Services.MockDataService
                     EndDate = DateTime.Now.AddDays(10).Date,
                     UserId = 1,
                 },
-                new RequestModel
+                new LeaveModel
                 {
                     Id = 2,
                     Type = "Holiday",
@@ -223,7 +223,7 @@ namespace TeamConnect.Services.MockDataService
                     EndDate = DateTime.Now.AddDays(3).Date,
                     UserId = 2,
                 },
-                new RequestModel
+                new LeaveModel
                 {
                     Id = 3,
                     Type = "Holiday",
@@ -231,7 +231,7 @@ namespace TeamConnect.Services.MockDataService
                     EndDate = DateTime.Now.AddDays(2).Date,
                     UserId = 3,
                 },
-                new RequestModel
+                new LeaveModel
                 {
                     Id = 4,
                     Type = "Holiday",

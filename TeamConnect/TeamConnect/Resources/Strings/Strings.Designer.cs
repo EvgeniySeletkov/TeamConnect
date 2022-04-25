@@ -257,9 +257,9 @@ namespace TeamConnect.Resources.Strings {
             }
         }
         
-        internal static string NewLeave {
+        internal static string NewRequest {
             get {
-                return ResourceManager.GetString("NewLeave", resourceCulture);
+                return ResourceManager.GetString("NewRequest", resourceCulture);
             }
         }
         

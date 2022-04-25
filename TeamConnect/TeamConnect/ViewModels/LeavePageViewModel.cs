@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using TeamConnect.Extensions;
-using TeamConnect.Models.Request;
-using TeamConnect.Services.RequestService;
+using TeamConnect.Models.Leave;
+using TeamConnect.Services.LeaveService;
 using TeamConnect.Services.UserService;
 using TeamConnect.Views;
 using Xamarin.CommunityToolkit.ObjectModel;
@@ -14,23 +14,23 @@ namespace TeamConnect.ViewModels
 {
     public class LeavePageViewModel : BaseViewModel
     {
-        private readonly IRequestService _requestService;
+        private readonly ILeaveService _leaveService;
         private readonly IUserService _userService;
 
         public LeavePageViewModel(
             INavigationService navigationService,
-            IRequestService requestService,
+            ILeaveService leaveService,
             IUserService userService)
             : base(navigationService)
         {
-            _requestService = requestService;
+            _leaveService = leaveService;
             _userService = userService;
         }
 
         #region -- Public properties --
 
-        private List<RequestGroupViewModel> _leaves;
-        public List<RequestGroupViewModel> Leaves
+        private List<LeaveGroupViewModel> _leaves;
+        public List<LeaveGroupViewModel> Leaves
         {
             get => _leaves;
             set => SetProperty(ref _leaves, value);
@@ -47,26 +47,26 @@ namespace TeamConnect.ViewModels
         {
             base.Initialize(parameters);
 
-            await LoadRequestsAsync();
+            await LoadLeavesAsync();
         }
 
         #endregion
 
         #region -- Private helpers --
 
-        private async Task LoadRequestsAsync()
+        private async Task LoadLeavesAsync()
         {
-            var getLeavesResult = await _requestService.GetAllRequestsAsync();
+            var getLeavesResult = await _leaveService.GetAllLeavesAsync();
 
             if (getLeavesResult.IsSuccess)
             {
                 var leaves = getLeavesResult.Result;
 
-                var leavesGroups = new List<RequestGroupViewModel>();
+                var leavesGroups = new List<LeaveGroupViewModel>();
 
                 for (int i = 0; i < 7; i++)
                 {
-                    leavesGroups.Add(new RequestGroupViewModel(DateTime.Now.AddDays(i)));
+                    leavesGroups.Add(new LeaveGroupViewModel(DateTime.Now.AddDays(i)));
                 }
 
                 foreach (var leaveGroup in leavesGroups)
@@ -91,7 +91,7 @@ namespace TeamConnect.ViewModels
 
         private Task OnAddLeaveTapCommandAsync()
         {
-            return NavigationService.NavigateAsync(nameof(AddLeavePage), null, false, true);
+            return NavigationService.NavigateAsync(nameof(NewRequestPage), null, false, true);
         }
 
         #endregion

@@ -4,11 +4,11 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace TeamConnect.Models.Request
+namespace TeamConnect.Models.Leave
 {
-    public class RequestGroupViewModel : ObservableCollection<RequestViewModel>
+    public class LeaveGroupViewModel : ObservableCollection<LeaveViewModel>
     {
-        public RequestGroupViewModel(
+        public LeaveGroupViewModel(
             DateTime date)
             : base()
         {

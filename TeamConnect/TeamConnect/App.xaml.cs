@@ -5,7 +5,7 @@ using System.Globalization;
 using TeamConnect.Resources.Strings;
 using TeamConnect.Services.MapService;
 using TeamConnect.Services.MockDataService;
-using TeamConnect.Services.RequestService;
+using TeamConnect.Services.LeaveService;
 using TeamConnect.Services.RestService;
 using TeamConnect.Services.TimeZoneService;
 using TeamConnect.Services.AuthorizationService;
@@ -57,7 +57,7 @@ namespace TeamConnect
             containerRegistry.RegisterInstance<ITimeZoneService>(Container.Resolve<TimeZoneService>());
             containerRegistry.RegisterInstance<IAuthorizationService>(Container.Resolve<AuthorizationService>());
             containerRegistry.RegisterInstance<IUserService>(Container.Resolve<UserService>());
-            containerRegistry.RegisterInstance<IRequestService>(Container.Resolve<RequestService>());
+            containerRegistry.RegisterInstance<ILeaveService>(Container.Resolve<LeaveService>());
             containerRegistry.RegisterInstance<IMapService>(Container.Resolve<MapService>());
 
             // Pages
@@ -70,7 +70,7 @@ namespace TeamConnect
             containerRegistry.RegisterForNavigation<MainMasterPage, MainMasterPageViewModel>();
             containerRegistry.RegisterForNavigation<TeamPage, TeamPageViewModel>();
             containerRegistry.RegisterForNavigation<LeavePage, LeavePageViewModel>();
-            containerRegistry.RegisterForNavigation<AddLeavePage, AddLeavePageViewModel>();
+            containerRegistry.RegisterForNavigation<NewRequestPage, NewRequestPageViewModel>();
             containerRegistry.RegisterForNavigation<TeamTimePage, TeamTimePageViewModel>();
         }
 

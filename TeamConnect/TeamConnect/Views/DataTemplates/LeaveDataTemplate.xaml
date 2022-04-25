@@ -2,8 +2,8 @@
 <DataTemplate xmlns="http://xamarin.com/schemas/2014/forms"
               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
               x:Class="TeamConnect.Views.DataTemplates.LeaveDataTemplate"
-              xmlns:viewmodels="clr-namespace:TeamConnect.Models.Request"
-              x:DataType="viewmodels:RequestViewModel">
+              xmlns:viewmodels="clr-namespace:TeamConnect.Models.Leave"
+              x:DataType="viewmodels:LeaveViewModel">
 
     <StackLayout Padding="24, 0">
 

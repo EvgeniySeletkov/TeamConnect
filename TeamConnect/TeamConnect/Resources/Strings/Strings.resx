@@ -222,8 +222,8 @@
   <data name="LogOut" xml:space="preserve">
     <value>Log Out</value>
   </data>
-  <data name="NewLeave" xml:space="preserve">
-    <value>New leave</value>
+  <data name="NewRequest" xml:space="preserve">
+    <value>New request</value>
   </data>
   <data name="RequestType" xml:space="preserve">
     <value>Request Type</value>

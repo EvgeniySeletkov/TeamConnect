@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace TeamConnect.Models.Request
+namespace TeamConnect.Models.Leave
 {
-    public class RequestModel
+    public class LeaveModel
     {
         public int Id { get; set; }
 
