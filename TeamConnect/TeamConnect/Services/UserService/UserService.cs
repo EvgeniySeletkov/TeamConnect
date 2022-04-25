@@ -1,22 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Nager.Date;
 using TeamConnect.Helpers;
+using TeamConnect.Models.Leave;
 using TeamConnect.Models.User;
-using TeamConnect.Services.MockDataService;
+using TeamConnect.Services.Repository;
 
 namespace TeamConnect.Services.UserService
 {
     public class UserService : IUserService
     {
-        private readonly IMockDataService _mockDataService;
+        private readonly IRepository _repository;
 
         public UserService(
-            IMockDataService mockDataService)
+            IRepository repository)
         {
-            _mockDataService = mockDataService;
+            _repository = repository;
         }
 
         #region -- IUserService implementation --
@@ -27,11 +27,11 @@ namespace TeamConnect.Services.UserService
 
             try
             {
-                var usersResult = await _mockDataService.GetUsersAsync();
+                var user = await _repository.GetAllAsync<UserModel>();
 
-                if (usersResult.IsSuccess)
+                if (user is not null)
                 {
-                    result.SetSuccess(usersResult.Result);
+                    result.SetSuccess(user);
                 }
                 else
                 {
@@ -52,27 +52,25 @@ namespace TeamConnect.Services.UserService
 
             try
             {
-                var users = await _mockDataService.GetUsersAsync();
+                var users = await _repository.GetAllAsync<UserModel>();
 
-                if (users.IsSuccess)
+                if (users is not null)
                 {
                     var missingUsers = new List<UserModel>();
 
-                    foreach (var item in users.Result)
+                    foreach (var item in users)
                     {
-                        var userLeaveResult = await _mockDataService.GetLeavesAsync(
+                        var leave = await _repository.FindAsync<LeaveModel>(
                             r => r.StartDate <= date
                             && r.EndDate >= date
                             && r.UserId == item.Id);
 
-                        if (userLeaveResult.IsSuccess)
+                        if (leave is null)
                         {
-                            var userLeave = userLeaveResult.Result.FirstOrDefault();
-
                             var isHoliday = DateSystem.IsPublicHoliday(date, item.CountryCode);
                             var isWeekend = DateSystem.IsWeekend(date, item.CountryCode);
 
-                            if (userLeave is null && !isHoliday && !isWeekend)
+                            if (!isHoliday && !isWeekend)
                             {
                                 missingUsers.Add(item);
                             }
@@ -100,11 +98,11 @@ namespace TeamConnect.Services.UserService
 
             try
             {
-                var usersResult = await _mockDataService.GetUsersAsync(u => u.Id == userId);
+                var user = await _repository.FindAsync<UserModel>(u => u.Id == userId);
 
-                if (usersResult.IsSuccess)
+                if (user is not null)
                 {
-                    result.SetSuccess(usersResult.Result.FirstOrDefault());
+                    result.SetSuccess(user);
                 }
                 else
                 {

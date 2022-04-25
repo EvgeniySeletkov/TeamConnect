@@ -55,6 +55,28 @@ namespace TeamConnect.Extensions
             };
         }
 
+        public static UserModel ToModelWithoutTimeConverting(this UserViewModel viewModel)
+        {
+            return new UserModel
+            {
+                Id = viewModel.Id,
+                Photo = viewModel.Photo,
+                Name = viewModel.Name,
+                Surname = viewModel.Surname,
+                Email = viewModel.Email,
+                Password = viewModel.Password,
+                Latitude = viewModel.Latitude,
+                Longitude = viewModel.Longitude,
+                Address = viewModel.Address,
+                TimeZoneId = viewModel.TimeZoneId,
+                CountryCode = viewModel.CountryCode,
+                Position = viewModel.Position,
+                StartWorkTime = viewModel.StartWorkTime.TimeOfDay.ToString(),
+                EndWorkTime = viewModel.EndWorkTime.TimeOfDay.ToString(),
+                IsAccountCreated = viewModel.IsAccountCreated,
+            };
+        }
+
         #endregion
 
         #region -- Private helpers --

@@ -1,25 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using TeamConnect.Helpers;
 using TeamConnect.Models.Leave;
 using TeamConnect.Resources.Strings;
-using TeamConnect.Services.MockDataService;
+using TeamConnect.Services.Repository;
 using TeamConnect.Services.SettingsManager;
 
 namespace TeamConnect.Services.LeaveService
 {
     public class LeaveService : ILeaveService
     {
-        private readonly IMockDataService _mockDataService;
+        private readonly IRepository _repository;
         private readonly ISettingsManager _settingsManager;
 
         public LeaveService(
-            IMockDataService mockDataService,
+            IRepository repository,
             ISettingsManager settingsManager)
         {
-            _mockDataService = mockDataService;
+            _repository = repository;
             _settingsManager = settingsManager;
         }
 
@@ -31,11 +30,11 @@ namespace TeamConnect.Services.LeaveService
 
             try
             {
-                var leavesResult = await _mockDataService.GetLeavesAsync();
+                var leaves = await _repository.GetAllAsync<LeaveModel>();
 
-                if (leavesResult.IsSuccess)
+                if (leaves is not null)
                 {
-                    result.SetSuccess(leavesResult.Result);
+                    result.SetSuccess(leaves);
                 }
                 else
                 {
@@ -56,7 +55,7 @@ namespace TeamConnect.Services.LeaveService
 
             try
             {
-                var leavesResult = await _mockDataService.GetLeavesAsync(
+                var leave = await _repository.FindAsync<LeaveModel>(
                     l => l.UserId == _settingsManager.UserId
                     && l.StartDate <= newLeave.StartDate
                     && l.EndDate >= newLeave.StartDate
@@ -64,33 +63,17 @@ namespace TeamConnect.Services.LeaveService
                     && l.StartDate <= newLeave.EndDate
                     && l.EndDate >= newLeave.EndDate);
 
-                if (leavesResult.IsSuccess)
+                if (leave is null)
                 {
-                    var leave = leavesResult.Result.FirstOrDefault();
+                    newLeave.UserId = _settingsManager.UserId;
 
-                    if (leave is null)
-                    {
-                        newLeave.UserId = _settingsManager.UserId;
+                    await _repository.InsertAsync(newLeave);
 
-                        var addLeaveResult = await _mockDataService.AddLeaveAsync(newLeave);
-
-                        if (addLeaveResult.IsSuccess)
-                        {
-                            result.SetSuccess();
-                        }
-                        else
-                        {
-                            result.SetFailure();
-                        }
-                    }
-                    else
-                    {
-                        result.SetFailure(Strings.OverlappingLeavesError);
-                    }
+                    result.SetSuccess();
                 }
                 else
                 {
-                    result.SetFailure();
+                    result.SetFailure(Strings.OverlappingLeavesError);
                 }
             }
             catch (Exception ex)

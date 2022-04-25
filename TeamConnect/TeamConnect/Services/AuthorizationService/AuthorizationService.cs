@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using TeamConnect.Helpers;
 using TeamConnect.Models.User;
-using TeamConnect.Services.MockDataService;
 using TeamConnect.Services.Repository;
 using TeamConnect.Services.SettingsManager;
 
@@ -11,16 +10,13 @@ namespace TeamConnect.Services.AuthorizationService
     public class AuthorizationService : IAuthorizationService
     {
         private readonly IRepository _repository;
-        private readonly IMockDataService _mockDataService;
         private readonly ISettingsManager _settingsManager;
 
         public AuthorizationService(
             IRepository repository,
-            IMockDataService mockDataService,
             ISettingsManager settingsManager)
         {
             _repository = repository;
-            _mockDataService = mockDataService;
             _settingsManager = settingsManager;
         }
 

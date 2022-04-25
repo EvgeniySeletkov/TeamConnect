@@ -90,9 +90,11 @@ namespace TeamConnect.ViewModels
         {
             var position = args.Position;
 
+            _userDialogs.ShowLoading("Location processing", maskType: MaskType.Clear);
+
             await SetLocationAsync(position);
 
-            await SetTimeZoneAsync(position);
+            _userDialogs.HideLoading();
         }
 
         private async Task SetLocationAsync(Position position)
@@ -103,14 +105,10 @@ namespace TeamConnect.ViewModels
             {
                 var placemark = getPlacemarkResult.Result;
 
-                if (placemark.CountryName is not null)
-                {
-                    Pin = new Pin
-                    {
-                        Label = string.Empty,
-                        Position = position,
-                    };
+                var getTimeZoneResult = await _timeZoneService.GetTimeZoneAsync(position.Latitude, position.Longitude);
 
+                if (placemark.CountryName is not null && getTimeZoneResult.IsSuccess)
+                {
                     var locality = placemark.Locality is not null
                         ? $"{placemark.Locality}, "
                         : string.Empty;
@@ -125,6 +123,13 @@ namespace TeamConnect.ViewModels
                     _user.Longitude = position.Longitude;
                     _user.Address = Address;
                     _user.CountryCode = placemark.CountryCode;
+                    _user.TimeZoneId = getTimeZoneResult.Result.TimeZoneID;
+
+                    Pin = new Pin
+                    {
+                        Label = string.Empty,
+                        Position = position,
+                    };
                 }
                 else
                 {
@@ -134,16 +139,6 @@ namespace TeamConnect.ViewModels
             else
             {
                 await _userDialogs.AlertAsync(Strings.WrongLocation);
-            }
-        }
-
-        private async Task SetTimeZoneAsync(Position position)
-        {
-            var getTimeZoneResult = await _timeZoneService.GetTimeZoneAsync(position.Latitude, position.Longitude);
-
-            if (getTimeZoneResult.IsSuccess)
-            {
-                _user.TimeZoneId = getTimeZoneResult.Result.TimeZoneID;
             }
         }
 
