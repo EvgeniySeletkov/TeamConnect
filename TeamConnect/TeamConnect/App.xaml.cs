@@ -15,6 +15,7 @@ using Xamarin.CommunityToolkit.Helpers;
 using Xamarin.Forms;
 using TeamConnect.Services.UserService;
 using TeamConnect.Services.SettingsManager;
+using TeamConnect.Services.Repository;
 
 namespace TeamConnect
 {
@@ -51,6 +52,7 @@ namespace TeamConnect
             containerRegistry.RegisterInstance(UserDialogs.Instance);
 
             // Services
+            containerRegistry.RegisterInstance<IRepository>(Container.Resolve<Repository>());
             containerRegistry.RegisterInstance<IMockDataService>(Container.Resolve<MockDataService>());
             containerRegistry.RegisterInstance<ISettingsManager>(Container.Resolve<SettingsManager>());
             containerRegistry.RegisterInstance<IRestService>(Container.Resolve<RestService>());

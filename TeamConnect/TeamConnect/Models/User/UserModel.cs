@@ -1,9 +1,12 @@
 ﻿using System;
+using SQLite;
 
 namespace TeamConnect.Models.User
 {
-    public class UserModel
+    public class UserModel : IEntityBase
     {
+        [PrimaryKey]
+        [AutoIncrement]
         public int Id { get; set; }
 
         public string Photo { get; set; }

@@ -1,22 +1,25 @@
 ﻿using System;
-using System.Linq;
 using System.Threading.Tasks;
 using TeamConnect.Helpers;
 using TeamConnect.Models.User;
 using TeamConnect.Services.MockDataService;
+using TeamConnect.Services.Repository;
 using TeamConnect.Services.SettingsManager;
 
 namespace TeamConnect.Services.AuthorizationService
 {
     public class AuthorizationService : IAuthorizationService
     {
+        private readonly IRepository _repository;
         private readonly IMockDataService _mockDataService;
         private readonly ISettingsManager _settingsManager;
 
         public AuthorizationService(
+            IRepository repository,
             IMockDataService mockDataService,
             ISettingsManager settingsManager)
         {
+            _repository = repository;
             _mockDataService = mockDataService;
             _settingsManager = settingsManager;
         }
@@ -31,20 +34,11 @@ namespace TeamConnect.Services.AuthorizationService
 
             try
             {
-                var usersResult = await _mockDataService.GetUsersAsync(u => u.Email == email);
+                var user = await _repository.FindAsync<UserModel>(u => u.Email == email);
 
-                if (usersResult.IsSuccess)
+                if (user != null)
                 {
-                    var user = usersResult.Result.FirstOrDefault();
-
-                    if (user != null)
-                    {
-                        result.SetSuccess();
-                    }
-                    else
-                    {
-                        result.SetFailure();
-                    }
+                    result.SetSuccess();
                 }
                 else
                 {
@@ -65,25 +59,16 @@ namespace TeamConnect.Services.AuthorizationService
 
             try
             {
-                var usersResult = await _mockDataService.GetUsersAsync(u => u.Email == email && u.Password == password);
+                var user = await _repository.FindAsync<UserModel>(u => u.Email == email.ToLower() && u.Password == password);
 
-                if (usersResult.IsSuccess)
+                if (user is not null)
                 {
-                    var user = usersResult.Result.FirstOrDefault();
-
-                    if (user != null)
+                    if (user.IsAccountCreated)
                     {
-                        if (user.IsAccountCreated)
-                        {
-                            _settingsManager.UserId = user.Id;
-                        }
+                        _settingsManager.UserId = user.Id;
+                    }
 
-                        result.SetSuccess(user);
-                    }
-                    else
-                    {
-                        result.SetFailure();
-                    }
+                    result.SetSuccess(user);
                 }
                 else
                 {
@@ -104,10 +89,10 @@ namespace TeamConnect.Services.AuthorizationService
 
             try
             {
-                var addUserResult = await _mockDataService.UpdateUserAsync(user);
-
-                if (addUserResult.IsSuccess)
+                if (user.Id != Constants.DEFAULT_ID)
                 {
+                    await _repository.UpdateAsync(user);
+
                     _settingsManager.UserId = user.Id;
 
                     result.SetSuccess();
@@ -131,10 +116,10 @@ namespace TeamConnect.Services.AuthorizationService
 
             try
             {
-                var addUserResult = await _mockDataService.AddUserAsync(user);
-
-                if (addUserResult.IsSuccess)
+                if (user is not null)
                 {
+                    await _repository.InsertAsync(user);
+
                     result.SetSuccess();
                 }
                 else

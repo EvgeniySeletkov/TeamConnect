@@ -23,8 +23,12 @@ namespace TeamConnect.Extensions
                 TimeZoneId = model.TimeZoneId,
                 CountryCode = model.CountryCode,
                 Position = model.Position,
-                StartWorkTime = ConvertTimeByTimeZoneId(TimeSpan.Parse(model.StartWorkTime), model.TimeZoneId, TimeZoneInfo.Local.Id),
-                EndWorkTime = ConvertTimeByTimeZoneId(TimeSpan.Parse(model.EndWorkTime), model.TimeZoneId, TimeZoneInfo.Local.Id),
+                StartWorkTime = !string.IsNullOrWhiteSpace(model.StartWorkTime)
+                ? ConvertTimeByTimeZoneId(TimeSpan.Parse(model.StartWorkTime), model.TimeZoneId, TimeZoneInfo.Local.Id)
+                : DateTime.Now.Date,
+                EndWorkTime = !string.IsNullOrWhiteSpace(model.EndWorkTime)
+                ? ConvertTimeByTimeZoneId(TimeSpan.Parse(model.EndWorkTime), model.TimeZoneId, TimeZoneInfo.Local.Id)
+                : DateTime.Now.Date,
                 IsAccountCreated = model.IsAccountCreated,
             };
         }
@@ -51,49 +55,30 @@ namespace TeamConnect.Extensions
             };
         }
 
-        public static UserModel ToModelWithoutTimeConverting(this UserViewModel viewModel)
-        {
-            return new UserModel
-            {
-                Id = viewModel.Id,
-                Photo = viewModel.Photo,
-                Name = viewModel.Name,
-                Surname = viewModel.Surname,
-                Email = viewModel.Email,
-                Password = viewModel.Password,
-                Latitude = viewModel.Latitude,
-                Longitude = viewModel.Longitude,
-                Address = viewModel.Address,
-                TimeZoneId = viewModel.TimeZoneId,
-                CountryCode = viewModel.CountryCode,
-                Position = viewModel.Position,
-                StartWorkTime = viewModel.StartWorkTime.TimeOfDay.ToString(),
-                EndWorkTime = viewModel.EndWorkTime.TimeOfDay.ToString(),
-                IsAccountCreated = viewModel.IsAccountCreated,
-            };
-        }
-
         #endregion
 
         #region -- Private helpers --
 
         private static DateTime ConvertTimeByTimeZoneId(TimeSpan time, string sourceTimeZoneId, string destinationTimeZoneId)
         {
-            var dateTime = DateTime.SpecifyKind(DateTime.Now.Date + time, DateTimeKind.Unspecified);
+            var result = DateTime.Now.Date + time;
 
-            var convertedDateTime = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(
-                dateTime,
-                sourceTimeZoneId,
-                destinationTimeZoneId);
+            if (!string.IsNullOrWhiteSpace(sourceTimeZoneId)
+                && !string.IsNullOrWhiteSpace(destinationTimeZoneId))
+            {
+                var dateTime = DateTime.SpecifyKind(result, DateTimeKind.Unspecified);
+                var convertedDateTime = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(dateTime, sourceTimeZoneId, destinationTimeZoneId);
+                result =  DateTime.SpecifyKind(convertedDateTime, DateTimeKind.Local);
+            }
 
-            return DateTime.SpecifyKind(convertedDateTime, DateTimeKind.Local);
+            return result;
         }
 
         private static DateTime ConvertTimeByTimeZoneId(TimeSpan time, string timeZoneId)
         {
-            return TimeZoneInfo.ConvertTimeBySystemTimeZoneId(
-                DateTime.Now.Date + time,
-                timeZoneId);
+            return !string.IsNullOrWhiteSpace(timeZoneId)
+                ? TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.Now.Date + time, timeZoneId)
+                : DateTime.Now.Date + time;
         }
 
         #endregion

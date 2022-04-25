@@ -122,7 +122,7 @@ namespace TeamConnect.ViewModels
 
                     if (!checkIsEmailExistResult.IsSuccess)
                     {
-                        _user.Email = Email;
+                        _user.Email = Email.ToLower();
                         _user.Password = Password;
 
                         var signUpResult = await _authorizationService.SignUpAsync(_user.ToModel());

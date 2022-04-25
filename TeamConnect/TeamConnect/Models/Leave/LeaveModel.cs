@@ -1,9 +1,12 @@
 ﻿using System;
+using SQLite;
 
 namespace TeamConnect.Models.Leave
 {
-    public class LeaveModel
+    public class LeaveModel : IEntityBase
     {
+        [PrimaryKey]
+        [AutoIncrement]
         public int Id { get; set; }
 
         public string Type { get; set; }

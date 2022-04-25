@@ -2,6 +2,8 @@
 {
     public static class Constants
     {
+        public const string DATABASE_NAME = "teamconnect.db3";
+        public const int DEFAULT_ID = 0;
         public const int DEFAULT_WORKING_TIME = 8;
 
         public static class Navigation

@@ -180,7 +180,7 @@ namespace TeamConnect.ViewModels
             _user.EndWorkTime = DateTime.Now.Date + EndWorkingTime;
             _user.IsAccountCreated = true;
 
-            var completeRegistrationResult = await _authorizationService.CompleteRegistration(_user.ToModelWithoutTimeConverting());
+            var completeRegistrationResult = await _authorizationService.CompleteRegistration(_user.ToModel());
 
             if (completeRegistrationResult.IsSuccess)
             {
