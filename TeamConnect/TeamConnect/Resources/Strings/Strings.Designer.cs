@@ -322,5 +322,17 @@ namespace TeamConnect.Resources.Strings {
                 return ResourceManager.GetString("EndRequestDateError", resourceCulture);
             }
         }
+        
+        internal static string OverlappingLeavesError {
+            get {
+                return ResourceManager.GetString("OverlappingLeavesError", resourceCulture);
+            }
+        }
+        
+        internal static string OoopsSomethingWentWrong {
+            get {
+                return ResourceManager.GetString("OoopsSomethingWentWrong", resourceCulture);
+            }
+        }
     }
 }

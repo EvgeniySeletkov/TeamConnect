@@ -19,5 +19,17 @@ namespace TeamConnect.Extensions
                 UserId = leave.UserId,
             };
         }
+
+        public static LeaveModel ToModel(this LeaveViewModel viewModel)
+        {
+            return new LeaveModel
+            {
+                Id = viewModel.Id,
+                Type = viewModel.Type,
+                StartDate = viewModel.StartDate,
+                EndDate = viewModel.EndDate,
+                UserId = viewModel.UserId,
+            };
+        }
     }
 }

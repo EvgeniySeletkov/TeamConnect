@@ -8,5 +8,7 @@ namespace TeamConnect.Services.LeaveService
     public interface ILeaveService
     {
         Task<OperationResult<IEnumerable<LeaveModel>>> GetAllLeavesAsync();
+
+        Task<OperationResult> AddLeaveAsync(LeaveModel newLeave);
     }
 }

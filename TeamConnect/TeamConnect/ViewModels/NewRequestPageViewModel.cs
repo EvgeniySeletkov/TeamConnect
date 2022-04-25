@@ -4,7 +4,10 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Acr.UserDialogs;
 using Prism.Navigation;
+using TeamConnect.Extensions;
+using TeamConnect.Models.Leave;
 using TeamConnect.Resources.Strings;
+using TeamConnect.Services.LeaveService;
 using Xamarin.CommunityToolkit.ObjectModel;
 
 namespace TeamConnect.ViewModels
@@ -12,13 +15,16 @@ namespace TeamConnect.ViewModels
     public class NewRequestPageViewModel : BaseViewModel
     {
         private readonly IUserDialogs _userDialogs;
+        private readonly ILeaveService _leaveService;
 
         public NewRequestPageViewModel(
             INavigationService navigationService,
-            IUserDialogs userDialogs)
+            IUserDialogs userDialogs,
+            ILeaveService leaveService)
             : base(navigationService)
         {
             _userDialogs = userDialogs;
+            _leaveService = leaveService;
         }
 
         #region -- Public properties --
@@ -124,7 +130,7 @@ namespace TeamConnect.ViewModels
                 if (!IsEndDateChanged)
                 {
                     IsStartDateChanged = true;
-                    StartDate = datePromptResult.SelectedDate;
+                    StartDate = datePromptResult.SelectedDate.Date;
                     IsEndDateChanged = true;
                     EndDate = StartDate;
                 }
@@ -133,7 +139,7 @@ namespace TeamConnect.ViewModels
                     if (datePromptResult.SelectedDate <= EndDate)
                     {
                         IsStartDateChanged = true;
-                        StartDate = datePromptResult.SelectedDate;
+                        StartDate = datePromptResult.SelectedDate.Date;
                     }
                     else
                     {
@@ -155,7 +161,7 @@ namespace TeamConnect.ViewModels
                 if (!IsStartDateChanged)
                 {
                     IsEndDateChanged = true;
-                    EndDate = datePromptResult.SelectedDate;
+                    EndDate = datePromptResult.SelectedDate.Date;
                     IsStartDateChanged = true;
                     StartDate = EndDate;
                 }
@@ -164,7 +170,7 @@ namespace TeamConnect.ViewModels
                     if (datePromptResult.SelectedDate >= StartDate)
                     {
                         IsEndDateChanged = true;
-                        EndDate = datePromptResult.SelectedDate;
+                        EndDate = datePromptResult.SelectedDate.Date;
                     }
                     else
                     {
@@ -176,7 +182,30 @@ namespace TeamConnect.ViewModels
 
         private async Task OnCreateRequestTapCommandAsync()
         {
-            await NavigationService.GoBackAsync(null, false, true);
+            var leave = new LeaveViewModel
+            {
+                Type = SelectedRequestType,
+                StartDate = StartDate,
+                EndDate = EndDate,
+            };
+
+            var addLeaveResult = await _leaveService.AddLeaveAsync(leave.ToModel());
+
+            if (addLeaveResult.IsSuccess)
+            {
+                await NavigationService.GoBackAsync(null, false, true);
+            }
+            else
+            {
+                if (!string.IsNullOrWhiteSpace(addLeaveResult.Message))
+                {
+                    await _userDialogs.AlertAsync(addLeaveResult.Message);
+                }
+                else
+                {
+                    await _userDialogs.AlertAsync(Strings.OoopsSomethingWentWrong);
+                }
+            }
         }
 
         #endregion

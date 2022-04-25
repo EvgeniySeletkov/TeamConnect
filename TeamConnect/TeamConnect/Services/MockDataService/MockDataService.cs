@@ -59,11 +59,11 @@ namespace TeamConnect.Services.MockDataService
             {
                 await _initCompletionSource.Task;
 
-                int ordersCount = _users.Count;
+                int usersCount = _users.Count;
 
                 _users.Add(user);
 
-                if (_users.Count == ordersCount + 1)
+                if (_users.Count == usersCount + 1)
                 {
                     result.SetSuccess();
                 }
@@ -137,6 +137,35 @@ namespace TeamConnect.Services.MockDataService
             catch (Exception ex)
             {
                 result.SetError($"{nameof(GetUsersAsync)} : exception", "Something went wrong", ex);
+            }
+
+            return result;
+        }
+
+        public async Task<OperationResult> AddLeaveAsync(LeaveModel leave)
+        {
+            var result = new OperationResult();
+
+            try
+            {
+                await _initCompletionSource.Task;
+
+                int leavesCount = _leaves.Count;
+
+                _leaves.Add(leave);
+
+                if (_leaves.Count == leavesCount + 1)
+                {
+                    result.SetSuccess();
+                }
+                else
+                {
+                    result.SetFailure();
+                }
+            }
+            catch (Exception ex)
+            {
+                result.SetError($"{nameof(AddLeaveAsync)} : exception", "Something went wrong", ex);
             }
 
             return result;

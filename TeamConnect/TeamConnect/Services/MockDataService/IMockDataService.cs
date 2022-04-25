@@ -16,5 +16,7 @@ namespace TeamConnect.Services.MockDataService
         Task<OperationResult> UpdateUserAsync(UserModel user);
 
         Task<OperationResult<IEnumerable<LeaveModel>>> GetLeavesAsync(Func<LeaveModel, bool> func = null);
+
+        Task<OperationResult> AddLeaveAsync(LeaveModel leave);
     }
 }

@@ -255,4 +255,10 @@
   <data name="EndRequestDateError" xml:space="preserve">
     <value>End date cannot be earlier than start date</value>
   </data>
+  <data name="OverlappingLeavesError" xml:space="preserve">
+    <value>Leave overlapping with another leave request</value>
+  </data>
+  <data name="OoopsSomethingWentWrong" xml:space="preserve">
+    <value>Ooops, something went wrong</value>
+  </data>
 </root>

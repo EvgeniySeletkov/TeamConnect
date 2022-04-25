@@ -43,9 +43,9 @@ namespace TeamConnect.ViewModels
 
         #region -- Overrides --
 
-        public override async void Initialize(INavigationParameters parameters)
+        public override async void OnNavigatedTo(INavigationParameters parameters)
         {
-            base.Initialize(parameters);
+            base.OnNavigatedTo(parameters);
 
             await LoadLeavesAsync();
         }
@@ -66,7 +66,7 @@ namespace TeamConnect.ViewModels
 
                 for (int i = 0; i < 7; i++)
                 {
-                    leavesGroups.Add(new LeaveGroupViewModel(DateTime.Now.AddDays(i)));
+                    leavesGroups.Add(new LeaveGroupViewModel(DateTime.Now.AddDays(i).Date));
                 }
 
                 foreach (var leaveGroup in leavesGroups)
