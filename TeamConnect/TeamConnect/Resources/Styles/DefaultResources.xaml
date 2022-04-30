@@ -6,14 +6,10 @@
                     x:Class="TeamConnect.Resources.Styles.DefaultResources">
 
     <!-- TEXT SIZE -->
-    <x:Double x:Key="tsize_i20">22</x:Double>
-    <!-- 20px -->
-    <x:Double x:Key="tsize_i16">18</x:Double>
-    <!-- 16px -->
-    <x:Double x:Key="tsize_i14">16</x:Double>
-    <!-- 14px -->
-    <x:Double x:Key="tsize_i10">12</x:Double>
-    <!-- 10px -->
+    <x:Double x:Key="tsize_i20">22</x:Double> <!-- 20px -->
+    <x:Double x:Key="tsize_i16">18</x:Double> <!-- 16px -->
+    <x:Double x:Key="tsize_i14">16</x:Double> <!-- 14px -->
+    <x:Double x:Key="tsize_i10">12</x:Double> <!-- 10px -->
 
     <!-- NAVIGATION PAGE STYLE -->
     <Style TargetType="NavigationPage">
@@ -26,33 +22,27 @@
         <Setter Property="FontFamily" Value="SemiBoldFont"/>
     </Style>
 
-    <Style x:Key="Title_20px" TargetType="Label" BasedOn="{StaticResource BaseTitle}">
-        <!-- Title 20px -->
+    <Style x:Key="Title_20px" TargetType="Label" BasedOn="{StaticResource BaseTitle}"> <!-- Title 20px -->
         <Setter Property="FontSize" Value="{DynamicResource tsize_i20}"/>
     </Style>
 
-    <Style x:Key="Title_16px" TargetType="Label" BasedOn="{StaticResource BaseTitle}">
-        <!-- Title 16px -->
+    <Style x:Key="Title_16px" TargetType="Label" BasedOn="{StaticResource BaseTitle}"> <!-- Title 16px -->
         <Setter Property="FontSize" Value="{DynamicResource tsize_i16}"/>
     </Style>
 
-    <Style x:Key="Title_14px" TargetType="Label" BasedOn="{StaticResource BaseTitle}">
-        <!-- Title 14px -->
+    <Style x:Key="Title_14px" TargetType="Label" BasedOn="{StaticResource BaseTitle}"> <!-- Title 14px -->
         <Setter Property="FontSize" Value="{DynamicResource tsize_i14}"/>
     </Style>
 
-    <Style x:Key="tstyle_i1_1" TargetType="Label" BasedOn="{StaticResource Title_14px}">
-        <!-- Title 14px LightSlateGray -->
+    <Style x:Key="tstyle_i1_1" TargetType="Label" BasedOn="{StaticResource Title_14px}"> <!-- Title 14px LightSlateGray -->
         <Setter Property="TextColor" Value="{DynamicResource tcolor_i5}"/>
     </Style>
 
-    <Style x:Key="tstyle_i1_2" TargetType="Label" BasedOn="{StaticResource Title_16px}">
-        <!-- Title 16px Black -->
+    <Style x:Key="tstyle_i1_2" TargetType="Label" BasedOn="{StaticResource Title_16px}"> <!-- Title 16px Black -->
         <Setter Property="TextColor" Value="{DynamicResource tcolor_i1}"/>
     </Style>
 
-    <Style x:Key="tstyle_i1_3" TargetType="Label" BasedOn="{StaticResource Title_20px}">
-        <!-- Title 20px Black -->
+    <Style x:Key="tstyle_i1_3" TargetType="Label" BasedOn="{StaticResource Title_20px}"> <!-- Title 20px Black -->
         <Setter Property="TextColor" Value="{DynamicResource tcolor_i1}"/>
     </Style>
 
@@ -61,13 +51,11 @@
         <Setter Property="FontFamily" Value="RegularFont"/>
     </Style>
 
-    <Style x:Key="ContentRegular_14px" TargetType="Label" BasedOn="{StaticResource BaseContentRegular}">
-        <!-- Content 14px-->
+    <Style x:Key="ContentRegular_14px" TargetType="Label" BasedOn="{StaticResource BaseContentRegular}"> <!-- Content 14px-->
         <Setter Property="FontSize" Value="{DynamicResource tsize_i14}"/>
     </Style>
 
-    <Style x:Key="tstyle_i2_1" TargetType="Label" BasedOn="{StaticResource ContentRegular_14px}">
-        <!-- Content 14px Gray -->
+    <Style x:Key="tstyle_i2_1" TargetType="Label" BasedOn="{StaticResource ContentRegular_14px}"> <!-- Content 14px Gray -->
         <Setter Property="TextColor" Value="{DynamicResource tcolor_i2}"/>
     </Style>
 
@@ -75,13 +63,11 @@
         <Setter Property="FontFamily" Value="MediumFont"/>
     </Style>
 
-    <Style x:Key="ContentMedium_14px" TargetType="Label" BasedOn="{StaticResource BaseContentMedium}">
-        <!-- Content 14px-->
+    <Style x:Key="ContentMedium_14px" TargetType="Label" BasedOn="{StaticResource BaseContentMedium}"> <!-- Content 14px-->
         <Setter Property="FontSize" Value="{DynamicResource tsize_i14}"/>
     </Style>
 
-    <Style x:Key="tstyle_i3_1" TargetType="Label" BasedOn="{StaticResource ContentMedium_14px}">
-        <!-- Content 14px Gray -->
+    <Style x:Key="tstyle_i3_1" TargetType="Label" BasedOn="{StaticResource ContentMedium_14px}"> <!-- Content 14px Gray -->
         <Setter Property="TextColor" Value="{DynamicResource tcolor_i2}"/>
     </Style>
 
@@ -90,13 +76,11 @@
         <Setter Property="FontFamily" Value="MediumFont"/>
     </Style>
 
-    <Style x:Key="Action_16px" TargetType="Label" BasedOn="{StaticResource BaseAction}">
-        <!-- Action 16px-->
+    <Style x:Key="Action_16px" TargetType="Label" BasedOn="{StaticResource BaseAction}"> <!-- Action 16px-->
         <Setter Property="FontSize" Value="{DynamicResource tsize_i16}"/>
     </Style>
 
-    <Style x:Key="tstyle_i4_1" TargetType="Label" BasedOn="{StaticResource Action_16px}">
-        <!-- Action 14px Black -->
+    <Style x:Key="tstyle_i4_1" TargetType="Label" BasedOn="{StaticResource Action_16px}"> <!-- Action 14px Black -->
         <Setter Property="TextColor" Value="{DynamicResource tcolor_i1}"/>
     </Style>
 
@@ -170,6 +154,15 @@
         <Setter Property="CornerRadius" Value="16"/>
     </Style>
 
+    <Style x:Key="activityIndicator" TargetType="ActivityIndicator">
+        <Setter Property="Color" Value="{DynamicResource appcolor_i1}"/>
+        <Setter Property="IsRunning" Value="True"/>
+        <Setter Property="HorizontalOptions" Value="Center"/>
+        <Setter Property="VerticalOptions" Value="Center"/>
+    </Style>
+
     <xct:IsNotNullOrEmptyConverter x:Key="isNotNullOrEmptyConverter"/>
+    <xct:IsNullOrEmptyConverter x:Key="isNullOrEmptyConverter"/>
+    <xct:ListIsNotNullOrEmptyConverter x:Key="listIsNotNullOrEmptyConverter"/>
 
 </ResourceDictionary>

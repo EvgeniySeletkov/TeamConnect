@@ -1,27 +1,41 @@
-﻿using Prism.Navigation;
+﻿using Acr.UserDialogs;
+using Prism.Navigation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using TeamConnect.Enums;
 using TeamConnect.Extensions;
 using TeamConnect.Models.User;
 using TeamConnect.Services.UserService;
+using Xamarin.CommunityToolkit.ObjectModel;
 
 namespace TeamConnect.ViewModels
 {
     public class TeamTimePageViewModel : BaseViewModel
     {
+        private readonly IUserDialogs _userDialogs;
         private readonly IUserService _userService;
 
         public TeamTimePageViewModel(
             INavigationService navigationService,
+            IUserDialogs userDialogs,
             IUserService userService)
             : base(navigationService)
         {
+            _userDialogs = userDialogs;
             _userService = userService;
         }
 
         #region -- Public properties --
+
+        private EPageState _pageState;
+        public EPageState PageState
+        {
+            get => _pageState;
+            set => SetProperty(ref _pageState, value);
+        }
 
         private DateTime _date;
         public DateTime Date
@@ -37,6 +51,9 @@ namespace TeamConnect.ViewModels
             set => SetProperty(ref _teamTimes, value);
         }
 
+        private ICommand _selectDateTapCommand;
+        public ICommand SelectDateTapCommand => _selectDateTapCommand ??= new AsyncCommand(OnSelectDateTapCommandAsync);
+
         #endregion
 
         #region -- Overrides --
@@ -45,16 +62,18 @@ namespace TeamConnect.ViewModels
         {
             base.Initialize(parameters);
 
-            await LoadTeamTimes();
+            await LoadTeamTimesAsync(DateTime.Now.Date);
         }
 
         #endregion
 
         #region -- Private helpers --
 
-        private async Task LoadTeamTimes()
+        private async Task LoadTeamTimesAsync(DateTime date)
         {
-            Date = new DateTime(2022, 6, 30).Date;
+            Date = date;
+
+            PageState = EPageState.Loading;
 
             var getUsersResult = await _userService.GetNotMissingUsersAsync(Date);
 
@@ -93,7 +112,19 @@ namespace TeamConnect.ViewModels
                     }
                 }
 
-                TeamTimes = teamTimeGroups;
+                if (teamTimeGroups.Count > 0)
+                {
+                    TeamTimes = teamTimeGroups;
+                    PageState = EPageState.Complete;
+                }
+                else
+                {
+                    PageState = EPageState.NoResult;
+                }
+            }
+            else
+            {
+                PageState = EPageState.NoResult;
             }
         }
 
@@ -135,6 +166,19 @@ namespace TeamConnect.ViewModels
             }
 
             return result;
+        }
+
+        private async Task OnSelectDateTapCommandAsync()
+        {
+            var config = new DatePromptConfig();
+            config.iOSPickerStyle = iOSPickerStyle.Wheels;
+
+            var datePromptResult = await _userDialogs.DatePromptAsync(config);
+
+            if (datePromptResult.Ok)
+            {
+                await LoadTeamTimesAsync(datePromptResult.SelectedDate);
+            }
         }
 
         #endregion

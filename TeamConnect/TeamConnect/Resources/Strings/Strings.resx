@@ -270,4 +270,13 @@
   <data name="No" xml:space="preserve">
     <value>No</value>
   </data>
+  <data name="NoLeave" xml:space="preserve">
+    <value>No leave</value>
+  </data>
+  <data name="NoTeam" xml:space="preserve">
+    <value>No team</value>
+  </data>
+  <data name="NoTeamTime" xml:space="preserve">
+    <value>No team time</value>
+  </data>
 </root>

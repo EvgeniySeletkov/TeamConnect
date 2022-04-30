@@ -10,6 +10,13 @@
                        BackgroundColor="{DynamicResource appcolor_i4}"
                        Title="{xct:Translate TeamTime}">
 
+    <pages:BaseDetailPage.ToolbarItems>
+
+        <ToolbarItem IconImageSource="{DynamicResource ic_calendar}"
+                     Command="{Binding SelectDateTapCommand}"/>
+
+    </pages:BaseDetailPage.ToolbarItems>
+
     <Grid RowDefinitions="Auto, *"
           RowSpacing="0">
 
@@ -68,6 +75,45 @@
             </CollectionView.Footer>
 
         </CollectionView>
+
+        <ActivityIndicator Grid.Row="1"
+                           Style="{DynamicResource activityIndicator}"
+                           IsVisible="False">
+
+            <ActivityIndicator.Triggers>
+
+                <DataTrigger TargetType="ActivityIndicator"
+                             Binding="{Binding PageState}"
+                             Value="Loading">
+
+                    <Setter Property="IsVisible" Value="True"/>
+
+                </DataTrigger>
+
+            </ActivityIndicator.Triggers>
+
+        </ActivityIndicator>
+
+        <Label Grid.Row="1"
+               Style="{DynamicResource tstyle_i1_2}"
+               Text="{xct:Translate NoTeamTime}"
+               HorizontalOptions="Center"
+               VerticalOptions="Center"
+               IsVisible="False">
+
+            <Label.Triggers>
+
+                <DataTrigger TargetType="Label"
+                             Binding="{Binding PageState}"
+                             Value="NoResult">
+
+                    <Setter Property="IsVisible" Value="True"/>
+
+                </DataTrigger>
+                
+            </Label.Triggers>
+            
+        </Label>
 
     </Grid>
 

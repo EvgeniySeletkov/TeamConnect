@@ -21,5 +21,15 @@
     <!-- IMAGES -->
     <ImageSource x:Key="ic_eye">ic_eye</ImageSource>
     <ImageSource x:Key="ic_eye_off">ic_eye_off</ImageSource>
+    <ImageSource x:Key="ic_clock_blue">ic_clock_blue</ImageSource>
+    <ImageSource x:Key="ic_clock_gray">ic_clock_gray</ImageSource>
+    <ImageSource x:Key="ic_plane_blue">ic_plane_blue</ImageSource>
+    <ImageSource x:Key="ic_plane_gray">ic_plane_gray</ImageSource>
+    <ImageSource x:Key="ic_team_blue">ic_team_blue</ImageSource>
+    <ImageSource x:Key="ic_team_gray">ic_team_gray</ImageSource>
+    <ImageSource x:Key="pic_profile">pic_profile</ImageSource>
+    <ImageSource x:Key="ic_logout">ic_logout</ImageSource>
+    <ImageSource x:Key="ic_calendar">ic_calendar</ImageSource>
+    <ImageSource x:Key="ic_reset">ic_reset</ImageSource>
     
 </ResourceDictionary>

@@ -4,6 +4,7 @@
                   xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
                   xmlns:pages="clr-namespace:TeamConnect.Views"
                   xmlns:viewmodels="clr-namespace:TeamConnect.ViewModels"
+                  xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
                   x:Class="TeamConnect.Views.MainMasterPage"
                   x:DataType="viewmodels:MainMasterPageViewModel"
                   IsGestureEnabled="{OnPlatform iOS=False}"
@@ -27,9 +28,28 @@
                            HeightRequest="64"
                            WidthRequest="64"
                            CornerRadius="32"
-                           BackgroundColor="{DynamicResource appcolor_i2}"
                            HorizontalOptions="Start"
-                           VerticalOptions="CenterAndExpand"/>
+                           VerticalOptions="CenterAndExpand">
+
+                        <ff:CachedImage Source="{Binding User.Photo}"
+                                        LoadingPlaceholder="{DynamicResource pic_profile}"
+                                        ErrorPlaceholder="{DynamicResource pic_profile}">
+
+                            <ff:CachedImage.Triggers>
+
+                                <DataTrigger TargetType="ff:CachedImage"
+                                             Binding="{Binding User.Photo, Converter={StaticResource isNullOrEmptyConverter}}"
+                                             Value="True">
+
+                                    <Setter Property="Source" Value="{DynamicResource pic_profile}"/>
+
+                                </DataTrigger>
+                                
+                            </ff:CachedImage.Triggers>
+                            
+                        </ff:CachedImage>
+
+                    </Frame>
 
                     <StackLayout Grid.Column="1"
                                  Spacing="0"
@@ -67,10 +87,29 @@
                        xct:TouchEffect.PressedBackgroundColor="{DynamicResource appcolor_i5}"
                        Padding="24, 20">
 
-                    <StackLayout Orientation="Horizontal">
+                    <StackLayout Orientation="Horizontal"
+                                 Spacing="16">
+
+                        <Image Source="{DynamicResource ic_team_gray}"
+                               VerticalOptions="CenterAndExpand">
+
+                            <Image.Triggers>
+
+                                <DataTrigger TargetType="Image"
+                                             Binding="{Binding DetailPage}"
+                                             Value="Team">
+
+                                    <Setter Property="Source" Value="{DynamicResource ic_team_blue}"/>
+
+                                </DataTrigger>
+
+                            </Image.Triggers>
+                            
+                        </Image>
 
                         <Label Style="{DynamicResource tstyle_i4_1}"
-                               Text="{xct:Translate Team}">
+                               Text="{xct:Translate Team}"
+                               VerticalOptions="CenterAndExpand">
 
                             <Label.Triggers>
 
@@ -97,10 +136,29 @@
                        xct:TouchEffect.PressedBackgroundColor="{DynamicResource appcolor_i5}"
                        Padding="24, 20">
 
-                    <StackLayout Orientation="Horizontal">
+                    <StackLayout Orientation="Horizontal"
+                                 Spacing="16">
+
+                        <Image Source="{DynamicResource ic_plane_gray}"
+                               VerticalOptions="CenterAndExpand">
+
+                            <Image.Triggers>
+
+                                <DataTrigger TargetType="Image"
+                                             Binding="{Binding DetailPage}"
+                                             Value="Leave">
+
+                                    <Setter Property="Source" Value="{DynamicResource ic_plane_blue}"/>
+
+                                </DataTrigger>
+
+                            </Image.Triggers>
+
+                        </Image>
 
                         <Label Style="{DynamicResource tstyle_i4_1}"
-                               Text="{xct:Translate Leave}">
+                               Text="{xct:Translate Leave}"
+                               VerticalOptions="CenterAndExpand">
 
                             <Label.Triggers>
 
@@ -127,10 +185,29 @@
                        xct:TouchEffect.PressedBackgroundColor="{DynamicResource appcolor_i5}"
                        Padding="24, 20">
 
-                    <StackLayout Orientation="Horizontal">
+                    <StackLayout Orientation="Horizontal"
+                                 Spacing="16">
+
+                        <Image Source="{DynamicResource ic_clock_gray}"
+                               VerticalOptions="CenterAndExpand">
+
+                            <Image.Triggers>
+
+                                <DataTrigger TargetType="Image"
+                                             Binding="{Binding DetailPage}"
+                                             Value="TeamTime">
+
+                                    <Setter Property="Source" Value="{DynamicResource ic_clock_blue}"/>
+
+                                </DataTrigger>
+
+                            </Image.Triggers>
+
+                        </Image>
 
                         <Label Style="{DynamicResource tstyle_i4_1}"
-                               Text="{xct:Translate TeamTime}">
+                               Text="{xct:Translate TeamTime}"
+                               VerticalOptions="CenterAndExpand">
 
                             <Label.Triggers>
 
@@ -158,10 +235,15 @@
                        Padding="24, 20"
                        VerticalOptions="EndAndExpand">
 
-                    <StackLayout Orientation="Horizontal">
+                    <StackLayout Orientation="Horizontal"
+                                 Spacing="16">
+
+                        <Image Source="{DynamicResource ic_logout}"
+                               VerticalOptions="CenterAndExpand"/>
 
                         <Label Style="{DynamicResource tstyle_i4_1}"
-                               Text="{xct:Translate LogOut}"/>
+                               Text="{xct:Translate LogOut}"
+                               VerticalOptions="CenterAndExpand"/>
 
                     </StackLayout>
 

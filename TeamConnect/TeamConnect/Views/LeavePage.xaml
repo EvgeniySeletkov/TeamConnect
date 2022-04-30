@@ -10,6 +10,16 @@
                       BackgroundColor="{DynamicResource appcolor_i4}"
                       Title="{xct:Translate Leave}">
 
+    <page:BaseDetailPage.ToolbarItems>
+
+        <ToolbarItem IconImageSource="{DynamicResource ic_calendar}"
+                     Command="{Binding SelectDateTapCommand}"/>
+
+        <ToolbarItem IconImageSource="{DynamicResource ic_reset}"
+                     Command="{Binding ResetDateTapCommand}"/>
+
+    </page:BaseDetailPage.ToolbarItems>
+
     <Grid>
 
         <CollectionView ItemsSource="{Binding Leaves}"
@@ -47,6 +57,43 @@
             </CollectionView.Footer>
 
         </CollectionView>
+
+        <ActivityIndicator Style="{DynamicResource activityIndicator}"
+                           IsVisible="False">
+
+            <ActivityIndicator.Triggers>
+
+                <DataTrigger TargetType="ActivityIndicator"
+                             Binding="{Binding PageState}"
+                             Value="Loading">
+
+                    <Setter Property="IsVisible" Value="True"/>
+
+                </DataTrigger>
+
+            </ActivityIndicator.Triggers>
+            
+        </ActivityIndicator>
+
+        <Label Style="{DynamicResource tstyle_i1_2}"
+               Text="{xct:Translate NoLeave}"
+               HorizontalOptions="Center"
+               VerticalOptions="Center"
+               IsVisible="False">
+
+            <Label.Triggers>
+
+                <DataTrigger TargetType="Label"
+                             Binding="{Binding PageState}"
+                             Value="NoResult">
+
+                    <Setter Property="IsVisible" Value="True"/>
+
+                </DataTrigger>
+
+            </Label.Triggers>
+
+        </Label>
 
         <Button WidthRequest="64"
                 HeightRequest="64"

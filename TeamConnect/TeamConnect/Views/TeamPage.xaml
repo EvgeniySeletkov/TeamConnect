@@ -10,33 +10,73 @@
                       BackgroundColor="{DynamicResource appcolor_i4}"
                       Title="{xct:Translate Team}">
 
-    <CollectionView ItemsSource="{Binding Users}">
+    <Grid>
 
-        <CollectionView.ItemsLayout>
+        <CollectionView ItemsSource="{Binding Users}">
 
-            <LinearItemsLayout Orientation="Vertical"
-                               ItemSpacing="10"/>
+            <CollectionView.ItemsLayout>
 
-        </CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical"
+                                   ItemSpacing="10"/>
 
-        <CollectionView.Header>
+            </CollectionView.ItemsLayout>
 
-            <StackLayout HeightRequest="{OnPlatform iOS=20}"/>
+            <CollectionView.Header>
 
-        </CollectionView.Header>
+                <StackLayout HeightRequest="{OnPlatform iOS=20}"/>
 
-        <CollectionView.ItemTemplate>
+            </CollectionView.Header>
 
-            <datatemplates:TeamDataTemplate/>
+            <CollectionView.ItemTemplate>
 
-        </CollectionView.ItemTemplate>
+                <datatemplates:TeamDataTemplate/>
 
-        <CollectionView.Footer>
+            </CollectionView.ItemTemplate>
 
-            <StackLayout HeightRequest="20"/>
+            <CollectionView.Footer>
 
-        </CollectionView.Footer>
+                <StackLayout HeightRequest="20"/>
 
-    </CollectionView>
+            </CollectionView.Footer>
+
+        </CollectionView>
+
+        <ActivityIndicator Style="{DynamicResource activityIndicator}"
+                           IsVisible="False">
+
+            <ActivityIndicator.Triggers>
+
+                <DataTrigger TargetType="ActivityIndicator"
+                             Binding="{Binding PageState}"
+                             Value="Loading">
+
+                    <Setter Property="IsVisible" Value="True"/>
+
+                </DataTrigger>
+
+            </ActivityIndicator.Triggers>
+
+        </ActivityIndicator>
+
+        <Label Style="{DynamicResource tstyle_i1_2}"
+               Text="{xct:Translate NoTeam}"
+               HorizontalOptions="Center"
+               VerticalOptions="Center">
+
+            <Label.Triggers>
+
+                <DataTrigger TargetType="Label"
+                             Binding="{Binding Users, Converter={StaticResource listIsNotNullOrEmptyConverter}}"
+                             Value="True">
+
+                    <Setter Property="IsVisible" Value="False"/>
+
+                </DataTrigger>
+
+            </Label.Triggers>
+
+        </Label>
+
+    </Grid>
 
 </page:BaseDetailPage>

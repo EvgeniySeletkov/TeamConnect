@@ -33,7 +33,7 @@ namespace TeamConnect.Services.UserService
             {
                 var user = await _repository.GetAllAsync<UserModel>();
 
-                if (user is not null)
+                if (user is not null && user.Count > 0)
                 {
                     result.SetSuccess(user);
                 }
@@ -60,7 +60,7 @@ namespace TeamConnect.Services.UserService
 
                 if (users is not null)
                 {
-                    var missingUsers = new List<UserModel>();
+                    var notMissingUsers = new List<UserModel>();
 
                     foreach (var item in users)
                     {
@@ -76,12 +76,19 @@ namespace TeamConnect.Services.UserService
 
                             if (!isHoliday && !isWeekend)
                             {
-                                missingUsers.Add(item);
+                                notMissingUsers.Add(item);
                             }
                         }
                     }
 
-                    result.SetSuccess(missingUsers);
+                    if (notMissingUsers.Count > 0)
+                    {
+                        result.SetSuccess(notMissingUsers);
+                    }
+                    else
+                    {
+                        result.SetFailure();
+                    }
                 }
                 else
                 {

@@ -24,15 +24,19 @@ namespace TeamConnect.Services.LeaveService
 
         #region -- ILeaveService implementation --
 
-        public async Task<OperationResult<IEnumerable<LeaveModel>>> GetAllLeavesAsync()
+        public async Task<OperationResult<IEnumerable<LeaveModel>>> GetLeavesByDatesAsync(DateTime startDate, DateTime endDate)
         {
             var result = new OperationResult<IEnumerable<LeaveModel>>();
 
             try
             {
-                var leaves = await _repository.GetAllAsync<LeaveModel>();
+                var leaves = await _repository.GetAllAsync<LeaveModel>(
+                    l => l.StartDate >= startDate 
+                    && l.StartDate <= endDate
+                    || l.EndDate >= startDate
+                    && l.EndDate <= endDate);
 
-                if (leaves is not null)
+                if (leaves is not null && leaves.Count > 0)
                 {
                     result.SetSuccess(leaves);
                 }
@@ -43,7 +47,7 @@ namespace TeamConnect.Services.LeaveService
             }
             catch (Exception ex)
             {
-                result.SetError($"{nameof(GetAllLeavesAsync)} : exception", "Something went wrong", ex);
+                result.SetError($"{nameof(GetLeavesByDatesAsync)} : exception", "Something went wrong", ex);
             }
 
             return result;
@@ -78,7 +82,7 @@ namespace TeamConnect.Services.LeaveService
             }
             catch (Exception ex)
             {
-                result.SetError($"{nameof(GetAllLeavesAsync)} : exception", "Something went wrong", ex);
+                result.SetError($"{nameof(GetLeavesByDatesAsync)} : exception", "Something went wrong", ex);
             }
 
             return result;
