@@ -114,6 +114,10 @@ namespace TeamConnect.ViewModels
 
                 PageState = EPageState.Complete;
             }
+            else
+            {
+                PageState = EPageState.NoResult;
+            }
         }
 
         private async Task OnSelectDateTapCommandAsync()
