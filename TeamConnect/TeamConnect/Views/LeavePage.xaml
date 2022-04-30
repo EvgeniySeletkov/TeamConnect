@@ -97,6 +97,7 @@
 
         <Button WidthRequest="64"
                 HeightRequest="64"
+                ImageSource="{DynamicResource ic_plus}"
                 CornerRadius="32"
                 BackgroundColor="Blue"
                 HorizontalOptions="End"

@@ -61,15 +61,16 @@
         <Label Style="{DynamicResource tstyle_i1_2}"
                Text="{xct:Translate NoTeam}"
                HorizontalOptions="Center"
-               VerticalOptions="Center">
+               VerticalOptions="Center"
+               IsVisible="False">
 
             <Label.Triggers>
 
                 <DataTrigger TargetType="Label"
-                             Binding="{Binding Users, Converter={StaticResource listIsNotNullOrEmptyConverter}}"
-                             Value="True">
+                             Binding="{Binding PageState}"
+                             Value="NoResult">
 
-                    <Setter Property="IsVisible" Value="False"/>
+                    <Setter Property="IsVisible" Value="True"/>
 
                 </DataTrigger>
 

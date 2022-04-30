@@ -250,4 +250,13 @@
   <ItemGroup>
     <BundleResource Include="Resources\ic_reset%402x.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_plus%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_plus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_plus%402x.png" />
+  </ItemGroup>
 </Project>

@@ -8,8 +8,8 @@
     <Color x:Key="appcolor_i2">LightGray</Color>
     <Color x:Key="appcolor_i3">Red</Color>
     <Color x:Key="appcolor_i4">White</Color>
-    <Color x:Key="appcolor_i5">#1A0000FF</Color>
-    <Color x:Key="appcolor_i6">#0D0000FF</Color>
+    <Color x:Key="appcolor_i5">#E5E5ff</Color>
+    <Color x:Key="appcolor_i6">#F2F2FF</Color>
 
     <!-- TEXT COLORS -->
     <Color x:Key="tcolor_i1">Black</Color>
@@ -31,5 +31,6 @@
     <ImageSource x:Key="ic_logout">ic_logout</ImageSource>
     <ImageSource x:Key="ic_calendar">ic_calendar</ImageSource>
     <ImageSource x:Key="ic_reset">ic_reset</ImageSource>
+    <ImageSource x:Key="ic_plus">ic_plus</ImageSource>
     
 </ResourceDictionary>
