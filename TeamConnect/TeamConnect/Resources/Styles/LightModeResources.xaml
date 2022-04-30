@@ -8,6 +8,8 @@
     <Color x:Key="appcolor_i2">LightGray</Color>
     <Color x:Key="appcolor_i3">Red</Color>
     <Color x:Key="appcolor_i4">White</Color>
+    <Color x:Key="appcolor_i5">#1A0000FF</Color>
+    <Color x:Key="appcolor_i6">#0D0000FF</Color>
 
     <!-- TEXT COLORS -->
     <Color x:Key="tcolor_i1">Black</Color>

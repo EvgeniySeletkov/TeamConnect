@@ -22,6 +22,7 @@
     <None Remove="Services\SettingsManager\" />
     <None Remove="Services\Repository\" />
     <None Remove="sqlite-net-pcl" />
+    <None Remove="Enums\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -86,5 +87,6 @@
     <Folder Include="Views\DataTemplates\" />
     <Folder Include="Services\SettingsManager\" />
     <Folder Include="Services\Repository\" />
+    <Folder Include="Enums\" />
   </ItemGroup>
 </Project>

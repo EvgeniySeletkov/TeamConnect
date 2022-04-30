@@ -261,4 +261,13 @@
   <data name="OoopsSomethingWentWrong" xml:space="preserve">
     <value>Ooops, something went wrong</value>
   </data>
+  <data name="AreYouSureYouWantLogOut" xml:space="preserve">
+    <value>Are you sure you want to log out?</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
+  </data>
 </root>

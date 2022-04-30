@@ -11,21 +11,161 @@
 
     <MasterDetailPage.Master>
 
-        <pages:BaseContentPage Title="{xct:Translate Menu}">
+        <pages:BaseContentPage BackgroundColor="{DynamicResource appcolor_i4}"
+                               Title="{xct:Translate Menu}">
 
-            <StackLayout>
+            <StackLayout Spacing="0">
 
-                <Button Text="{xct:Translate Team}"
-                        Command="{Binding TeamTapCommand}"/>
+                <Grid ColumnDefinitions="Auto, *"
+                      Padding="24"
+                      ColumnSpacing="10">
 
-                <Button Text="{xct:Translate Leave}"
-                        Command="{Binding LeaveTapCommand}"/>
+                    <Frame Grid.Column="0"
+                           HasShadow="False"
+                           IsClippedToBounds="True"
+                           Padding="0"
+                           HeightRequest="64"
+                           WidthRequest="64"
+                           CornerRadius="32"
+                           BackgroundColor="{DynamicResource appcolor_i2}"
+                           HorizontalOptions="Start"
+                           VerticalOptions="CenterAndExpand"/>
 
-                <Button Text="{xct:Translate TeamTime}"
-                        Command="{Binding TeamTimeTapCommand}"/>
+                    <StackLayout Grid.Column="1"
+                                 Spacing="0"
+                                 VerticalOptions="CenterAndExpand">
 
-                <Button Text="{xct:Translate LogOut}"
-                        Command="{Binding LogOutTapCommand}"/>
+                        <Label Style="{DynamicResource tstyle_i1_2}">
+
+                            <Label.FormattedText>
+
+                                <FormattedString>
+
+                                    <Span Text="{Binding User.Name}"/>
+                                    <Span Text=" "/>
+                                    <Span Text="{Binding User.Surname}"/>
+
+                                </FormattedString>
+
+                            </Label.FormattedText>
+
+                        </Label>
+
+                        <Label Style="{DynamicResource tstyle_i3_1}"
+                               Text="{Binding User.Email}"
+                               LineBreakMode="TailTruncation"/>
+
+                    </StackLayout>
+
+                </Grid>
+
+                <Frame x:Name="team"
+                       HasShadow="False"
+                       CornerRadius="0"
+                       BackgroundColor="{DynamicResource appcolor_i4}"
+                       xct:TouchEffect.Command="{Binding TeamTapCommand}"
+                       xct:TouchEffect.PressedBackgroundColor="{DynamicResource appcolor_i5}"
+                       Padding="24, 20">
+
+                    <StackLayout Orientation="Horizontal">
+
+                        <Label Style="{DynamicResource tstyle_i4_1}"
+                               Text="{xct:Translate Team}">
+
+                            <Label.Triggers>
+
+                                <DataTrigger TargetType="Label"
+                                             Binding="{Binding DetailPage}"
+                                             Value="Team">
+
+                                    <Setter Property="TextColor" Value="{DynamicResource tcolor_i4}"/>
+
+                                </DataTrigger>
+
+                            </Label.Triggers>
+
+                        </Label>
+
+                    </StackLayout>
+
+                </Frame>
+
+                <Frame HasShadow="False"
+                       CornerRadius="0"
+                       BackgroundColor="{DynamicResource appcolor_i4}"
+                       xct:TouchEffect.Command="{Binding LeaveTapCommand}"
+                       xct:TouchEffect.PressedBackgroundColor="{DynamicResource appcolor_i5}"
+                       Padding="24, 20">
+
+                    <StackLayout Orientation="Horizontal">
+
+                        <Label Style="{DynamicResource tstyle_i4_1}"
+                               Text="{xct:Translate Leave}">
+
+                            <Label.Triggers>
+
+                                <DataTrigger TargetType="Label"
+                                             Binding="{Binding DetailPage}"
+                                             Value="Leave">
+
+                                    <Setter Property="TextColor" Value="{DynamicResource tcolor_i4}"/>
+
+                                </DataTrigger>
+
+                            </Label.Triggers>
+
+                        </Label>
+
+                    </StackLayout>
+
+                </Frame>
+
+                <Frame HasShadow="False"
+                       CornerRadius="0"
+                       BackgroundColor="{DynamicResource appcolor_i4}"
+                       xct:TouchEffect.Command="{Binding TeamTimeTapCommand}"
+                       xct:TouchEffect.PressedBackgroundColor="{DynamicResource appcolor_i5}"
+                       Padding="24, 20">
+
+                    <StackLayout Orientation="Horizontal">
+
+                        <Label Style="{DynamicResource tstyle_i4_1}"
+                               Text="{xct:Translate TeamTime}">
+
+                            <Label.Triggers>
+
+                                <DataTrigger TargetType="Label"
+                                             Binding="{Binding DetailPage}"
+                                             Value="TeamTime">
+
+                                    <Setter Property="TextColor" Value="{DynamicResource tcolor_i4}"/>
+
+                                </DataTrigger>
+
+                            </Label.Triggers>
+
+                        </Label>
+
+                    </StackLayout>
+
+                </Frame>
+
+                <Frame HasShadow="False"
+                       CornerRadius="0"
+                       BackgroundColor="{DynamicResource appcolor_i4}"
+                       xct:TouchEffect.Command="{Binding LogOutTapCommand}"
+                       xct:TouchEffect.PressedBackgroundColor="{DynamicResource appcolor_i5}"
+                       Padding="24, 20"
+                       VerticalOptions="EndAndExpand">
+
+                    <StackLayout Orientation="Horizontal">
+
+                        <Label Style="{DynamicResource tstyle_i4_1}"
+                               Text="{xct:Translate LogOut}"/>
+
+                    </StackLayout>
+
+                </Frame>
 
             </StackLayout>
 

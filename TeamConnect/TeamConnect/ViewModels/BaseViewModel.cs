@@ -1,5 +1,8 @@
-﻿using Prism.Mvvm;
+﻿using System.Linq;
+using Prism.Mvvm;
 using Prism.Navigation;
+using TeamConnect.Views;
+using Xamarin.Forms;
 
 namespace TeamConnect.ViewModels
 {
@@ -32,6 +35,10 @@ namespace TeamConnect.ViewModels
 
         public virtual void OnNavigatedTo(INavigationParameters parameters)
         {
+            if (Device.RuntimePlatform == Device.Android && App.Current.MainPage is MasterDetailPage page)
+            {
+                page.IsGestureEnabled = page.Detail.Navigation.NavigationStack.LastOrDefault() is BaseDetailPage;
+            }
         }
 
         #endregion

@@ -1,10 +1,6 @@
-﻿using System;
-namespace TeamConnect.Views
+﻿namespace TeamConnect.Views
 {
-    public class BaseDetailPage
+    public class BaseDetailPage : BaseContentPage
     {
-        public BaseDetailPage()
-        {
-        }
     }
 }

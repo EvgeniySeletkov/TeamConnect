@@ -6,7 +6,6 @@ using TeamConnect.Resources.Strings;
 using TeamConnect.Services.MapService;
 using TeamConnect.Services.LeaveService;
 using TeamConnect.Services.RestService;
-using TeamConnect.Services.TimeZoneService;
 using TeamConnect.Services.AuthorizationService;
 using TeamConnect.ViewModels;
 using TeamConnect.Views;
@@ -54,7 +53,6 @@ namespace TeamConnect
             containerRegistry.RegisterInstance<IRepository>(Container.Resolve<Repository>());
             containerRegistry.RegisterInstance<ISettingsManager>(Container.Resolve<SettingsManager>());
             containerRegistry.RegisterInstance<IRestService>(Container.Resolve<RestService>());
-            containerRegistry.RegisterInstance<ITimeZoneService>(Container.Resolve<TimeZoneService>());
             containerRegistry.RegisterInstance<IAuthorizationService>(Container.Resolve<AuthorizationService>());
             containerRegistry.RegisterInstance<IUserService>(Container.Resolve<UserService>());
             containerRegistry.RegisterInstance<ILeaveService>(Container.Resolve<LeaveService>());

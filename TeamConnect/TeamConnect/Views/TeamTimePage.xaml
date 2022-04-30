@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<pages:BaseContentPage xmlns:pages="clr-namespace:TeamConnect.Views"
+<pages:BaseDetailPage xmlns:pages="clr-namespace:TeamConnect.Views"
                        xmlns="http://xamarin.com/schemas/2014/forms"
                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                        xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
@@ -71,4 +71,4 @@
 
     </Grid>
 
-</pages:BaseContentPage>
+</pages:BaseDetailPage>

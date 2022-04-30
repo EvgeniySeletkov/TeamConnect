@@ -1,15 +1,12 @@
 ﻿using Acr.UserDialogs;
 using Prism.Navigation;
-using System;
 using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using TeamConnect.Extensions;
-using TeamConnect.Models.TimeZone;
 using TeamConnect.Models.User;
 using TeamConnect.Resources.Strings;
 using TeamConnect.Services.MapService;
-using TeamConnect.Services.TimeZoneService;
 using TeamConnect.Views;
 using Xamarin.CommunityToolkit.ObjectModel;
 using Xamarin.Forms.Maps;
@@ -19,7 +16,6 @@ namespace TeamConnect.ViewModels
     public class CompleteRegistrationFirstPageViewModel : BaseViewModel
     {
         private readonly IUserDialogs _userDialogs;
-        private readonly ITimeZoneService _timeZoneService;
         private readonly IMapService _mapService;
 
         private UserViewModel _user;
@@ -27,13 +23,11 @@ namespace TeamConnect.ViewModels
         public CompleteRegistrationFirstPageViewModel(
             INavigationService navigationService,
             IUserDialogs userDialogs,
-            IMapService mapService,
-            ITimeZoneService timeZoneService)
+            IMapService mapService)
             : base(navigationService)
         {
             _userDialogs = userDialogs;
             _mapService = mapService;
-            _timeZoneService = timeZoneService;
         }
 
         #region -- Public properties --
@@ -105,7 +99,7 @@ namespace TeamConnect.ViewModels
             {
                 var placemark = getPlacemarkResult.Result;
 
-                var getTimeZoneResult = await _timeZoneService.GetTimeZoneAsync(position.Latitude, position.Longitude);
+                var getTimeZoneResult = await _mapService.GetTimeZoneAsync(position.Latitude, position.Longitude);
 
                 if (placemark.CountryName is not null && getTimeZoneResult.IsSuccess)
                 {

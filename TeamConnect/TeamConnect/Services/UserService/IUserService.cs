@@ -13,5 +13,7 @@ namespace TeamConnect.Services.UserService
         Task<OperationResult<IEnumerable<UserModel>>> GetNotMissingUsersAsync(DateTime date);
 
         Task<OperationResult<UserModel>> GetUserByIdAsync(int userId);
+
+        Task<OperationResult<UserModel>> GetCurrentUserAsync();
     }
 }

@@ -6,17 +6,21 @@ using TeamConnect.Helpers;
 using TeamConnect.Models.Leave;
 using TeamConnect.Models.User;
 using TeamConnect.Services.Repository;
+using TeamConnect.Services.SettingsManager;
 
 namespace TeamConnect.Services.UserService
 {
     public class UserService : IUserService
     {
         private readonly IRepository _repository;
+        private readonly ISettingsManager _settingsManager;
 
         public UserService(
-            IRepository repository)
+            IRepository repository,
+            ISettingsManager settingsManager)
         {
             _repository = repository;
+            _settingsManager = settingsManager;
         }
 
         #region -- IUserService implementation --
@@ -112,6 +116,31 @@ namespace TeamConnect.Services.UserService
             catch (Exception ex)
             {
                 result.SetError($"{nameof(GetUserByIdAsync)} : exception", "Something went wrong", ex);
+            }
+
+            return result;
+        }
+
+        public async Task<OperationResult<UserModel>> GetCurrentUserAsync()
+        {
+            var result = new OperationResult<UserModel>();
+
+            try
+            {
+                var getUserByIdResult = await GetUserByIdAsync(_settingsManager.UserId);
+
+                if (getUserByIdResult.IsSuccess)
+                {
+                    result.SetSuccess(getUserByIdResult.Result);
+                }
+                else
+                {
+                    result.SetFailure();
+                }
+            }
+            catch (Exception ex)
+            {
+                result.SetError($"{nameof(GetCurrentUserAsync)} : exception", "Something went wrong", ex);
             }
 
             return result;

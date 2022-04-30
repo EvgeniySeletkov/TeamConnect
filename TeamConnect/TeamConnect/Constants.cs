@@ -10,6 +10,7 @@
         {
             public const string USER = nameof(USER);
             public const string EMAIL = nameof(EMAIL);
+            public const string DETAIL_PAGE = nameof(DETAIL_PAGE);
         }
 
         public static class GoogleAPI
