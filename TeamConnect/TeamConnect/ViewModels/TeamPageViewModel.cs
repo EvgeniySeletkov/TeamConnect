@@ -11,6 +11,7 @@ using TeamConnect.Models.User;
 using TeamConnect.Resources.Strings;
 using TeamConnect.Services.TeamService;
 using TeamConnect.Services.UserService;
+using TeamConnect.Views.Popups;
 using Xamarin.CommunityToolkit.ObjectModel;
 
 namespace TeamConnect.ViewModels
@@ -63,9 +64,9 @@ namespace TeamConnect.ViewModels
 
         #region -- Overrides --
 
-        public override async void Initialize(INavigationParameters parameters)
+        public override async void OnNavigatedTo(INavigationParameters parameters)
         {
-            base.Initialize(parameters);
+            base.OnNavigatedTo(parameters);
 
             await LoadTeamAsync();
         }
@@ -76,28 +77,30 @@ namespace TeamConnect.ViewModels
 
         private async Task OnCreateTeamTapCommandAsync()
         {
-            var teamNameResult = await _userDialogs.PromptAsync(
-                Strings.PleaseTypeYourTeamName,
-                Strings.CreateNewTeam,
-                Strings.Create,
-                Strings.Cancel,
-                Strings.TeamName,
-                InputType.Name);
+            await NavigationService.NavigateAsync(nameof(CreateTeamPopupPage));
 
-            if (teamNameResult.Ok)
-            {
-                var team = new TeamViewModel
-                {
-                    Name = teamNameResult.Value,
-                };
+            //var teamNameResult = await _userDialogs.PromptAsync(
+            //    Strings.PleaseTypeYourTeamName,
+            //    Strings.CreateNewTeam,
+            //    Strings.Create,
+            //    Strings.Cancel,
+            //    Strings.TeamName,
+            //    InputType.Name);
 
-                var createTeamResult = await _teamService.CreateTeamAsync(team.ToModel());
+            //if (teamNameResult.Ok)
+            //{
+            //    var team = new TeamViewModel
+            //    {
+            //        Name = teamNameResult.Value,
+            //    };
 
-                if (createTeamResult.IsSuccess)
-                {
-                    await LoadTeamAsync();
-                }
-            }
+            //    var createTeamResult = await _teamService.CreateTeamAsync(team.ToModel());
+
+            //    if (createTeamResult.IsSuccess)
+            //    {
+            //        await LoadTeamAsync();
+            //    }
+            //}
         }
 
         private async Task LoadTeamAsync()

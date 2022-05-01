@@ -18,6 +18,7 @@ namespace TeamConnect.Droid
             Xamarin.FormsMaps.Init(this, savedInstanceState);
             UserDialogs.Init(this);
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init(enableFastRenderer: true);
+            Rg.Plugins.Popup.Popup.Init(this);
             LoadApplication(new App());
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)

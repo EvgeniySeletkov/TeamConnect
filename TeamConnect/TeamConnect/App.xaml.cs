@@ -15,6 +15,9 @@ using TeamConnect.Services.UserService;
 using TeamConnect.Services.SettingsManager;
 using TeamConnect.Services.Repository;
 using TeamConnect.Services.TeamService;
+using Prism.Plugin.Popups;
+using TeamConnect.Views.Popups;
+using TeamConnect.ViewModels.Popups;
 
 namespace TeamConnect
 {
@@ -49,6 +52,7 @@ namespace TeamConnect
         {
             // Packages
             containerRegistry.RegisterInstance(UserDialogs.Instance);
+            containerRegistry.RegisterPopupNavigationService();
 
             // Services
             containerRegistry.RegisterInstance<IRepository>(Container.Resolve<Repository>());
@@ -69,6 +73,7 @@ namespace TeamConnect
             containerRegistry.RegisterForNavigation<CompleteRegistrationSecondPage, CompleteRegistrationSecondPageViewModel>();
             containerRegistry.RegisterForNavigation<MainMasterPage, MainMasterPageViewModel>();
             containerRegistry.RegisterForNavigation<TeamPage, TeamPageViewModel>();
+            containerRegistry.RegisterForNavigation<CreateTeamPopupPage, CreateTeamPopupPageViewModel>();
             containerRegistry.RegisterForNavigation<LeavePage, LeavePageViewModel>();
             containerRegistry.RegisterForNavigation<NewRequestPage, NewRequestPageViewModel>();
             containerRegistry.RegisterForNavigation<TeamTimePage, TeamTimePageViewModel>();

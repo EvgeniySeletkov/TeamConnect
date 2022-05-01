@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<popup:PopupPage xmlns:popup="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup" 
+                 xmlns="http://xamarin.com/schemas/2014/forms"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                 xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+                 xmlns:controls="clr-namespace:TeamConnect.Controls"
+                 xmlns:viewmodels="clr-namespace:TeamConnect.ViewModels.Popups"
+                 x:DataType="viewmodels:CreateTeamPopupPageViewModel"
+                 x:Class="TeamConnect.Views.Popups.CreateTeamPopupPage">
+
+    <Frame HasShadow="False"
+           BackgroundColor="{DynamicResource appcolor_i4}"
+           WidthRequest="300"
+           CornerRadius="16"
+           HorizontalOptions="Center"
+           VerticalOptions="Center">
+
+        <StackLayout Spacing="20">
+
+            <Label Style="{DynamicResource tstyle_i1_2}"
+                   Text="{xct:Translate CreateNewTeam}"/>
+
+            <controls:CustomEntry Style="{DynamicResource estyle_i1}"
+                                  Placeholder="{xct:Translate TeamName}"
+                                  Text="{Binding TeamName}"/>
+
+            <Grid ColumnSpacing="10">
+
+                <Button Grid.Column="0"
+                        Style="{DynamicResource bstyle_i2}"
+                        Text="{xct:Translate Cancel}"
+                        Command="{Binding CancelTapCommand}"/>
+
+                <Button Grid.Column="1"
+                        Style="{DynamicResource bstyle_i1}"
+                        Text="{xct:Translate Create}"
+                        Command="{Binding CreateTapCommand}"
+                        InputTransparent="True">
+
+                    <Button.Triggers>
+
+                        <Trigger TargetType="Button"
+                                 Property="InputTransparent"
+                                 Value="True">
+
+                            <Setter Property="Style" Value="{DynamicResource bstyle_i3}"/>
+
+                        </Trigger>
+
+                        <DataTrigger TargetType="Button"
+                                     Binding="{Binding TeamName, Converter={StaticResource isNotNullOrEmptyConverter}}"
+                                     Value="True">
+
+                            <Setter Property="InputTransparent" Value="False"/>
+
+                        </DataTrigger>
+
+                    </Button.Triggers>
+
+                </Button>
+
+            </Grid>
+
+        </StackLayout>
+        
+    </Frame>
+
+</popup:PopupPage>

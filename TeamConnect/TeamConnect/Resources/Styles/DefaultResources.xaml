@@ -17,7 +17,7 @@
         <Setter Property="BarTextColor" Value="{DynamicResource tcolor_i1}"/>
     </Style>
 
-    <!-- CONTENT STYLES -->
+    <!-- TITLE STYLES -->
     <Style x:Key="BaseTitle" TargetType="Label">
         <Setter Property="FontFamily" Value="SemiBoldFont"/>
     </Style>

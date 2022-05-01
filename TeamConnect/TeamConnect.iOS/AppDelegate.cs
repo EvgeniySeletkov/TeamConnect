@@ -25,6 +25,7 @@ namespace TeamConnect.iOS
             global::Xamarin.Forms.Forms.Init();
             Xamarin.FormsMaps.Init();
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init();
+            Rg.Plugins.Popup.Popup.Init();
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);
