@@ -5,5 +5,6 @@
         Loading,
         Complete,
         NoResult,
+        TeamNotCreated,
     }
 }

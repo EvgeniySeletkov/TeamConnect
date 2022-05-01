@@ -25,17 +25,17 @@ namespace TeamConnect.Services.UserService
 
         #region -- IUserService implementation --
 
-        public async Task<OperationResult<IEnumerable<UserModel>>> GetAllUsersAsync()
+        public async Task<OperationResult<IEnumerable<UserModel>>> GetTeamMembersAsync()
         {
             var result = new OperationResult<IEnumerable<UserModel>>();
 
             try
             {
-                var user = await _repository.GetAllAsync<UserModel>();
+                var users = await _repository.GetAllAsync<UserModel>(u => u.TeamId == _settingsManager.TeamId);
 
-                if (user is not null && user.Count > 0)
+                if (users is not null && users.Count > 0)
                 {
-                    result.SetSuccess(user);
+                    result.SetSuccess(users);
                 }
                 else
                 {
@@ -44,7 +44,7 @@ namespace TeamConnect.Services.UserService
             }
             catch (Exception ex)
             {
-                result.SetError($"{nameof(GetAllUsersAsync)} : exception", "Something went wrong", ex);
+                result.SetError($"{nameof(GetTeamMembersAsync)} : exception", "Something went wrong", ex);
             }
 
             return result;
@@ -56,10 +56,12 @@ namespace TeamConnect.Services.UserService
 
             try
             {
-                var users = await _repository.GetAllAsync<UserModel>();
+                var getTeamMembersResult = await GetTeamMembersAsync();
 
-                if (users is not null)
+                if (getTeamMembersResult.IsSuccess)
                 {
+                    var users = getTeamMembersResult.Result;
+
                     var notMissingUsers = new List<UserModel>();
 
                     foreach (var item in users)

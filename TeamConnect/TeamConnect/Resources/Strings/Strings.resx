@@ -279,4 +279,16 @@
   <data name="NoTeamTime" xml:space="preserve">
     <value>No team time</value>
   </data>
+  <data name="CreateNewTeam" xml:space="preserve">
+    <value>Create a new team</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>Create</value>
+  </data>
+  <data name="PleaseTypeYourTeamName" xml:space="preserve">
+    <value>Please type your team name</value>
+  </data>
+  <data name="TeamName" xml:space="preserve">
+    <value>Team name</value>
+  </data>
 </root>

@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <pages:BaseDetailPage xmlns:pages="clr-namespace:TeamConnect.Views"
-                       xmlns="http://xamarin.com/schemas/2014/forms"
-                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                       xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
-                       xmlns:viewmodels="clr-namespace:TeamConnect.ViewModels"
-                       xmlns:datatemplates="clr-namespace:TeamConnect.Views.DataTemplates"
-                       x:Class="TeamConnect.Views.TeamTimePage"
-                       x:DataType="viewmodels:TeamTimePageViewModel"
-                       BackgroundColor="{DynamicResource appcolor_i4}"
-                       Title="{xct:Translate TeamTime}">
+                      xmlns="http://xamarin.com/schemas/2014/forms"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                      xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+                      xmlns:viewmodels="clr-namespace:TeamConnect.ViewModels"
+                      xmlns:datatemplates="clr-namespace:TeamConnect.Views.DataTemplates"
+                      x:Class="TeamConnect.Views.TeamTimePage"
+                      x:DataType="viewmodels:TeamTimePageViewModel"
+                      BackgroundColor="{DynamicResource appcolor_i4}"
+                      Title="{xct:Translate TeamTime}">
 
     <pages:BaseDetailPage.ToolbarItems>
 

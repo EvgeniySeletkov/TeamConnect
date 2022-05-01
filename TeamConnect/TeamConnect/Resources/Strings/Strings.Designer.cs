@@ -115,11 +115,29 @@ namespace TeamConnect.Resources.Strings {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Create.
+        /// </summary>
+        internal static string Create {
+            get {
+                return ResourceManager.GetString("Create", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Create account.
         /// </summary>
         internal static string CreateAccount {
             get {
                 return ResourceManager.GetString("CreateAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Create a new team.
+        /// </summary>
+        internal static string CreateNewTeam {
+            get {
+                return ResourceManager.GetString("CreateNewTeam", resourceCulture);
             }
         }
         
@@ -367,6 +385,15 @@ namespace TeamConnect.Resources.Strings {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Please type your team name.
+        /// </summary>
+        internal static string PleaseTypeYourTeamName {
+            get {
+                return ResourceManager.GetString("PleaseTypeYourTeamName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Position.
         /// </summary>
         internal static string Position {
@@ -462,6 +489,15 @@ namespace TeamConnect.Resources.Strings {
         internal static string Team {
             get {
                 return ResourceManager.GetString("Team", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Team name.
+        /// </summary>
+        internal static string TeamName {
+            get {
+                return ResourceManager.GetString("TeamName", resourceCulture);
             }
         }
         

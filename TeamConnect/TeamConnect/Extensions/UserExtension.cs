@@ -22,6 +22,7 @@ namespace TeamConnect.Extensions
                 Address = model.Address,
                 TimeZoneId = model.TimeZoneId,
                 CountryCode = model.CountryCode,
+                TeamId = model.TeamId,
                 Position = model.Position,
                 StartWorkTime = !string.IsNullOrWhiteSpace(model.StartWorkTime)
                 ? ConvertTimeByTimeZoneId(TimeSpan.Parse(model.StartWorkTime), model.TimeZoneId, TimeZoneInfo.Local.Id)
@@ -48,6 +49,7 @@ namespace TeamConnect.Extensions
                 Address = viewModel.Address,
                 TimeZoneId = viewModel.TimeZoneId,
                 CountryCode = viewModel.CountryCode,
+                TeamId = viewModel.TeamId,
                 Position = viewModel.Position,
                 StartWorkTime = ConvertTimeByTimeZoneId(viewModel.StartWorkTime.TimeOfDay, viewModel.TimeZoneId).TimeOfDay.ToString(),
                 EndWorkTime = ConvertTimeByTimeZoneId(viewModel.EndWorkTime.TimeOfDay, viewModel.TimeZoneId).TimeOfDay.ToString(),
@@ -70,6 +72,7 @@ namespace TeamConnect.Extensions
                 Address = viewModel.Address,
                 TimeZoneId = viewModel.TimeZoneId,
                 CountryCode = viewModel.CountryCode,
+                TeamId = viewModel.TeamId,
                 Position = viewModel.Position,
                 StartWorkTime = viewModel.StartWorkTime.TimeOfDay.ToString(),
                 EndWorkTime = viewModel.EndWorkTime.TimeOfDay.ToString(),

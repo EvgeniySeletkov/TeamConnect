@@ -84,6 +84,13 @@ namespace TeamConnect.Models.User
             set => SetProperty(ref _countryCode, value);
         }
 
+        private int _teamId;
+        public int TeamId
+        {
+            get => _teamId;
+            set => SetProperty(ref _teamId, value);
+        }
+
         private string _position;
         public string Position
         {

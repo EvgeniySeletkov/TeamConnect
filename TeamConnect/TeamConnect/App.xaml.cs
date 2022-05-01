@@ -14,6 +14,7 @@ using Xamarin.Forms;
 using TeamConnect.Services.UserService;
 using TeamConnect.Services.SettingsManager;
 using TeamConnect.Services.Repository;
+using TeamConnect.Services.TeamService;
 
 namespace TeamConnect
 {
@@ -55,6 +56,7 @@ namespace TeamConnect
             containerRegistry.RegisterInstance<IRestService>(Container.Resolve<RestService>());
             containerRegistry.RegisterInstance<IAuthorizationService>(Container.Resolve<AuthorizationService>());
             containerRegistry.RegisterInstance<IUserService>(Container.Resolve<UserService>());
+            containerRegistry.RegisterInstance<ITeamService>(Container.Resolve<TeamService>());
             containerRegistry.RegisterInstance<ILeaveService>(Container.Resolve<LeaveService>());
             containerRegistry.RegisterInstance<IMapService>(Container.Resolve<MapService>());
 

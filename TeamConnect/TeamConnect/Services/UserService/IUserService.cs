@@ -8,7 +8,7 @@ namespace TeamConnect.Services.UserService
 {
     public interface IUserService
     {
-        Task<OperationResult<IEnumerable<UserModel>>> GetAllUsersAsync();
+        Task<OperationResult<IEnumerable<UserModel>>> GetTeamMembersAsync();
 
         Task<OperationResult<IEnumerable<UserModel>>> GetNotMissingUsersAsync(DateTime date);
 

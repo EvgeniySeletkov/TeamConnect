@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using SQLite;
 using TeamConnect.Models;
 using TeamConnect.Models.Leave;
+using TeamConnect.Models.Team;
 using TeamConnect.Models.User;
 
 namespace TeamConnect.Services.Repository
@@ -22,6 +23,7 @@ namespace TeamConnect.Services.Repository
                 var database = new SQLiteAsyncConnection(path);
 
                 database.CreateTableAsync<UserModel>().Wait();
+                database.CreateTableAsync<TeamModel>().Wait();
                 database.CreateTableAsync<LeaveModel>().Wait();
 
                 return database;

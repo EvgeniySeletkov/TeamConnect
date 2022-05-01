@@ -10,9 +10,21 @@
                       BackgroundColor="{DynamicResource appcolor_i4}"
                       Title="{xct:Translate Team}">
 
-    <Grid>
+    <Grid RowDefinitions="Auto, *"
+          RowSpacing="0">
 
-        <CollectionView ItemsSource="{Binding Users}">
+        <StackLayout Grid.Row="0"
+                     HeightRequest="60"
+                     Padding="24, 0">
+
+            <Label Style="{DynamicResource tstyle_i1_3}"
+                   Text="{Binding Team.Name}"
+                   VerticalOptions="CenterAndExpand"/>
+
+        </StackLayout>
+
+        <CollectionView Grid.Row="1"
+                        ItemsSource="{Binding Users}">
 
             <CollectionView.ItemsLayout>
 
@@ -58,25 +70,59 @@
 
         </ActivityIndicator>
 
-        <Label Style="{DynamicResource tstyle_i1_2}"
-               Text="{xct:Translate NoTeam}"
-               HorizontalOptions="Center"
-               VerticalOptions="Center"
-               IsVisible="False">
+        <StackLayout Grid.Row="0"
+                     Grid.RowSpan="2"
+                     HorizontalOptions="Center"
+                     VerticalOptions="Center">
 
-            <Label.Triggers>
+            <Label Style="{DynamicResource tstyle_i1_2}"
+                   Text="{xct:Translate NoTeam}"
+                   HorizontalOptions="CenterAndExpand"
+                   IsVisible="False">
 
-                <DataTrigger TargetType="Label"
-                             Binding="{Binding PageState}"
-                             Value="NoResult">
+                <Label.Triggers>
 
-                    <Setter Property="IsVisible" Value="True"/>
+                    <DataTrigger TargetType="Label"
+                                 Binding="{Binding PageState}"
+                                 Value="NoResult">
 
-                </DataTrigger>
+                        <Setter Property="IsVisible" Value="True"/>
 
-            </Label.Triggers>
+                    </DataTrigger>
 
-        </Label>
+                    <DataTrigger TargetType="Label"
+                                 Binding="{Binding PageState}"
+                                 Value="TeamNotCreated">
+
+                        <Setter Property="IsVisible" Value="True"/>
+
+                    </DataTrigger>
+
+                </Label.Triggers>
+
+            </Label>
+
+            <Button Style="{DynamicResource bstyle_i1}"
+                    Text="{xct:Translate CreateNewTeam}"
+                    Command="{Binding CreateTeamTapCommand}"
+                    IsVisible="False"
+                    HorizontalOptions="CenterAndExpand">
+
+                <Button.Triggers>
+
+                    <DataTrigger TargetType="Button"
+                                 Binding="{Binding PageState}"
+                                 Value="TeamNotCreated">
+
+                        <Setter Property="IsVisible" Value="True"/>
+
+                    </DataTrigger>
+
+                </Button.Triggers>
+                
+            </Button>
+
+        </StackLayout>
 
     </Grid>
 

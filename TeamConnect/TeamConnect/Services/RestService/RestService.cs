@@ -10,7 +10,7 @@ namespace TeamConnect.Services.RestService
 {
     public class RestService : IRestService
     {
-        #region -- IRestService implementation
+        #region -- IRestService implementation --
 
         public Task<ServerResponse<TSuccess, TError>> GetAsync<TSuccess, TError>(string resource, Dictionary<string, string> additionalHeaders = null)
         {
