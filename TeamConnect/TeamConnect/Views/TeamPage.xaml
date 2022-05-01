@@ -106,7 +106,8 @@
                     Text="{xct:Translate CreateNewTeam}"
                     Command="{Binding CreateTeamTapCommand}"
                     IsVisible="False"
-                    HorizontalOptions="CenterAndExpand">
+                    HorizontalOptions="CenterAndExpand"
+                    Padding="10, 0">
 
                 <Button.Triggers>
 
