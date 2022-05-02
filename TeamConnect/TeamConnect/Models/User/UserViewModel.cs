@@ -1,5 +1,6 @@
 ﻿using Prism.Mvvm;
 using System;
+using System.Windows.Input;
 
 namespace TeamConnect.Models.User
 {
@@ -117,6 +118,13 @@ namespace TeamConnect.Models.User
         {
             get => _isAccountCreated;
             set => SetProperty(ref _isAccountCreated, value);
+        }
+
+        private ICommand _tapCommand;
+        public ICommand TapCommand
+        {
+            get => _tapCommand;
+            set => SetProperty(ref _tapCommand, value);
         }
 
         #endregion

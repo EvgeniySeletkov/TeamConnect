@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<DataTemplate xmlns="http://xamarin.com/schemas/2014/forms"
+              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+              xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" xmlns:viewmodels="clr-namespace:TeamConnect.Models.User"
+              x:Class="TeamConnect.Views.DataTemplates.SearchedUsersDataTemplate"
+              x:DataType="viewmodels:UserViewModel">
+
+    <StackLayout Orientation="Horizontal"
+                 Spacing="10"
+                 Padding="0, 12"
+                 xct:TouchEffect.PressedBackgroundColor="{DynamicResource appcolor_i5}"
+                 xct:TouchEffect.Command="{Binding TapCommand}"
+                 xct:TouchEffect.CommandParameter="{Binding .}">
+
+        <Frame HasShadow="False"
+               IsClippedToBounds="True"
+               Padding="0"
+               HeightRequest="32"
+               WidthRequest="32"
+               CornerRadius="16"
+               HorizontalOptions="Start"
+               VerticalOptions="CenterAndExpand">
+
+            <ff:CachedImage Source="{Binding Photo}"
+                            LoadingPlaceholder="{DynamicResource pic_profile}"
+                            ErrorPlaceholder="{DynamicResource pic_profile}">
+
+                <ff:CachedImage.Triggers>
+
+                    <DataTrigger TargetType="ff:CachedImage"
+                                 Binding="{Binding Photo, Converter={StaticResource isNullOrEmptyConverter}}"
+                                 Value="True">
+
+                        <Setter Property="Source" Value="{DynamicResource pic_profile}"/>
+
+                    </DataTrigger>
+
+                </ff:CachedImage.Triggers>
+
+            </ff:CachedImage>
+
+        </Frame>
+
+        <Label Style="{DynamicResource tstyle_i1_2}"
+               VerticalOptions="CenterAndExpand">
+
+            <Label.FormattedText>
+
+                <FormattedString>
+
+                    <Span Text="{Binding Name}"/>
+                    <Span Text=" "/>
+                    <Span Text="{Binding Surname}"/>
+
+                </FormattedString>
+
+            </Label.FormattedText>
+
+        </Label>
+
+    </StackLayout>
+
+</DataTemplate>

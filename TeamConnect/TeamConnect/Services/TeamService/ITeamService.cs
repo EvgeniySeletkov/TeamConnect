@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using TeamConnect.Helpers;
 using TeamConnect.Models.Team;
+using TeamConnect.Models.User;
 
 namespace TeamConnect.Services.TeamService
 {
@@ -11,5 +12,7 @@ namespace TeamConnect.Services.TeamService
         Task<OperationResult<TeamModel>> GetTeamAsync();
 
         Task<OperationResult> CreateTeamAsync(TeamModel team);
+
+        Task<OperationResult> AddMemberAsync(UserModel user);
     }
 }

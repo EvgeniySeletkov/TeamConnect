@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using TeamConnect.Helpers;
 using TeamConnect.Models.Team;
+using TeamConnect.Resources.Strings;
 using TeamConnect.Services.Repository;
 using TeamConnect.Services.SettingsManager;
 using TeamConnect.Services.UserService;
@@ -59,28 +60,21 @@ namespace TeamConnect.Services.TeamService
 
             try
             {
-                var teamId = await _repository.InsertAsync(team);
+                await _repository.InsertAsync(team);
 
-                if (teamId > 0)
+                var getCurrentUserResult = await _userService.GetCurrentUserAsync();
+
+                if (getCurrentUserResult.IsSuccess)
                 {
-                    var getCurrentUserResult = await _userService.GetCurrentUserAsync();
+                    var user = getCurrentUserResult.Result;
 
-                    if (getCurrentUserResult.IsSuccess)
-                    {
-                        var user = getCurrentUserResult.Result;
+                    user.TeamId = team.Id;
 
-                        user.TeamId = teamId;
+                    var updateUserResult = await _repository.UpdateAsync(user);
 
-                        var updateUserResult = await _repository.UpdateAsync(user);
+                    _settingsManager.TeamId = team.Id;
 
-                        _settingsManager.TeamId = teamId;
-
-                        result.SetSuccess();
-                    }
-                    else
-                    {
-                        result.SetFailure();
-                    }
+                    result.SetSuccess();
                 }
                 else
                 {
@@ -90,6 +84,33 @@ namespace TeamConnect.Services.TeamService
             catch (Exception ex)
             {
                 result.SetError($"{nameof(CreateTeamAsync)} : exception", "Something went wrong", ex);
+            }
+
+            return result;
+        }
+
+        public async Task<OperationResult> AddMemberAsync(Models.User.UserModel user)
+        {
+            var result = new OperationResult<TeamModel>();
+
+            try
+            {
+                if (user.TeamId == 0)
+                {
+                    user.TeamId = _settingsManager.TeamId;
+
+                    await _repository.UpdateAsync(user);
+
+                    result.SetSuccess();
+                }
+                else
+                {
+                    result.SetFailure(Strings.ThisUserIsInAnotherTeam);
+                }
+            }
+            catch (Exception ex)
+            {
+                result.SetError($"{nameof(AddMemberAsync)} : exception", "Something went wrong", ex);
             }
 
             return result;

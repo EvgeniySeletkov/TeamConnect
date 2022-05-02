@@ -6,11 +6,11 @@
                  xmlns:controls="clr-namespace:TeamConnect.Controls"
                  xmlns:viewmodels="clr-namespace:TeamConnect.ViewModels.Popups"
                  x:DataType="viewmodels:CreateTeamPopupPageViewModel"
-                 x:Class="TeamConnect.Views.Popups.CreateTeamPopupPage">
+                 x:Class="TeamConnect.Views.Popups.CreateTeamPopupPage"
+                 Padding="20">
 
     <Frame HasShadow="False"
            BackgroundColor="{DynamicResource appcolor_i4}"
-           WidthRequest="300"
            CornerRadius="16"
            HorizontalOptions="Center"
            VerticalOptions="Center">

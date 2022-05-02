@@ -62,6 +62,7 @@ namespace TeamConnect.Services.AuthorizationService
                     if (user.IsAccountCreated)
                     {
                         _settingsManager.UserId = user.Id;
+                        _settingsManager.TeamId = user.TeamId;
                     }
 
                     result.SetSuccess(user);

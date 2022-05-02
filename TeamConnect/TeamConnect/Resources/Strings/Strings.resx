@@ -291,4 +291,16 @@
   <data name="TeamName" xml:space="preserve">
     <value>Team name</value>
   </data>
+  <data name="Add" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="AddMember" xml:space="preserve">
+    <value>Add member</value>
+  </data>
+  <data name="SearchByNameSurnameOrEmail" xml:space="preserve">
+    <value>Search by name, surname or email</value>
+  </data>
+  <data name="ThisUserIsInAnotherTeam" xml:space="preserve">
+    <value>This user is in another team</value>
+  </data>
 </root>

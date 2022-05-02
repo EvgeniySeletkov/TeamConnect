@@ -155,6 +155,35 @@ namespace TeamConnect.Services.UserService
             return result;
         }
 
+        public async Task<OperationResult<IEnumerable<UserModel>>> SearchUsers(string searchRequest)
+        {
+            var result = new OperationResult<IEnumerable<UserModel>>();
+
+            try
+            {
+                var users = await _repository.GetAllAsync<UserModel>(
+                    u => u.TeamId != _settingsManager.TeamId
+                    && (u.Name.StartsWith(searchRequest, StringComparison.OrdinalIgnoreCase)
+                    || u.Surname.StartsWith(searchRequest, StringComparison.OrdinalIgnoreCase)
+                    || u.Email.StartsWith(searchRequest, StringComparison.OrdinalIgnoreCase)));
+
+                if (users is not null && users.Count > 0)
+                {
+                    result.SetSuccess(users);
+                }
+                else
+                {
+                    result.SetFailure();
+                }
+            }
+            catch (Exception ex)
+            {
+                result.SetError($"{nameof(GetTeamMembersAsync)} : exception", "Something went wrong", ex);
+            }
+
+            return result;
+        }
+
         #endregion
     }
 }

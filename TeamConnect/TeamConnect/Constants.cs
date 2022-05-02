@@ -11,6 +11,7 @@
             public const string USER = nameof(USER);
             public const string EMAIL = nameof(EMAIL);
             public const string DETAIL_PAGE = nameof(DETAIL_PAGE);
+            public const string MEMBER_NOT_ADDED = nameof(MEMBER_NOT_ADDED);
         }
 
         public static class GoogleAPI

@@ -15,5 +15,7 @@ namespace TeamConnect.Services.UserService
         Task<OperationResult<UserModel>> GetUserByIdAsync(int userId);
 
         Task<OperationResult<UserModel>> GetCurrentUserAsync();
+
+        Task<OperationResult<IEnumerable<UserModel>>> SearchUsers(string searchRequest);
     }
 }

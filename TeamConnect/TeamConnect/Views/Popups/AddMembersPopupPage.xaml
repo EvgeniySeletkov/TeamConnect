@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<popup:PopupPage xmlns:popup="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup" 
+                 xmlns="http://xamarin.com/schemas/2014/forms"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                 xmlns:xct="http://xamarin.com/schemas/2020/toolkit" 
+                 xmlns:controls="clr-namespace:TeamConnect.Controls"
+                 xmlns:viewmodels="clr-namespace:TeamConnect.ViewModels.Popups"
+                 xmlns:datatemplates="clr-namespace:TeamConnect.Views.DataTemplates"
+                 xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+                 x:DataType="viewmodels:AddMembersPopupPageViewModel"
+                 x:Class="TeamConnect.Views.Popups.AddMembersPopupPage"
+                 Padding="20">
+
+    <Frame HasShadow="False"
+           BackgroundColor="{DynamicResource appcolor_i4}"
+           CornerRadius="16"
+           HorizontalOptions="Fill"
+           VerticalOptions="Center">
+
+        <Grid RowDefinitions="Auto, Auto, Auto, Auto"
+              RowSpacing="20">
+
+            <Label Grid.Row="0"
+                   Style="{DynamicResource tstyle_i1_2}"
+                   Text="{xct:Translate AddMember}"/>
+
+            <controls:CustomEntry Grid.Row="1"
+                                  Style="{DynamicResource estyle_i1}"
+                                  Placeholder="{xct:Translate SearchByNameSurnameOrEmail}"
+                                  Text="{Binding SearchRequest}">
+
+                <controls:CustomEntry.Triggers>
+
+                    <DataTrigger TargetType="controls:CustomEntry"
+                                 Binding="{Binding SelectedUser, Converter={StaticResource isNotNullOrEmptyConverter}}"
+                                 Value="True">
+
+                        <Setter Property="IsVisible" Value="False"/>
+
+                    </DataTrigger>
+
+                </controls:CustomEntry.Triggers>
+                
+            </controls:CustomEntry>
+
+            <Frame Grid.Row="1"
+                   HasShadow="False"
+                   Padding="16, 18"
+                   CornerRadius="16"
+                   BorderColor="{DynamicResource appcolor_i1}"
+                   IsVisible="False">
+
+                <Frame.Triggers>
+
+                    <DataTrigger TargetType="Frame"
+                                 Binding="{Binding SelectedUser, Converter={StaticResource isNotNullOrEmptyConverter}}"
+                                 Value="True">
+
+                        <Setter Property="IsVisible" Value="True"/>
+
+                    </DataTrigger>
+                    
+                </Frame.Triggers>
+
+                <Grid ColumnDefinitions="Auto, *, Auto"
+                      ColumnSpacing="10">
+
+                    <Frame Grid.Column="0"
+                           HasShadow="False"
+                           IsClippedToBounds="True"
+                           Padding="0"
+                           HeightRequest="32"
+                           WidthRequest="32"
+                           CornerRadius="16"
+                           HorizontalOptions="Start"
+                           VerticalOptions="CenterAndExpand">
+
+                        <ff:CachedImage Source="{Binding SelectedUser.Photo}"
+                                        LoadingPlaceholder="{DynamicResource pic_profile}"
+                                        ErrorPlaceholder="{DynamicResource pic_profile}">
+
+                            <ff:CachedImage.Triggers>
+
+                                <DataTrigger TargetType="ff:CachedImage"
+                                             Binding="{Binding SelectedUser.Photo, Converter={StaticResource isNullOrEmptyConverter}}"
+                                             Value="True">
+
+                                    <Setter Property="Source" Value="{DynamicResource pic_profile}"/>
+
+                                </DataTrigger>
+
+                            </ff:CachedImage.Triggers>
+
+                        </ff:CachedImage>
+
+                    </Frame>
+
+                    <Label Grid.Column="1"
+                           Style="{DynamicResource tstyle_i2_2}"
+                           VerticalOptions="CenterAndExpand">
+
+                        <Label.FormattedText>
+
+                            <FormattedString>
+
+                                <Span Text="{Binding SelectedUser.Name}"/>
+                                <Span Text=" "/>
+                                <Span Text="{Binding SelectedUser.Surname}"/>
+
+                            </FormattedString>
+
+                        </Label.FormattedText>
+
+                    </Label>
+
+                    <Frame Grid.Column="2"
+                           HasShadow="False"
+                           Padding="0"
+                           HeightRequest="24"
+                           WidthRequest="24"
+                           CornerRadius="12"
+                           BackgroundColor="{DynamicResource appcolor_i4}"
+                           xct:TouchEffect.PressedBackgroundColor="{DynamicResource appcolor_i5}"
+                           xct:TouchEffect.Command="{Binding DeleteUserTapCommand}"
+                           HorizontalOptions="EndAndExpand"
+                           VerticalOptions="CenterAndExpand">
+
+                        <Image Source="{DynamicResource ic_close}"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center"
+                               Margin="3"/>
+
+                    </Frame>
+
+                </Grid>
+                
+            </Frame>
+
+            <CollectionView Grid.Row="2"
+                            ItemsSource="{Binding Users}"
+                            HeightRequest="{Binding UserListHeight}"
+                            IsVisible="{Binding IsUserListVisible}">
+
+                <CollectionView.ItemTemplate>
+
+                    <datatemplates:SearchedUsersDataTemplate/>
+
+                </CollectionView.ItemTemplate>
+
+            </CollectionView>
+
+            <Grid Grid.Row="3"
+                  ColumnSpacing="10">
+
+                <Button Grid.Column="0"
+                        Style="{DynamicResource bstyle_i2}"
+                        Text="{xct:Translate Cancel}"
+                        Command="{Binding CancelTapCommand}"/>
+
+                <Button Grid.Column="1"
+                        Style="{DynamicResource bstyle_i1}"
+                        Text="{xct:Translate Add}"
+                        Command="{Binding AddTapCommand}"
+                        InputTransparent="True">
+
+                    <Button.Triggers>
+
+                        <Trigger TargetType="Button"
+                                 Property="InputTransparent"
+                                 Value="True">
+
+                            <Setter Property="Style" Value="{DynamicResource bstyle_i3}"/>
+
+                        </Trigger>
+
+                        <DataTrigger TargetType="Button"
+                                     Binding="{Binding SelectedUser, Converter={StaticResource isNotNullOrEmptyConverter}}"
+                                     Value="True">
+
+                            <Setter Property="InputTransparent" Value="False"/>
+
+                        </DataTrigger>
+
+                    </Button.Triggers>
+
+                </Button>
+
+            </Grid>
+
+        </Grid>
+
+    </Frame>
+
+</popup:PopupPage>

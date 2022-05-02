@@ -73,7 +73,13 @@
     <EmbeddedResource Update="Views\CreateAccountSecondPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\DataTemplates\SearchedUsersDataTemplate.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\LoginPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Popups\AddMembersPopupPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Popups\CreateTeamPopupPage.xaml">
@@ -91,7 +97,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Services\UserService\" />
-    <Folder Include="Views\DataTemplates\" />
     <Folder Include="Services\SettingsManager\" />
     <Folder Include="Services\Repository\" />
   </ItemGroup>

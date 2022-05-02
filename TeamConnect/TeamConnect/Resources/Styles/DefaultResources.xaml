@@ -59,6 +59,10 @@
         <Setter Property="TextColor" Value="{DynamicResource tcolor_i2}"/>
     </Style>
 
+    <Style x:Key="tstyle_i2_2" TargetType="Label" BasedOn="{StaticResource ContentRegular_14px}"> <!-- Content 14px Black -->
+        <Setter Property="TextColor" Value="{DynamicResource tcolor_i1}"/>
+    </Style>
+
     <Style x:Key="BaseContentMedium" TargetType="Label">
         <Setter Property="FontFamily" Value="MediumFont"/>
     </Style>

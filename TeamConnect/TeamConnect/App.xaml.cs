@@ -74,6 +74,7 @@ namespace TeamConnect
             containerRegistry.RegisterForNavigation<MainMasterPage, MainMasterPageViewModel>();
             containerRegistry.RegisterForNavigation<TeamPage, TeamPageViewModel>();
             containerRegistry.RegisterForNavigation<CreateTeamPopupPage, CreateTeamPopupPageViewModel>();
+            containerRegistry.RegisterForNavigation<AddMembersPopupPage, AddMembersPopupPageViewModel>();
             containerRegistry.RegisterForNavigation<LeavePage, LeavePageViewModel>();
             containerRegistry.RegisterForNavigation<NewRequestPage, NewRequestPageViewModel>();
             containerRegistry.RegisterForNavigation<TeamTimePage, TeamTimePageViewModel>();

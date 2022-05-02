@@ -61,6 +61,24 @@ namespace TeamConnect.Resources.Strings {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Add.
+        /// </summary>
+        internal static string Add {
+            get {
+                return ResourceManager.GetString("Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Add member.
+        /// </summary>
+        internal static string AddMember {
+            get {
+                return ResourceManager.GetString("AddMember", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Address.
         /// </summary>
         internal static string Address {
@@ -430,6 +448,15 @@ namespace TeamConnect.Resources.Strings {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Search by name, surname or email.
+        /// </summary>
+        internal static string SearchByNameSurnameOrEmail {
+            get {
+                return ResourceManager.GetString("SearchByNameSurnameOrEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Select position.
         /// </summary>
         internal static string SelectPosition {
@@ -507,6 +534,15 @@ namespace TeamConnect.Resources.Strings {
         internal static string TeamTime {
             get {
                 return ResourceManager.GetString("TeamTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на This user is in another team.
+        /// </summary>
+        internal static string ThisUserIsInAnotherTeam {
+            get {
+                return ResourceManager.GetString("ThisUserIsInAnotherTeam", resourceCulture);
             }
         }
         

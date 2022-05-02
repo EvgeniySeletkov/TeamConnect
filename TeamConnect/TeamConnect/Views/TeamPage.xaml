@@ -125,6 +125,31 @@
 
         </StackLayout>
 
+        <Button Grid.Row="1"
+                WidthRequest="64"
+                HeightRequest="64"
+                ImageSource="{DynamicResource ic_plus}"
+                CornerRadius="32"
+                BackgroundColor="Blue"
+                HorizontalOptions="End"
+                VerticalOptions="End"
+                Margin="24"
+                Command="{Binding AddMemberTapCommand}">
+
+            <Button.Triggers>
+
+                <DataTrigger TargetType="Button"
+                             Binding="{Binding PageState}"
+                             Value="TeamNotCreated">
+
+                    <Setter Property="IsVisible" Value="False"/>
+
+                </DataTrigger>
+                
+            </Button.Triggers>
+            
+        </Button>
+
     </Grid>
 
 </page:BaseDetailPage>

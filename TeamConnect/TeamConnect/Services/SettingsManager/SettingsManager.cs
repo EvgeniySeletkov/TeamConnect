@@ -20,6 +20,7 @@ namespace TeamConnect.Services.SettingsManager
         public void ClearSettings()
         {
             UserId = default(int);
+            TeamId = default(int);
         }
 
         #endregion

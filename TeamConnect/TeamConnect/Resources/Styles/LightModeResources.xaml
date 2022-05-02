@@ -32,5 +32,6 @@
     <ImageSource x:Key="ic_calendar">ic_calendar</ImageSource>
     <ImageSource x:Key="ic_reset">ic_reset</ImageSource>
     <ImageSource x:Key="ic_plus">ic_plus</ImageSource>
+    <ImageSource x:Key="ic_close">ic_close</ImageSource>
     
 </ResourceDictionary>
