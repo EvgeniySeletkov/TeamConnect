@@ -52,10 +52,10 @@ namespace TeamConnect.ViewModels
         }
 
         private ICommand _logInTapCommand;
-        public ICommand LogInTapCommand => _logInTapCommand ??= new AsyncCommand(OnLogInTappedAsync);
+        public ICommand LogInTapCommand => _logInTapCommand ??= new AsyncCommand(OnLogInTapCommandAsync);
 
         private ICommand _signUpTapCommand;
-        public ICommand SignUpTapCommand => _signUpTapCommand ??= new AsyncCommand(OnSignUpTappedAsync);
+        public ICommand SignUpTapCommand => _signUpTapCommand ??= new AsyncCommand(OnSignUpTapCommandAsync);
 
         #endregion
 
@@ -75,7 +75,7 @@ namespace TeamConnect.ViewModels
 
         #region -- Private helpers --
 
-        private async Task OnLogInTappedAsync()
+        private async Task OnLogInTapCommandAsync()
         {
             var logInResult = await _authorizationService.LogInAsync(Email, Password);
 
@@ -107,7 +107,7 @@ namespace TeamConnect.ViewModels
             }
         }
 
-        private Task OnSignUpTappedAsync()
+        private Task OnSignUpTapCommandAsync()
         {
             return NavigationService.NavigateAsync(nameof(CreateAccountFirstPage), null, false, true);
         }
