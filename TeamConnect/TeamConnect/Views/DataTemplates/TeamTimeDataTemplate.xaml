@@ -21,7 +21,6 @@
                        HeightRequest="64"
                        WidthRequest="64"
                        CornerRadius="32"
-                       BackgroundColor="{DynamicResource appcolor_i2}"
                        HorizontalOptions="Start"
                        VerticalOptions="CenterAndExpand">
 

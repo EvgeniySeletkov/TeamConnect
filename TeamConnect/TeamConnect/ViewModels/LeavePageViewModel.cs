@@ -81,6 +81,8 @@ namespace TeamConnect.ViewModels
         {
             PageState = EPageState.Loading;
 
+            Leaves = null;
+
             var getLeavesResult = await _leaveService.GetLeavesByDatesAsync(DateTime.Now.Date, DateTime.Now.AddDays(6).Date);
 
             if (getLeavesResult.IsSuccess)
@@ -129,7 +131,7 @@ namespace TeamConnect.ViewModels
 
             if (datePromptResult.Ok)
             {
-                await LoadLeavesByDateAsync(datePromptResult.SelectedDate);
+                await LoadLeavesByDateAsync(datePromptResult.SelectedDate.Date);
             }
         }
 
