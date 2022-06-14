@@ -7,7 +7,6 @@ using TeamConnect.iOS.Renderers;
 [assembly: ExportRenderer(typeof(BorderlessEntry), typeof(BorderlessEntryRenderer))]
 namespace TeamConnect.iOS.Renderers
 {
-
     public class BorderlessEntryRenderer : EntryRenderer
     {
         #region -- Overrides --
@@ -20,8 +19,7 @@ namespace TeamConnect.iOS.Renderers
             {
                 Control.Layer.BorderWidth = 0;
 
-                //var color = (Color)Xamarin.Forms.Application.Current.Resources["appcolor_i16"];
-                var color = Color.Blue;
+                var color = (Color)Xamarin.Forms.Application.Current.Resources["appcolor_i1"];
                 Control.TintColor = color.ToUIColor();
                 Control.BorderStyle = UITextBorderStyle.None;
             }

@@ -1,5 +1,4 @@
-﻿using System;
-namespace TeamConnect.Models
+﻿namespace TeamConnect.Models
 {
     public interface IEntityBase
     {

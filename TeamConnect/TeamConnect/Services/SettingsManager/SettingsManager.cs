@@ -8,12 +8,12 @@ namespace TeamConnect.Services.SettingsManager
 
         public int UserId
         {
-            get => Preferences.Get(nameof(UserId), 0);
+            get => Preferences.Get(nameof(UserId), default(int));
             set => Preferences.Set(nameof(UserId), value);
         }
         public int TeamId
         {
-            get => Preferences.Get(nameof(TeamId), 0);
+            get => Preferences.Get(nameof(TeamId), default(int));
             set => Preferences.Set(nameof(TeamId), value);
         }
 
