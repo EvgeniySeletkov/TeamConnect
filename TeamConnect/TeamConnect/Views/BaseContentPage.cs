@@ -9,6 +9,7 @@ namespace TeamConnect.Views
     {
         public BaseContentPage()
         {
+            // Test
             ViewModelLocator.SetAutowireViewModel(this, true);
             On<iOS>().SetUseSafeArea(true);
         }
